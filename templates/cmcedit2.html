@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB-CMC CHART LAB-SCOPE Edit</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #userform {
+            height: 50% !important;
+        }
+
+
+        #addContent {
+            background-color: #ffffff;
+            margin: 10px auto;
+            max-width: 900px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 50px;
+        }
+
+        label {
+            font-weight: medium;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 2px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+
+        .row {
+            margin: 0 -5px;
+        }
+
+        .col-md-6 {
+            padding: 0 5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .form-group .col-md-6 {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+
+    </script>
+    <section id="addContent">
+        <div class="body">
+            <form action="{{ url_for('edit_ranges', id=id) }}" method="post" id="userForm">
+                <div id="hi">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label style="margin-top: 5px;" for="selectOption">Department</label>
+                            <input type="text" class="form-control" id="Department" name="Department"
+                                value="{{device_data[14] }}" readonly>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Calibrator" class="col-form-label">Calibrator ID</label>
+                            <input type="text" class="form-control" id="Calibrator" name="Calibrator"
+                                value="{{device_data[1]}}" readonly>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Parameter" class="col-form-label">Parameter</label>
+                            <input type="text" class="form-control" id="Parameter" name="Parameter"
+                                value="{{device_data[3]}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Function" class="col-form-label">Function</label>
+                            <input type="text" class="form-control" id="Function" name="Function"
+                                value="{{device_data[2]}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+
+
+                        <div class="col-md-6">
+                            <label for="Scope" class="col-form-label">Scope</label>
+                            <input type="text" class="form-control" id="Scope" name="ScopeSel"
+                                value="{{device_data[13]}}" readonly>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowRange" class="col-form-label">Low Range</label>
+                            <input type="text" class="form-control" id="LowRange" name="LoRange"
+                                value="{{device_data[4] }}">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="LowRangeUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowRangeUnit" name="LUnit">
+                                <option value="{{device_data[5] }}">{{device_data[5] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValue" class="col-form-label">Low Uncertanity Value</label>
+                            <input type="text" class="form-control" id="UncertaintyValue" name="LoRngUncertVal"
+                                value="{{device_data[8] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValueUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowUncertanityValueUnit" name="LRUncUnit">
+                                <option value="{{device_data[9] }}">{{device_data[9] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighRange" class="col-form-label">High Range</label>
+                            <input type="text" class="form-control" id="HighRange" name="HiRange"
+                                value="{{device_data[6] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HUnit">
+
+                                <option value="{{device_data[7] }}">{{device_data[7] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighUncertanityValue" class="col-form-label">High Uncertanity Value</label>
+                            <input type="text" class="form-control" id="HighUncertanityValue" name="HiRngUncertVal"
+                                value="{{device_data[10] }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HRUncUnit">
+                                <option value="{{device_data[11] }}">{{device_data[11] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="KFactor" class="col-form-label">K.Factor</label>
+                            <br>
+                            <input type="text" class="form-control" name="Kval" value="{{device_data[12] }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="FrequencyRequired" class="col-form-label">Frequency Required</label>
+                            <br>
+                            <input type="checkbox" id="FrequencyRequired" name="FreqSel" {% if device_data[15]
+                                %}checked{% endif %}>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group department-container">
+                        <div class="col-md-6">
+                            <label for="LowFrequency" class="col-form-label">Low Frequency </label>
+                            <input type="text" class="form-control" id="LowFrequency" name="LoFreqRngVal"
+                                value="{{device_data[16] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="LoFreqRngUnit">
+                                <option value="{{device_data[17] }}">{{device_data[17] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group department-container">
+                        <div class="col-md-6">
+                            <label for="HighFrequency" class="col-form-label">High Frequency </label>
+                            <input type="text" class="form-control" id="HighFrequency" name="HiFreqRngVal"
+                                value="{{device_data[18] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HiFreqRngUnit">
+                                <option value="{{device_data[19] }}">{{device_data[19] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="ai">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label style="margin-top: 5px;" for="selectOption">Department</label>
+                            <input type="text" class="form-control" id="Department" name="Department1"
+                                value="{{device_data[5] }}" readonly>
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Calibrator" class="col-form-label">Calibrator ID</label>
+                            <input type="text" class="form-control" id="Calibrator" name="Calibrator1"
+                                value="{{device_data[1]}}" readonly>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Parameter" class="col-form-label">Parameter</label>
+                            <input type="text" class="form-control" id="Parameter" name="Parameter1"
+                                value="{{device_data[2]}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Function" class="col-form-label">Function</label>
+                            <input type="text" class="form-control" id="Function" name="Function1"
+                                value="{{device_data[3]}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+
+
+                        <div class="col-md-6">
+                            <label for="Scope" class="col-form-label">Scope</label>
+                            <input type="text" class="form-control" id="Scope" name="ScopeSel1"
+                                value="{{device_data[4]}}" readonly>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowRange" class="col-form-label">Low Range</label>
+                            <input type="text" class="form-control" id="LowRange" name="LoRange1"
+                                value="{{device_data[6] }}">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="LowRangeUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowRangeUnit" name="LUnit1">
+                                <option value="{{device_data[7] }}">{{device_data[7] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValue" class="col-form-label">Low Uncertanity Value</label>
+                            <input type="text" class="form-control" id="UncertaintyValue" name="LoRngUncertVal1"
+                                value="{{device_data[10] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValueUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowUncertanityValueUnit" name="LRUncUnit1">
+                                <option value="{{device_data[11] }}">{{device_data[11] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighRange" class="col-form-label">High Range</label>
+                            <input type="text" class="form-control" id="HighRange" name="HiRange1"
+                                value="{{device_data[8] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HUnit1">
+
+                                <option value="{{device_data[9] }}">{{device_data[9] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighUncertanityValue" class="col-form-label">High Uncertanity Value</label>
+                            <input type="text" class="form-control" id="HighUncertanityValue" name="HiRngUncertVal1"
+                                value="{{device_data[12] }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HRUncUnit1">
+                                <option value="{{device_data[13] }}">{{device_data[13] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="KFactor" class="col-form-label">K.Factor</label>
+                            <br>
+                            <input type="text" class="form-control" name="Kval1" value="{{device_data[14] }}">
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div id="ii">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label style="margin-top: 5px;" for="selectOption">Department</label>
+                            <input type="text" class="form-control" id="Department" name="Department2"
+                                value="{{device_data[6] }}" readonly>
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Calibrator" class="col-form-label">Calibrator ID</label>
+                            <input type="text" class="form-control" id="Calibrator" name="Calibrator2"
+                                value="{{device_data[1]}}" readonly>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Parameter" class="col-form-label">Parameter</label>
+                            <input type="text" class="form-control" id="Parameter" name="Parameter2"
+                                value="{{device_data[3]}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Function" class="col-form-label">Function</label>
+                            <input type="text" class="form-control" id="Function" name="Function2"
+                                value="{{device_data[4]}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+
+
+                        <div class="col-md-6">
+                            <label for="Scope" class="col-form-label">Scope</label>
+                            <input type="text" class="form-control" id="Scope" name="ScopeSel2"
+                                value="{{device_data[5]}}" readonly>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowRange" class="col-form-label">Low Range</label>
+                            <input type="text" class="form-control" id="LowRange" name="LoRange2"
+                                value="{{device_data[7] }}">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="LowRangeUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowRangeUnit" name="LUnit2">
+                                <option value="{{device_data[8] }}">{{device_data[8] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValue" class="col-form-label">Low Uncertanity Value</label>
+                            <input type="text" class="form-control" id="UncertaintyValue" name="LoRngUncertVal2"
+                                value="{{device_data[11] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="LowUncertanityValueUnit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="LowUncertanityValueUnit" name="LRUncUnit2">
+                                <option value="{{device_data[12] }}">{{device_data[12] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighRange" class="col-form-label">High Range</label>
+                            <input type="text" class="form-control" id="HighRange" name="HiRange2"
+                                value="{{device_data[9] }}">
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HUnit2">
+
+                                <option value="{{device_data[10] }}">{{device_data[10] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighUncertanityValue" class="col-form-label">High Uncertanity Value</label>
+                            <input type="text" class="form-control" id="HighUncertanityValue" name="HiRngUncertVal2"
+                                value="{{device_data[13] }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Unit" class="col-form-label">Unit</label>
+                            <select class="form-select" id="Unit" name="HRUncUnit2">
+                                <option value="{{device_data[14] }}">{{device_data[14] }}</option>
+                                {% for unit in units %}
+                                <option value="{{ unit }}" {% if selected_dept==unit %}selected{% endif %}>
+                                    {{ unit }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="KFactor" class="col-form-label">K.Factor</label>
+                            <br>
+                            <input type="text" class="form-control" name="Kval2" value="{{device_data[15] }}">
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary"
+                    style="margin-top: 10px;margin-left: 35%; width: 25%; margin-top: 20px;">Save</button>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+
+
+
+    <script>
+        // Function to display a centered alert message
+
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const url = form.action;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    alert(data.message, 'success');
+                    // Redirect to the next page after a successful save
+                    setTimeout(() => {
+                        window.location.href = '/cmc_home'; // Replace with your desired URL
+                    },); // Redirect after 1 second
+                } else {
+                    alert(data.message, 'danger');
+                }
+            } catch (error) {
+                alert('An error occurred while saving.', 'danger');
+            }
+        });
+    </script>
+       <script>
+        $(document).ready(function () {
+            // Function to toggle the visibility of form sections
+            function toggleFormSections(department) {
+                if (department === "ETL-Electro Technical Lab") {
+                    // Show elements with class 'hi'
+                    $('#hi').show();
+                    // Hide elements with class 'ab'
+                    $('#ai').hide();
+                    $('#ii').hide();
+                } else if  (department === "PRL-Pressure Lab") {
+                    // Show elements with class 'ab'
+                    $('#ai').show();
+                    // Hide elements with class 'hi'
+                    $('#hi').hide();
+                    $('#ii').hide();
+                } else {
+                    // Show elements with class 'ab'
+                    $('#ii').show();
+                    $('#ai').hide();
+                    // Hide elements with class 'hi'
+                    $('#hi').hide();
+                }
+            }
+    
+            // Initially hide or show form sections based on the initial department value
+            toggleFormSections($('#Department').val());
+    
+            // Attach an event handler to the department input to update the form sections on change
+            $('#Department').on('change', function () {
+                toggleFormSections($(this).val());
+            });
+        });
+    </script>
+</body>
+
+</html>

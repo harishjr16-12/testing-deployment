@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftLABWEB Calibration Report</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .tablecol {
+            overflow: hidden;
+            max-height: 70vh;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .outer-wrapper {
+            margin: 40px 20px;
+            border-radius: 4px;
+            max-width: fit-content;
+            /* margin-top: 50px !important; */
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            max-height: calc(81vh - 45px);
+            padding-bottom: 20px;
+            height: 66vh;
+        }
+
+        thead {
+            position: sticky;
+            z-index: 2;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            height: auto;
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+
+        #fixed-column {
+            position: sticky;
+            left: 0;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+
+        #fixed-column:last-child {
+            left: auto;
+            right: 0;
+        }
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+        }
+
+        table thead th:first-child {
+            position: sticky !important;
+            left: 0 !important;
+            z-index: 2 !important;
+        }
+
+        .table-wrapper th#fixed-column {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+        #str {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+
+        .table-wrapper th#fixed-column:last-child {
+            right: 0;
+        }
+
+        .table-wrapper td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+        }
+
+        .table-wrapper td.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+        }
+
+        table th,
+        table td {
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        table td {
+            text-align: left;
+            white-space: nowrap;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+
+        }
+
+        th.resize {
+            position: relative;
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+
+
+
+       #view{
+            height: 20px;
+            font-size: x-small;
+            font-weight: bold;
+            text-align: center;
+            padding: 2px;
+            width: 30px;
+        }
+
+    </style>
+</head>
+
+<div id="navbar-placeholder"></div>
+<script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+<script>
+    // Retrieve valueStoredInVariable from localStorage
+    var storedValue = localStorage.getItem('valueStoredInVariable');
+    console.log(storedValue);
+    // Now you can use valueStoredInVariable in this script or any other script on this page.
+    // Check if valueStoredInVariable is defined
+    if (storedValue === "Customer Care") {
+        fetch('/navbar')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else if (storedValue === "ETL-Electro Technical Lab") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else if (storedValue === "PRL-Pressure Lab") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "MCL-Linear") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "MCL-Mass") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "QA") {
+        fetch('/navbardepartmentqa')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "System Administrator") {
+        fetch('/navbardepartmentsa')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else {
+        console.log("No conditions matched.");
+    }
+</script>
+
+
+
+<body>
+    <br>
+    <div class="kavi" style="display: flex; margin-left: 10%; ">
+        <div class="row">
+            <div class="col-md-12 d-flex align-items-center">
+                <label class="col-form-label" style="padding: 5px; font-weight: bold; width: 150px;"
+                    for="SRFPrefix">Active SRF Prefix:</label>
+                <select class="form-select" id="SRFPrefix" name="SRFPrefix" style="width: 200px; height: 39px;"
+                    required>
+                    <option value="select">select</option>
+                    {% for prefix in actives %}
+                    <option value="{{ prefix }}" {% if selected_dept==department %}selected{% endif %}>
+                        {{ prefix }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <label class="col-form-label" style="padding: 5px; font-weight: bold; margin-left: 10px; width: 120px;"
+                    for="SRFNumber">SRF Number:</label>
+                <select class="form-select" id="SRFNumber" name="SRFNumber" style="width: 200px; height: 39px;"
+                    required>
+                    <option value="select">select</option>
+
+                    {% for prefix in srfs %}
+                    <option value="{{ prefix }}">
+                        {{ prefix }}
+                    </option>
+                    {% endfor %}
+                    <option value="all">All</option>
+                </select>
+
+                <label class="col-form-label" style="padding: 5px; margin-left: 10px; font-weight: bold; width: 120px;"
+                    for="departmentSelect">Department:</label>
+                <select class="form-select" id="departmentSelect" name="Dev_Dept" style="width: 200px;" required>
+                    <option value="select">select</option>
+                    <option value="all">All</option>
+                    {% for department in depts %}
+                    <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                        {{ department }}
+                    </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--------------------------------  -->
+
+    <section id="viewContent">
+
+        <div class="tabercol">
+            <div class="outer-wrapper">
+                <div class="table-wrapper">
+
+
+                    <table id="emp-table">
+                        <thead>
+
+                            <th col-index="1" id="fixed-column" class="resize" style="width: 150px;">SRF Job No.
+
+                            </th>
+
+                            <th col-index="2" class="resize" id="str">Item Name
+
+                            </th>
+                            <th col-index="3" class="resize" id="str">Department
+
+                            </th>
+                            <th col-index="4" class="resize" id="str">ULR No.
+
+                            </th>
+                            <th col-index="5" class="resize" id="str" style="width: 100px;">Cal.Date
+
+                            </th>
+
+                            <th col-index="6" class="resize" id="str" style="width: 100px;">Next Due
+
+
+                            </th>
+                            <th col-index="7" class="resize" id="str" style="width: 80px;">Action
+
+
+                            </th>
+
+
+                        </thead>
+                        <tbody>
+                            {% for user in datas %}
+                            <tr>
+                                <td class="fixed-column" id="customerCode">{{ user[1] }}</td>
+                                <td>{{ user[7] }}</td>
+                                <td id="department">{{ user[18] }}</td>
+                                <td>{{ user[43] }}</td>
+                                <td>{{ user[27] }}</td>
+                                <td>{{ user[28] }}</td>
+                                <td class="fixed-column">
+                                    <button id="view" title="View Report" class="btn btn-primary view-button">V</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        function initResizableColumns() {
+            const headers = document.querySelectorAll('th.resize');
+
+            headers.forEach(header => {
+                let startX;
+                let startWidth;
+
+                header.addEventListener('mousedown', function (event) {
+                    startX = event.clientX;
+                    startWidth = header.offsetWidth;
+
+                    document.addEventListener('mousemove', resizeColumn);
+                    document.addEventListener('mouseup', stopResize);
+                });
+
+                function resizeColumn(event) {
+                    const newWidth = startWidth + (event.clientX - startX);
+                    header.style.width = newWidth + 'px';
+
+                    // Prevent column resizing from interfering with scrolling
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'auto';
+                }
+
+                function stopResize() {
+                    document.removeEventListener('mousemove', resizeColumn);
+                    document.removeEventListener('mouseup', stopResize);
+
+                    // Allow table layout to go back to fixed after resizing
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'fixed';
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initResizableColumns);
+    </script>
+
+
+    <!-- <script>
+        $(document).ready(function () {
+            $(".view-button").click(function () {
+                var DeviceID = $(this).closest("tr").find("#customerCode").text();
+                var Department = $(this).closest("tr").find("#department").text();
+
+
+                $.ajax({
+                    url: '/print_calibrationcc',
+                    type: "POST",
+                    data: {
+                        DeviceID: DeviceID, Department: Department
+                    },
+                    success: function (response) {
+                        window.location.href = '/click_each_claibrationprint_select_two';
+                        console.log("Data sent successfully.");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response from backend
+                        console.error("Error occurred while sending data to backend.");
+                    }
+                });
+            });
+        });
+    </script> -->
+
+    <script>
+        $(document).ready(function () {
+            $("#SRFPrefix").on("change", function () {
+                var department = $(this).val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/depart_filter_device_cat",
+                    data: { department: department },
+                    success: function (response) {
+                        var tableBody = $("#emp-table tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (Array.isArray(response)) {
+                            // Loop through the response data and append rows to the table
+                            response.forEach(function (user) {
+                                var date27 = new Date(user[27]).toISOString().split('T')[0];
+                                var date28 = new Date(user[28]).toISOString().split('T')[0];
+                                var newRow = `
+                        <tr>
+                            <td class='fixed-column' id="customerCode">${user[1]}</td>
+                            <td>${user[7]}</td>
+                            <td id="department">${user[18]}</td>
+                            <td>${user[43]}</td>
+                            <td>${date27}</td>
+                              
+                              <td>${date28}</td>
+                           
+                            <td class='fixed-column'>
+                                <button title="View Report" class="btn btn-primary view-button" id="view" >V</button>
+                            </td>
+                        </tr>`;
+                                tableBody.append(newRow);
+                            });
+                        } else {
+                            // Handle non-array response
+                            console.error("Response is not an array.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        // You can display an error message here.
+                    }
+                });
+            });
+        });
+
+
+    </script>
+    <script>
+        // $(document).ready(function () {
+        //     $("#departmentSelect").on("change", function () {
+        //         var department = $(this).val();
+        //         var column = "department";
+
+        //         $.ajax({
+        //             type: "POST",
+        //             url: "/filtered_report_page",
+        //             data: { department: department, column: column },
+        //             success: function (response) {
+        //                 var tableBody = $("#emp-table tbody");
+        //                 tableBody.empty();  // Clear existing table rows
+
+        //                 if (Array.isArray(response)) {
+        //                     // Loop through the response data and append rows to the table
+        //                     response.forEach(function (user) {
+        //                         var date27 = new Date(user[27]).toISOString().split('T')[0];
+        //                         var date28 = new Date(user[28]).toISOString().split('T')[0];
+        //                         var newRow = `
+        //                 <tr>
+        //                     <td class='fixed-column' id="customerCode">${user[1]}</td>
+        //                     <td>${user[7]}</td>
+        //                     <td id="department">${user[18]}</td>
+        //                     <td>${user[43]}</td>
+        //                     <td>${date27}</td>
+
+        //                       <td>${date28}</td>
+
+
+        //                     <td class='fixed-column'>
+        //                         <button title="View Report" class="btn btn-primary view-button" >V</button>
+
+        //                     </td>
+        //                 </tr>`;
+        //                         tableBody.append(newRow);
+        //                     });
+        //                 } else {
+        //                     // Handle non-array response
+        //                     console.error("Response is not an array.");
+        //                 }
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 console.error("AJAX error:", error);
+        //                 // You can display an error message here.
+        //             }
+        //         });
+        //     });
+        // });
+        $(document).ready(function () {
+            // Event delegation for dynamically added elements
+            $(document).on("click", ".view-button", function () {
+                var DeviceID = $(this).closest("tr").find("#customerCode").text();
+                var Department = $(this).closest("tr").find("#department").text();
+
+                $.ajax({
+                    url: '/print_calibrationcc',
+                    type: "POST",
+                    data: {
+                        DeviceID: DeviceID, Department: Department
+                    },
+                    success: function (response) {
+                        window.location.href = '/click_each_claibrationprint_select_two';
+                        console.log("Data sent successfully.");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response from backend
+                        console.error("Error occurred while sending data to backend.");
+                    }
+                });
+            });
+
+            $("#departmentSelect").on("change", function () {
+                var department = $(this).val();
+                var column = "department";
+
+                $.ajax({
+                    type: "POST",
+                    url: "/filtered_report_page",
+                    data: { department: department, column: column },
+                    success: function (response) {
+                        var tableBody = $("#emp-table tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (Array.isArray(response)) {
+                            // Loop through the response data and append rows to the table
+                            response.forEach(function (user) {
+                                var date27 = new Date(user[27]).toISOString().split('T')[0];
+                                var date28 = new Date(user[28]).toISOString().split('T')[0];
+                                var newRow = `
+                            <tr>
+                                <td class='fixed-column' id="customerCode">${user[1]}</td>
+                                <td>${user[7]}</td>
+                                <td id="department">${user[18]}</td>
+                                <td>${user[43]}</td>
+                                <td>${date27}</td>
+                                <td>${date28}</td>
+                                <td class='fixed-column'>
+                                    <button title="View Report" class="btn btn-primary view-button" id="view">V</button>
+                                </td>
+                            </tr>`;
+                                tableBody.append(newRow);
+                            });
+                        } else {
+                            // Handle non-array response
+                            console.error("Response is not an array.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        // You can display an error message here.
+                    }
+                });
+            });
+
+            $("#SRFNumber").on("change", function () {
+                var SRFNumber = $(this).val();
+                var column = "srfno";
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/filtered_report_page",
+                    data: { SRFNumber: SRFNumber, column: column },
+                    success: function (response) {
+                        var tableBody = $("#emp-table tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (Array.isArray(response)) {
+                            // Loop through the response data and append rows to the table
+                            response.forEach(function (user) {
+                                // Format the date from user[27] and user[28]
+                                var date27 = new Date(user[27]).toISOString().split('T')[0];
+                                var date28 = new Date(user[28]).toISOString().split('T')[0];
+
+                                var newRow = `
+                            <tr>
+                                <td class='fixed-column' id="customerCode">${user[1]}</td>
+                                <td>${user[7]}</td>
+                                <td id="department">${user[18]}</td>
+                                <td>${user[43]}</td>
+                                <td>${date27}</td>
+                              
+                                <td>${date28}</td>
+                                
+                                <td class='fixed-column'>
+                                    <button title="View Report" class="btn btn-primary view-button" id="view">V</button>
+                                </td>
+                            </tr>`;
+                                tableBody.append(newRow);
+                            });
+                        } else {
+                            // Handle non-array response
+                            console.error("Response is not an array.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        // You can display an error message here.
+                    }
+                });
+            });
+        });
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

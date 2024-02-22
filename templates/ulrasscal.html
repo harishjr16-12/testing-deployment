@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB ULR Assigningt</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+
+
+
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        #urlassign {
+            background-color: #f0f0f0;
+            margin-top: 0px;
+
+        }
+
+        .urlno {
+            display: flex;
+            align-items: center;
+            margin-left: 15%;
+            margin-top: 1%;
+        }
+
+        .urlno label {
+            font-weight: bold;
+        }
+
+        #url {
+            width: fit-content;
+            text-align: center;
+            height: 25px;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        #year {
+            width: 60px;
+            text-align: center;
+            height: 25px;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        #item {
+            width: 30px;
+            text-align: center;
+            height: 25px;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        #no {
+            width: fit-content;
+            text-align: center;
+            height: 25px;
+            color: #000;
+            background-color: yellow;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+
+
+        .container {
+            border: 2px solid black;
+            height: 500px;
+            width: 1200px;
+        }
+
+        .left {
+            width: 300px;
+        }
+
+        .center {
+            margin-top: -240px;
+            margin-left: -110px;
+        }
+
+
+        .right {
+            margin-left: 200px;
+            margin-top: -500px;
+        }
+
+        .jobnos {
+            width: 300px;
+            height: 320px;
+            background-color: white;
+            border: 1px solid #000;
+        }
+
+        .tab {
+            margin-left: 30%;
+            margin-top: 2px;
+            color: #000;
+            width: 200px;
+        }
+
+
+        #urltab {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            width: 100%;
+
+            table-layout: fixed;
+
+        }
+
+
+        #urltab th {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+
+        #urltab {
+            resize: both;
+            overflow: auto;
+        }
+
+
+        .tab {
+            width: 70%;
+
+            overflow: auto;
+
+
+        }
+
+
+
+
+
+        #checkboxContainer label {
+            margin-left: 5px !important;
+        }
+
+        #checkboxContainer input {
+            margin-left: 5px !important;
+        }
+
+        .bordered-row {
+            border: 1px solid black;
+        }
+
+
+
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+            overflow-y: scroll;
+
+            overflow-x: scroll;
+
+        }
+
+
+
+        #urltab {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        #output div {
+            border: 1px solid black;
+
+            padding: 4px;
+
+            position: sticky;
+
+        }
+
+        .bordered-table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+
+        }
+
+
+        .bordered-table td {
+            border: 1px solid black;
+
+
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+
+    <section id="urlassign">
+        <section class="header">
+            <div class="urlno">
+                <label>Last ULR No:</label>
+                <input class="form-check-input" type="text" name="ULRNo" id="url" value="{{divisions[0]}}" readonly>
+                <input class="form-check-input" type="text" name="" id="year" value="{{ divisions[1] }}" readonly>
+                <input class="form-check-input" type="text" name="" id="item" value="{{ divisions[2] }}" readonly>
+                <input class="form-check-input" type="text" name="" id="no" value="{{ divisions[3] }}" readonly>
+
+                <button id="backToAddViewButton" class="btn btn-danger" style="margin-left: 80px;"> <a
+                        href="/ulr_manage" style="text-decoration: none; color: white;">Back to ULR Log Book View</a>
+                </button>
+            </div>
+        </section>
+        <section class="main">
+            <div class="container">
+                <div class="left">
+                    <label class="col-form-label" id="lab" style="font-weight: bold;">Job Cards To Be Assigned</label>
+                    <select class="form-select" id="departmentSelects" name="SRFNo" required>
+                        <option value="select">
+                            select</option>
+                        {% for department in selected_usersed %}
+                        <option value="{{ department[4] }}">
+                            {{ department[4] }}</option>
+
+                        {% endfor %}
+
+                    </select>
+                    <p style="font-weight: bold;">Job Nos. List Not Assigned</p>
+                    <div class="jobnos">
+                        <div id="checkboxContainer">
+                            <label id="checkbode"> </label><br>
+                        </div>
+                    </div>
+
+                    <button id="transferButton" class="btn btn-success"
+                    style="margin-left:20%; margin-top: 20px;">>></button>
+
+                </div>
+
+           
+                 
+             
+
+
+
+
+
+
+                <div class="right">
+
+                    <div class="btnassign" style="display: flex;">
+
+                        <button type="submit" class="btn btn-warning"
+                            style="margin-left: 45%; width: 30%; margin-top: 60px; height: 40px;  margin-bottom: 30px;"
+                            id="addButton" onclick="updateTable()"> Assign Next
+                            Continuous ULR No. </button>
+                        <button type="button" class="btn btn-primary" id="clearButton"
+                            style=" width: 20%; height: 40px; margin-top: 60px; margin-left: 10px; margin-bottom: 30px;"
+                            onclick="clearTable()">Clear</button>
+                    </div>
+
+
+                    <div class="tab">
+                        <table id="urltab" class="bordered-table">
+                            <thead>
+                                <tr>
+                                    <th>Job No</th>
+                                    <th>ULR No.</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                <tr>
+                                    <td colspan="1" id="output"></td>
+
+                                    <td id="autoRow"></td>
+                                </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button type="submit" class="btn btn-success"
+                        style="margin-left: 40%; width: 40%; margin-top: 130px;" id="saveButton">Save Assigned
+                        ULR No. to Selected Jobs</button>
+
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <script>
+        // Add event listener to the table to handle resizing
+        var table = document.getElementById("urltab");
+        table.addEventListener("mousedown", initResize, false);
+
+        // Variables to track resizing
+        var startX, startWidth;
+
+        // Initialize resizing
+        function initResize(e) {
+            startX = e.clientX;
+            startWidth = parseInt(document.defaultView.getComputedStyle(table).width, 10);
+            document.documentElement.addEventListener("mousemove", doResize, false);
+            document.documentElement.addEventListener("mouseup", stopResize, false);
+        }
+
+        // Resize the table
+        function doResize(e) {
+            table.style.width = (startWidth + e.clientX - startX) + "px";
+        }
+
+        // Stop resizing
+        function stopResize() {
+            document.documentElement.removeEventListener("mousemove", doResize, false);
+            document.documentElement.removeEventListener("mouseup", stopResize, false);
+        }
+
+    </script>
+    <script>
+        var addedData = [];
+        var assignedJobNumbers = [];
+
+        function updateTable() {
+            var urlValue = document.getElementById("url").value;
+            var yearValue = document.getElementById("year").value;
+            var itemValue = document.getElementById("item").value;
+
+            // Get the numeric part from the no input
+            var noInput = document.getElementById("no");
+            var numericPart = parseInt(noInput.value, 10);
+
+            // Get the checked checkboxes
+            var checkboxes = document.querySelectorAll(".checkbox:checked");
+
+            // Loop through checked checkboxes
+            checkboxes.forEach(function (checkbox) {
+                // Update the numeric part for the next iteration
+                numericPart++;
+
+                // Create a new row
+                var newRow = document.createElement("tr");
+
+                // Create a cell for Job No.
+                var jobNoCell = document.createElement("td");
+                jobNoCell.textContent = checkbox.value; // Use the checkbox value as Job No.
+
+                // Create a cell for ULR No.
+                var ulrNoCell = document.createElement("td");
+
+                // Combine the values
+                var combinedValue = urlValue + yearValue + itemValue + padNumber(numericPart, 8);
+
+                // Set cell value
+                ulrNoCell.textContent = combinedValue;
+
+                // Append cells to the row
+                newRow.appendChild(jobNoCell);
+                newRow.appendChild(ulrNoCell);
+
+                // Append the row to the table
+                var outputTable = document.getElementById("urltab").getElementsByTagName('tbody')[0];
+                document.getElementById("output").style.display = "none";
+                outputTable.appendChild(newRow);
+                addedData.push({ jobNo: checkbox.value, ulrNo: combinedValue });
+            });
+            $('#saveButton').prop('disabled', false);
+            $('#clearButton').prop('disabled', false);
+        }
+
+        function padNumber(num, size) {
+            var s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+    </script>
+
+
+
+
+    <script>
+        function clearTable() {
+            // Clear the content of the table
+            var outputTable = document.getElementById("urltab").getElementsByTagName('tbody')[0];
+            outputTable.innerHTML = '';
+            location.reload();
+
+        }
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Declare selectedItems in a higher scope
+            var selectedItems = [];
+
+            $('#saveButton, #addButton, #clearButton, #transferButton').prop('disabled', true);
+            $('#departmentSelects').change(function () {
+                var selectedValue = $(this).val();
+                console.log('Selected Value:', selectedValue);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/click_srf',
+                    data: {
+                        SRFNo: selectedValue
+                    },
+                    success: function (response) {
+                        if (Array.isArray(response)) {
+                            var checkbode = $('#checkbode');
+                            checkbode.html('');
+
+                            for (var i = 0; i < response.length; i++) {
+                                var checkbox = $('<input type="checkbox" class="checkbox">');
+                                checkbox.val(response[i]);
+
+                                var label = $('<label>').text(response[i]);
+
+                                checkbode.append(checkbox);
+                                checkbode.append(label);
+                                checkbode.append('<br>');
+                            }
+
+                            var selectAllCheckbox = $('<input type="checkbox" id="selectAll">');
+                            var selectAllLabel = $('<label for="selectAll">Select All</label>');
+                            checkbode.prepend('<br>');
+                            checkbode.prepend(selectAllLabel);
+                            checkbode.prepend(selectAllCheckbox);
+
+                            selectAllCheckbox.change(function () {
+                                var isChecked = $(this).prop('checked');
+                                $('.checkbox').prop('checked', isChecked);
+                            });
+
+                            $('#transferButton').prop('disabled', false);
+                        } else {
+                            console.error('Invalid response:', response);
+                        }
+                    },
+                    error: function (error) {
+                        console.error('AJAX Error:', error);
+                    }
+                });
+            });
+
+            $('#transferButton').click(function () {
+                var selectedCheckboxes = $('.checkbox:checked');
+
+                if (selectedCheckboxes.length === 0) {
+                    alert("Please select at least one checkbox before transferring data.");
+                } else {
+                    selectedItems = selectedItems.concat(selectedCheckboxes.map(function () {
+                        return $(this).val();
+                    }).get());
+
+                    var confirmation = confirm("Are you sure you want to transfer the data?");
+                    if (confirmation) {
+                        transferData();
+                    }
+                }
+
+                function transferData() {
+                    $('#output').empty();
+
+                    selectedCheckboxes.each(function () {
+                        var value = $(this).val();
+
+                        var item = document.createElement('div');
+                        item.textContent = value;
+                        item.style.border = "1px solid black";
+                        item.style.padding = "4px";
+
+                        $('#output').append(item);
+                        $('#addButton').prop('disabled', false);
+                    });
+                }
+            });
+        });
+
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#saveButton").click(function () {
+                console.log(addedData); // This will log the data added or modified by the updateTable() function
+                // Send data to the server using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/ulr_cal_ass', // Replace with your actual backend URL
+                    contentType: 'application/json',
+                    data: JSON.stringify(addedData),
+                    success: function (response) {
+                        if (response.status === "success") {
+                            alert(response.message);
+                            window.location.href = '/show_calibration_dashbord_select_redirect';
+                        } 
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

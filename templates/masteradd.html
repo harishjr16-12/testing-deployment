@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftLABWEB Calibrator-Add New</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+    <style>
+        .body2 {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #userform {
+            height: 50% !important;
+        }
+
+
+        #addContent {
+            background-color: #ffffff;
+            margin: 10px auto;
+            max-width: 900px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 50px;
+        }
+
+        label {
+            font-weight: medium;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 2px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 30px;
+
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+
+        .row {
+            margin: 0 -5px;
+        }
+
+        .col-md-6 {
+            padding: 0 5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .form-group .col-md-6 {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+    <section id="addContent">
+        <div class="body2">
+            <form action="/check_uniqueness_master" method="post" >
+                <div class="container">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Calibrator ID" class="col-form-label">Calibrator ID</label>
+                            <input type="text" class="form-control" id="Calibrator ID" name="Calibrator ID" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Make" class="col-form-label" >Make</label>
+                            <select class="form-control" id="Make" name="Make" required>
+                                <option value="select">select</option>
+                                {% for department in manus %}
+
+                                <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                                    {{ department }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Model" class="col-form-label" >Model
+                            </label>
+                            <select class="form-control"  id="modelsList"   name="Model" required>
+                              
+                                <option value="" >select</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Description" class="col-form-label">Description</label>
+                            <select class="form-control"  id="Description"  name="Description" required>
+                                <option value="" >select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Function" class="col-form-label" >Function</label>
+                            <select class="form-control" id="Function" name="Function" required>
+                                <option value="" >select</option>
+                                <option value="BOTH">BOTH</option>
+                                <option value="MEASURE">MEASURE</option>
+                                <option value="SOURCE">SOURCE</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Serial No" class="col-form-label" >Serial No</label>
+                            <input type="text" class="form-control"  id="SerialNo" name="SerialNo" >
+
+                          
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Range" class="col-form-label" >Range</label>
+                            <input type="text" class="form-control" id="Range" name="Range">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Traceability" class="col-form-label" >Traceability</label>
+                            <input type="text" class="form-control" id="Traceability" name="Traceability" >
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="ULR No" class="col-form-label" >ULR No</label>
+                            <input type="text" class="form-control" id="ULRNo" name="ULRNo">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Certificate No" class="col-form-label" >Certificate
+                                No</label>
+                            <input type="text" class="form-control" id="CertificateNo" name="CertificateNo">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Cal Date" class="col-form-label" >Cal Date</label>
+                            <input type="date" class="form-control" id="CalDate" name="CalDate" >
+                        </div>
+                        <div class="col-md-6">
+                            <label for="NextCallDate" class="col-form-label" id="Next Call Date">Next Call
+                                Date</label>
+                            <input type="date" class="form-control" id="NextCallDate" name="NextCallDate" >
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Purchase Date" class="col-form-label" >Purchase Date</label>
+                            <input type="date" class="form-control" id="PurchaseDate" name="PurchaseDate" >
+                        </div>
+                        <div class="col-md-6">
+                            <label for="StockNo" class="col-form-label" >Stock No</label>
+                            <input type="text" class="form-control" id="StockNo" name="StockNo">
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Sample" class="col-form-label" >Sample</label>
+                            <input type="number" class="form-control" id="Sample" name="Sample" >
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ConfLevel" class="col-form-label">Conf Level
+
+                            </label>
+                            <select class="form-control" id="Conf Level" name="ConfLevel" required>
+                                <option value="95%">95%</option>
+                                <option value="95.45%">95.45%</option>
+                                <option value="99%">99%</option>
+                                <option value="99.73%">99.73%</option>
+                                <option value="68.27%">68.27%</option>
+                                <option value="90%">90%</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                     style="margin-top: 10px;margin-left: 35%; width: 30%; margin-top: 20px;">Save</button>
+                    
+                </div>
+            </form>
+        </div>
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#Make").click(function() {
+                var MnfrName = $("#Make").val();
+                
+                $.post("/click_manf", { MnfrName: MnfrName }, function(data) {
+                    // Clear the previous models
+                   
+                    
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function(model) {
+                        $("#modelsList").append("<option value='" + model + "'>" + model + "</option>");
+                    });
+                }, "json");
+            });
+        });
+        </script>
+        <script>
+            $(document).ready(function() {
+                // When a model is selected
+                $("#modelsList").change(function() {
+                    var selectedModel = $(this).val();
+                    
+                    // Send selected model to the backend
+                    $.post("/click_models", { ModelNo: selectedModel }, function(data) {
+                        // Clear the previous options in the Description select element
+                       
+                        
+                        // Iterate over the descriptions and add them as options to the Description select element
+                        data.forEach(function(description) {
+                            $("#Description").append("<option value='" + description + "'>" + description + "</option>");
+                        });
+                    }, "json");
+                });
+            });
+            </script>
+  
+  <script>
+    // Function to display a centered alert message
+   
+
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const url = form.action;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                alert(data.message);
+                // Redirect to the next page after a successful save
+                
+                    window.location.href = '/master_details'; // Replace with your desired URL
+               
+            } else {
+                alert(data.message, 'danger');
+            }
+        } catch (error) {
+            alert('An error occurred while saving.', 'danger');
+        }
+    });
+</script>
+</body>
+</html>

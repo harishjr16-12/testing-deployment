@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftLABWEB UserPrevileges</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        input[type='checkbox'] {
+            accent-color: rgb(0, 132, 255) !important;
+            align-items: center !important;
+            margin-left: 45%;
+        }
+
+        #op {
+            text-align: center;
+            justify-content: center;
+        }
+
+
+        #lab {
+            text-align: right;
+        }
+
+
+        .duc {
+            display: flex;
+            align-items: center;
+        }
+
+        .border-box {
+            border: 1px solid #ccc;
+            width: 120%;
+            /* Adjust the width as per your requirement */
+            height: 42px;
+            border-radius: 7px / 7px;
+            margin-top: 8px;
+            /* Adjust the height as per your requirement */
+        }
+
+        .border-box1 {
+            border: 1px solid #ccc;
+            width: 100%;
+            /* Adjust the width as per your requirement */
+            height: 37px;
+            border-radius: 7px / 7px;
+            margin-top: 36px;
+            /* Adjust the height as per your requirement */
+        }
+
+        .corner8 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 210px;
+            left: 690px;
+
+            /* Adjust the value as per your requirement */
+
+        }
+
+        .corner {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 285px;
+            left: 137px;
+
+
+        }
+
+        .corner1 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 285px;
+            left: 690px;
+
+            /* Adjust the value as per your requirement */
+
+        }
+
+        .corner2 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 355px;
+            left: 137px;
+
+
+        }
+
+        .corner3 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 355px;
+            left: 690px;
+
+            /* Adjust the value as per your requirement */
+
+        }
+
+        .corner4 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 430px;
+            left: 137px;
+
+
+        }
+
+        .corner5 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 430px;
+            left: 690px;
+
+            /* Adjust the value as per your requirement */
+
+        }
+
+        .corner6 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 505px;
+            left: 137px;
+
+
+        }
+
+        .corner7 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 505px;
+            left: 690px;
+
+            /* Adjust the value as per your requirement */
+
+        }
+
+
+        .inp {
+            display: flex;
+            align-items: center;
+
+
+        }
+
+        .inp input {
+            padding: 4px;
+            margin: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+
+
+    <section class="userdetails">
+
+        <form action="{{ url_for('get_single_userprevileges', id=id) }}" method="post" id="userForm">
+            <div class="container">
+                <div class="row g-3">
+                    <div class="col-md-12" >
+                        <div class="dp" style="display: flex; margin-top: 10px;">
+                        <label class="col-form-label" id="Department" style="font-weight: bold; margin-left: 30%;" >Department:</label>
+                        <input type="text" class="form-control" id="Department" name="Department" value="{{values[0][6] }}"
+                            readonly style="width: 30%; margin-left: 5px;" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="col-form-label" id="UserID">User ID</label>
+                        <input type="text" class="form-control" id="UserID" name="UserID" value="{{values[0][0] }}"
+                            readonly>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="  equipmentname" class="col-form-label" id="lab">User Name</label>
+                        <input type="text" class="form-control" id="equipmentname" name="Dev_Type"
+                            value="{{values[1]  }}" readonly>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="col-form-label" id="lab">User Level</label>
+                        <input type="text" class="form-control" id="equipmentname" name="Dev_Dept"
+                            value="{{values[0][1] }}" readonly>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box1">
+                                <div class="corner8">User Approval</div>
+                                <div class="inp">
+                                    <input type="checkbox" id="duce" name="duc" class="form-check-input" value="DUCInst"
+                                        {% if values[4]==1 %}checked{% endif %}>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+
+                                <div class="corner">{{values[0][5]}}</div>
+
+                                <div class="inp">
+                                    <input type="text" id="device" name="device" value="{{values[0][5]}}"
+                                        style="display: none;">
+                                    <input type="checkbox" id="devadd" name="devadd" class="form-check-input"
+                                        value="Addition" {% if values[0][2]==1 %}checked{% endif %}>
+                                    <label for="devadd" class="col-form-label">Add New</label>
+
+                                    <input type="checkbox" id="devmod" name="devmod" class="form-check-input"
+                                        value="Modification" {% if values[0][3]==1 %}checked{% endif %}>
+                                    <label for="devmod" class="col-form-label">Modify</label>
+
+                                    <input type="checkbox" id="devdel" name="devdel" class="form-check-input"
+                                        value="Deletion" {% if values[0][4]==1 %}checked{% endif %}>
+                                    <label class="col-form-label" for="devdel">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-sitee">
+                            <div class="border-box">
+                                <div class="corner1">{{values[1][5]}}</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="checkbox" name="mmadd" id="flexRadioDefault1"
+                                        value="Addition" {% if values[1][2]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="flexRadioDefault1" id="lab">Add New</label>
+
+                                    <input class="form-check-input" type="checkbox" name="mmmod" id="flexRadioDefault2"
+                                        value="Modification" {% if values[1][3]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="flexRadioDefault2" id="lab">Modify</label>
+
+                                    <input class="form-check-input" type="checkbox" name="mmdel" id="flexRadioDefault3"
+                                        value="Deletion" {% if values[1][4]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="flexRadioDefault3" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+                                <div class="corner2">{{values[2][5]}}</div>
+
+                                <div class="inp">
+                                    <input type="checkbox" id="mdadd" name="mdadd" class="form-check-input" value="" {%
+                                        if values[2][2]==1 %}checked{% endif %}>
+                                    <label for="mdadd" class="col-form-label">Add New</label>
+
+                                    <input type="checkbox" id="mdmod" name="mdmod" class="form-check-input" value="" {%
+                                        if values[2][3]==1 %}checked{% endif %}>
+                                    <label for="mdmod" class="col-form-label" id="lab">Modify</label>
+
+                                    <input type="checkbox" id="mddel" name="mddel" class="form-check-input" value="" {%
+                                        if values[2][4]==1 %}checked{% endif %}>
+                                    <label class="col-form-label" for="mddel" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-sitee">
+                            <div class="border-box">
+                                <div class="corner3">{{values[3][5]}}</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="checkbox" name="cmcadd" id="cmcadd"
+                                        value="Addition" {% if values[3][2]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="cmcadd">Add New</label>
+
+                                    <input class="form-check-input" type="checkbox" name="cmcmod" id="cmcmod"
+                                        value="Modification" {% if values[3][3]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="cmcmod">Modify</label>
+
+                                    <input class="form-check-input" type="checkbox" name="cmcdel" id="cmcdel"
+                                        value="Deletion" {% if values[3][4]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="cmcdel" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+                                <div class="corner4">{{values[4][5]}}</div>
+
+                                <div class="inp">
+                                    <input type="checkbox" id="labadd" name="labadd" class="form-check-input"
+                                        value="Addition" {% if values[4][2]==1 %}checked{% endif %}>
+                                    <label for="labadd" class="col-form-label">Add New</label>
+
+                                    <input type="checkbox" id="labmodd" name="labmodd" class="form-check-input"
+                                        value="Modification" {% if values[4][2]==1 %}checked{% endif %}>
+                                    <label for="labmodd" class="col-form-label" id="lab">Modify</label>
+
+                                    <input type="checkbox" id="labdel" name="labdel" class="form-check-input"
+                                        value="Deletion" {% if values[4][3]==1 %}checked{% endif %}>
+                                    <label class="col-form-label" for="labdel" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-sitee">
+                            <div class="border-box">
+                                <div class="corner5">{{values[5][5]}}</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="checkbox" name="exadd" id="exadd"
+                                        value="Addition" {% if values[5][2]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="exadd" id="lab">Add New</label>
+
+                                    <input class="form-check-input" type="checkbox" name="exmod" id="exmod"
+                                        value="Modification" {% if values[5][3]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="labmod" id="lab">Modify</label>
+
+                                    <input class="form-check-input" type="checkbox" name="exdel" id="exdel"
+                                        value="Deletion" {% if values[5][3]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="exdel" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+                                <div class="corner6">{{values[6][5]}}</div>
+
+                                <div class="inp">
+                                    <input type="checkbox" id="repadd" name="repadd" class="form-check-input"
+                                        value="Addition" {% if values[6][2]==1 %}checked{% endif %}>
+                                    <label for="repadd" class="col-form-label">Add New</label>
+
+                                    <input type="checkbox" id="repmod" name="repmod" class="form-check-input"
+                                        value="Modification" {% if values[6][3]==1 %}checked{% endif %}>
+                                    <label for="repmod" class="col-form-label">Modify</label>
+
+                                    <input type="checkbox" id="repdel" name="repdel" class="form-check-input"
+                                        value="Deletion" {% if values[6][4]==1 %}checked{% endif %}>
+                                    <label class="col-form-label" for="repdel">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-sitee">
+                            <div class="border-box">
+                                <div class="corner7">{{values[7][5]}}</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="checkbox" name="inadd" id="inadd"
+                                        value="Addition" {% if values[7][2]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="inadd" id="lab">Add New</label>
+
+                                    <input class="form-check-input" type="checkbox" name="inmod" id="inmod"
+                                        value="Modification" {% if values[7][3]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="inmod" id="lab">Modify</label>
+
+                                    <input class="form-check-input" type="checkbox" name="indel" id="indel"
+                                        value="Deletion" {% if values[7][4]==1 %}checked{% endif %}>
+                                    <label class="form-check-label" for="indel" id="lab">Delete</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary"
+                    style="margin-top: 10px;margin-left: 35%; width: 30%;">Save</button>
+
+
+            </div>
+        </form>
+        <script>
+            // Function to display a centered alert message
+           
+        
+            // Handle form submission
+            document.querySelector('form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const formData = new FormData(form);
+                const url = form.action;
+        
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+        
+                    if (data.status === 'success') {
+                        alert(data.message, 'success');
+                        // Redirect to the next page after a successful save
+                        setTimeout(() => {
+                            window.location.href = '/get_user_list'; // Replace with your desired URL
+                        }, 1000); // Redirect after 1 second
+                    } else {
+                        alert(data.message, 'danger');
+                    }
+                } catch (error) {
+                    alert('An error occurred while saving.', 'danger');
+                }
+            });
+        </script>
+        <script>
+            document.getElementById("repeatPassword").addEventListener("keyup", function () {
+              const password = document.getElementById("password").value;
+              const repeatPassword = this.value;
+          
+              if (password === repeatPassword) {
+                // Passwords match, do nothing
+              } else {
+                alert("Passwords do not match");
+              }
+            });
+          </script>
+          
+          
+          
+          
+          
+          
+    </section>
+
+</body>
+
+</html>

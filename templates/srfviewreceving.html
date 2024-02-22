@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB SRF ReceivingNotes</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .containersranges {
+            gap: 15px;
+            margin-top: 10px;
+            margin-left: 35px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #3C486B;
+            padding: 7px;
+            margin: 35px;
+
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* --------------------- */
+        .inp {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .corner2 {
+            z-index: 5;
+            position: absolute;
+            left: 80px;
+            background-color: #F5F5F5;
+            width: auto;
+            margin-top: -15px;
+
+        }
+
+        .border-box1 {
+            border: 1px solid #ccc;
+            width: 68%;
+            height: 60px;
+            border-radius: 7px / 7px;
+            margin-top: 40px;
+            justify-content: space-between;
+            margin-left: 20px;
+        }
+
+        .col-form-label {
+            padding: 6px;
+        }
+
+        /* -------- */
+        .border-box2 {
+            border: 1px solid #ccc;
+            width: 30%;
+            height: 60px;
+            border-radius: 7px / 7px;
+            margin-top: -60px;
+            justify-content: space-between;
+            margin-left: 70%;
+        }
+
+        .corner3 {
+            z-index: 5;
+            position: absolute;
+            left: 100px;
+            background-color: #F5F5F5;
+            width: auto;
+            margin-top: -15px;
+            margin-left: 65%;
+        }
+
+        /* ------------------- */
+        /* table */
+        /* .header {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            width: 30%;
+            margin-left: 35%;
+        } */
+
+
+        .btn {
+            width: 63px;
+        }
+
+        form {
+            display: inline;
+            width: 50%;
+        }
+
+        .three {
+            background-color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .outer-wrapper1 {
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        .table-wrapper1 {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 46.4vh;
+            padding-bottom: 20px;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 250%;
+            /* height: -50%; */
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+
+        }
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 10px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+            height: 30px;
+            padding: 5px 5px;
+
+        }
+
+
+
+
+        .table-wrapper1 td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+
+        .table-wrapper1 td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+
+        }
+
+        table thead th:first-child {
+            position: sticky !important;
+            left: 0 !important;
+            z-index: 2 !important;
+        }
+
+        /* Your other CSS rules */
+        .table-wrapper1 th#fixed-column {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+
+
+        table th,
+        table td {
+
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        table td {
+            text-align: left;
+            font-size: 10px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+        }
+
+        /* ------------ */
+        /*buttons  */
+        #deleteButton {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 320px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: red;
+            height: 48px;
+
+        }
+
+
+        #addNewButton {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 320px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: #ffa500;
+            height: 48px;
+
+        }
+
+        #forwardJobsButton {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 320px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: darkgreen;
+            height: 48px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+    <script>
+        // Retrieve valueStoredInVariable from localStorage
+        var storedValue = localStorage.getItem('valueStoredInVariable');
+        console.log(storedValue);
+        // Now you can use valueStoredInVariable in this script or any other script on this page.
+        // Check if valueStoredInVariable is defined
+        if (storedValue === "Customer Care") {
+            fetch('/navbar')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else if (storedValue === "ETL-Electro Technical Lab") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else if (storedValue === "PRL-Pressure Lab") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "MCL-Linear") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "MCL-Mass") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "QA") {
+            fetch('/navbardepartmentqa')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "System Administrator") {
+            fetch('/navbardepartmentsa')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else {
+            console.log("No conditions matched.");
+        }
+    </script>
+    
+
+    <form>
+
+        <div class="containersranges" style="display: flex;">
+            <label style="font-weight: bold;" class="col-form-label">SRF Prefix</label>
+
+
+
+            <select class="form-select" id="SRFPrefix" name="SRFPrefix" style="border-radius: 30px; width: 20%;">
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[3]}}" {% if selected_dept==srfno[2]%}selected{% endif %}>
+                    {{ srfno[3] }}
+                </option>
+                {% endfor %}
+            </select>
+            <!---------------------------------------------------------------------------- -->
+            <label style="font-weight: bold;" class="col-form-label">SRF NO.</label>
+            <select class="form-select" id="srfno" name="srfno"
+                style=" font-weight: 500;   border-radius: 30px;   width: 20%;" required>
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[2] }}" {% if selected_dept==srfno[2]%}selected{% endif %}>
+                    {{ srfno[2]}}
+                </option>
+                {% endfor %}
+            </select>
+
+            <!-- ------------------------------------------------------------------------------------- -->
+            <label style="font-weight: bold;" class="col-form-label">Customer</label>
+            <select class="form-select" id="Customer" name="Customer"
+                style=" font-weight: 500;   border-radius: 30px;   width: 20%;" required>
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[12] }}" {% if selected_dept==srfno[12]%}selected{% endif %}>
+                    {{srfno[12]}}
+                    {% endfor %}
+                </option>
+
+            </select>
+        </div>
+    </form>
+    <!-- ----------------------------------------------------------------------------- -->
+    <div id="item-1">
+        <div class="button-row">
+            <button style="border-radius: 20px; height: 40px; width: 25%; border: none;" class="button"
+                onclick="toggleDetails(1)">Receiving Note-Instruments List</button>
+            <button style="border-radius: 20px; height: 40px; width: 25%; border: none;" class="button"
+                onclick="toggleDetails(2)">Receiving Note-Report Details</button>
+        </div>
+
+    </div>
+    <!-- ------------------------------------------------------------------------------------ -->
+
+    <div class="border-box1">
+        <div style="font-weight: bold;" class="corner2">Multi Job Updation</div>
+        <div class="inp">
+            <label style="font-weight: 600;" class="col-form-label" for="from">From</label>
+            <input style="width: 5%; height: 5%;" type="text" id="from" name="from" value="1">
+            <!-- --------------- -->
+            <label style="font-weight: 600;" class="col-form-label" for="To">To</label>
+            {% for srfno in srf_datas %}
+            <input style="width: 5%;  height: 5%;" type="text" id="To" name="To" value="{{srfno[11]}}">
+            {% endfor %}
+            <!-- ------------- -->
+            <label style="font-weight: 600;" class="col-form-label">Column Name</label>
+            <select class="form-select" id="columnNameSelect" name="Dev_Dept"
+                style="font-weight: 500; border-radius: 30px; width: 25%;" required>
+                <option value="select">Select</option>
+                <option value="CalibDept">Calibration Department</option>
+                <option value="ItemName">Item Name</option>
+                <option value="Make">Make</option>
+                <option value="Model">Model</option>
+                <option value="Accessories">Accessories</option>
+            </select>
+
+            <!------------------------------------>
+
+            <label style="font-weight: 600;" class="col-form-label">Data</label>
+            <select class="form-select" id="departmentSelect" name="Dev_Dept"
+                style=" font-weight: 500;   border-radius: 30px;   width: 25%;">
+                <option>Select</option>
+
+            </select>
+            <!---------------------------------------------->
+            <button
+                style="margin-left: 8px; border-radius: 20px; border: none; background-color: darkgreen; color: white;  width: 10%; height: 20%; letter-spacing: 1px;"
+                id="updateButton" name="update">Update</button>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------->
+    <div class="border-box2">
+        <div style="font-weight: bold;" class="corner3">Work Order Number (VW-XX-XXXX)</div>
+        <div class="inp">
+            <label style="font-weight: 600;" class="col-form-label" for="from">W.O.No.</label>
+            <input style="width: 35%; height: 5%;" type="text" id="WorkOrderNumber " name="WorkOrderNumber">
+            <!-- --------------- ------------------>
+            <button
+                style="margin-left: 65px; border-radius: 20px; border: none; background-color: darkgreen; color: white;  width: 25%; height: 20%; letter-spacing: 1px;"
+                id="updateButtonwo" name="update">Update</button>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------- -->
+    <section id="viewContent">
+        <div class="tabercol1">
+            <div class="outer-wrapper1">
+                <div class="table-wrapper1">
+                    <table id="emp-table1">
+                        <thead>
+
+
+                            <th col-index=1  class="resize" style="width:60px;">Item.No
+
+                                
+
+                            </th>
+
+                            <th col-index=2 class="resize" id="fixed-column">Inst.ID
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index=3 class="resize">SRF Job No.
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index=4 class="resize">Calib.Dept.
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=5 class="resize">Item Name
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=6 class="resize">Make
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=7 class="resize">Model
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=8 class="resize">Serial No.
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=9 class="resize">Tag ID
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=10 class="resize">Accessories(Max.200 Characters)
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index=11 class="resize">Remarks(Max.100 Characters)
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                        </thead>
+                        <tbody>
+                            {% for user in duc_datas %}
+                            <tr>
+                                <td class="fixed-column">{{ user[87] if user[87] else ''}}</td>
+                                <td>{{ user[11] if user[11] else ''}}</td>
+                                <td>{{ user[1] if user[1] else ''}}</td>
+                                <td id="calibDept">{{ user[18] if user[18] else '' }}</td>
+                                <td>{{ user[7] if user[7] else ''}}</td>
+                                <td>{{ user[8] if user[8] else ''}}</td>
+                                <td>{{ user[9] if user[9] else ''}}</td>
+                                <td>{{ user[10] if user[10] else ''}}</td>
+                                <td>{{ user[11] if user[11] else ''}}</td>
+                                <td>{{ user[86] if user[86] else ''}}</td>
+                                <td>{{ user[50] if user[50] else ''}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button class="btn btn-success custom-btn-padding" id="updatecaldate"
+        style="width: auto; margin-left: 48%; margin-top: 10px;" onclick="updateButton()">Job Forward
+    </button>
+    <br>
+    <br>
+
+
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#columnNameSelect').on('click', function () {
+                var selectedValue = $(this).val();
+                console.log('Selected Column Name:', selectedValue);
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/click_column_receving',
+                    type: 'POST',
+                    data: { selectedValue: selectedValue },
+                    success: function (response) {
+                        // Handle the response from the backend
+                        console.log(response);
+
+                        // Update the options in the "Data" dropdown
+                        var dataSelect = $('#departmentSelect');
+                        dataSelect.empty(); // Clear existing options
+
+                        // Add options from the received data
+                        $.each(response, function (index, value) {
+                            dataSelect.append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <!-- <script>
+    $(document).ready(function() {
+        $('#columnNameSelect').on('click', function() {
+            var selectedValue = $(this).val();
+            console.log('Selected Column Name:', selectedValue);
+            // Make an AJAX request to the backend
+            $.ajax({
+                url: '/your-backend-endpoint', // Replace with your actual backend endpoint
+                type: 'POST', // or 'GET' depending on your backend configuration
+                data: { selectedValue: selectedValue },
+                success: function(response) {
+                    // Handle the response from the backend
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+    </script> -->
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            populateDropdowns();
+            setupEventListeners();
+        });
+
+        function populateDropdowns() {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            allFilters.forEach((filter) => {
+                const colIndex = filter.parentElement.getAttribute("col-index");
+                const uniqueValues = getUniqueValues(colIndex);
+
+                // Clear existing options before adding new ones
+                filter.innerHTML = '<option value="all">All</option>';
+
+                uniqueValues.forEach((value) => {
+                    filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                });
+            });
+        }
+
+        function getUniqueValues(colIndex) {
+            const rows = document.querySelectorAll("#emp-table1 tbody tr");
+            const uniqueValuesSet = new Set();
+
+            rows.forEach((row) => {
+                const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                if (cell) {
+                    const cellValue = cell.textContent.trim();
+                    if (cellValue !== "") {
+                        uniqueValuesSet.add(cellValue);
+                    }
+                }
+            });
+
+            return Array.from(uniqueValuesSet);
+        }
+
+        function setupEventListeners() {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            allFilters.forEach((filter) => {
+                filter.addEventListener("change", function () {
+                    updateDropdowns(filter);
+                    filter_rows();
+                });
+            });
+        }
+
+        function updateDropdowns(changedFilter) {
+            const allFilters = document.querySelectorAll(".table-filter");
+            const selectedValues = {};
+
+            allFilters.forEach((filter) => {
+                selectedValues[filter.parentElement.getAttribute("col-index")] = filter.value;
+            });
+
+            const filteredValues = filterValues(selectedValues);
+
+            allFilters.forEach((filter) => {
+                if (filter !== changedFilter) {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const selectedValue = selectedValues[colIndex];
+
+                    // Clear existing options before adding new ones
+                    filter.innerHTML = '<option value="all">All</option>';
+
+                    // Add specific values to the dropdown based on the selected value
+                    filteredValues[colIndex].forEach((value) => {
+                        filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                    });
+                }
+            });
+        }
+
+        function filterValues(selectedValues) {
+            const rows = document.querySelectorAll("#emp-table1 tbody tr");
+            const filteredValues = {};
+
+            for (const colIndex in selectedValues) {
+                filteredValues[colIndex] = new Set();
+            }
+
+            rows.forEach((row) => {
+                let isRowMatch = true;
+
+                for (const colIndex in selectedValues) {
+                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                    const cellValue = cell ? cell.textContent.trim() : "";
+
+                    if (selectedValues[colIndex] !== "all" && cellValue !== selectedValues[colIndex]) {
+                        isRowMatch = false;
+                    }
+
+                    if (colIndex !== "1" && isRowMatch) {
+                        filteredValues[colIndex].add(cellValue);
+                    }
+                }
+            });
+
+            return filteredValues;
+        }
+
+        function filter_rows() {
+            const rows = document.querySelectorAll("#emp-table1 tbody tr");
+            rows.forEach((row) => {
+                const allFilters = document.querySelectorAll(".table-filter");
+
+                let isRowVisible = true;
+
+                allFilters.forEach((filter) => {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const filterValue = filter.value;
+                    const cellValue = row.querySelector(`td:nth-child(${colIndex})`).textContent.trim();
+
+                    if (filterValue !== "all" && cellValue !== filterValue) {
+                        isRowVisible = false;
+                    }
+                });
+
+                row.style.display = isRowVisible ? "table-row" : "none";
+            });
+        }
+    </script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#updateButton').on('click', function () {
+                // Get values from input fields and select dropdowns
+                var fromValue = $('#from').val();
+                var toValue = $('#To').val();
+                var columnNameValue = $('#columnNameSelect').val();
+                var dataValue = $('#departmentSelect').val();
+                var selectedSRFPrefix = $('#srfno').val();
+                var SRFNo = $('#srfno').val();
+
+                // Log the values to the console
+                console.log('From:', fromValue);
+                console.log('To:', toValue);
+                console.log('Column Name:', columnNameValue);
+                console.log('Data:', dataValue);
+                console.log('Selected SRFPrefix:', selectedSRFPrefix);
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/update_receiving_view/' + SRFNo, // Replace with your actual backend endpoint
+                    type: 'POST', // or 'GET' depending on your backend configuration
+                    data: {
+                        fromValue: fromValue,
+                        toValue: toValue,
+                        columnNameValue: columnNameValue,
+                        dataValue: dataValue,
+                        selectedSRFPrefix: selectedSRFPrefix // Include the selected SRFPrefix
+                    },
+                    success: function (response) {
+                        window.location.href = '/update_receiving_view/' + SRFNo;
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#updateButtonwo').on('click', function () {
+                // Get values from input fields and select dropdowns
+                var woValue = $('#WorkOrderNumber').val();
+
+
+                // Log the values to the console
+                console.log('woValue:', woValue);
+
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/update_department', // Replace with your actual backend endpoint
+                    type: 'POST', // or 'GET' depending on your backend configuration
+                    data: {
+                        woValue: woValue,
+
+                    },
+                    success: function (response) {
+                        // Handle the response from the backend
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#updatecaldate').on('click', function () {
+                // Get values from input fields and select dropdowns
+                var selectedSRFPrefix = $('#srfno').val();
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/click_column_srffrd', // Replace with your actual backend endpoint
+                    type: 'POST', // or 'GET' depending on your backend configuration
+                    data: {
+                        selectedSRFPrefix: selectedSRFPrefix
+
+                    },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            alert(response.message);
+                            window.location.href = '/customer_dashboard';
+                            console.log(response);
+                        }
+
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function updateButton() {
+            var buttons = document.getElementsByClassName('calibDept');
+
+            // Iterate through all elements with the class name calibDept
+            for (var i = 0; i < buttons.length; i++) {
+                var tdValue = buttons[i].textContent.trim();
+                var button = document.getElementById('updatecaldate');
+
+                // Enable the button if the value matches one of the specified values
+                if (tdValue === 'ETL-Electro Technical Lab' ||
+                    tdValue === 'PRL-Pressure Lab' ||
+                    tdValue === 'MCL-Linear' ||
+                    tdValue === 'MCL-Mass' ||
+                    tdValue === 'MCL-Torque' ||
+                    tdValue === 'MCL-Volume' ||
+                    tdValue === 'MCL-Optical' ||
+                    tdValue === 'THL-Thermal Lab') {
+                    button.disabled = false;
+                    // Exit the loop if at least one matching value is found
+                    return;
+                } else {
+                    // Disable the button if none of the values match
+                    button.disabled = true;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

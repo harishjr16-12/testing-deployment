@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SoftLABWEB Graphical Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+  <style>
+     link[rel="icon"] {
+            width: 92px !important;
+            height: 32px;
+        }
+    body {
+      background-color: #F5F5F5;
+
+    }
+
+    .chart {
+      width: 400px;
+      height: 400px;
+     
+      margin-left: 40px;
+    }
+
+    h4 {
+    text-align: center;
+      color: black;
+      margin-top: 40px !important;
+    }
+
+
+   
+
+
+   
+
+
+    #myChart {
+      width: 500px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar-placeholder"></div>
+  <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+  <script>
+      // Retrieve valueStoredInVariable from localStorage
+      var storedValue = localStorage.getItem('valueStoredInVariable');
+      console.log(storedValue);
+      // Now you can use valueStoredInVariable in this script or any other script on this page.
+      // Check if valueStoredInVariable is defined
+      if (storedValue === "Customer Care") {
+          fetch('/navbar')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      } else if (storedValue === "ETL-Electro Technical Lab") {
+          fetch('/navbardepartmentcal')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      } else if (storedValue === "PRL-Pressure Lab") {
+          fetch('/navbardepartmentcal')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      }else if (storedValue === "MCL-Linear") {
+          fetch('/navbardepartmentcal')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      }else if (storedValue === "MCL-Mass") {
+          fetch('/navbardepartmentcal')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      }else if (storedValue === "QA") {
+          fetch('/navbardepartmentqa')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      }else if (storedValue === "System Administrator") {
+          fetch('/navbardepartmentsa')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('navbar-placeholder').innerHTML = data;
+              });
+      } else {
+          console.log("No conditions matched.");
+      }
+  </script>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 chart-border" onclick="window.location.href='chart1pie.html';">
+        <div class="chart">
+          <h4 style="margin-left: 90px;">OVERALL REPORT STATUS</h4>
+          <div id="myChart"></div>
+        </div>
+      </div>
+      <div class="col-sm-6" onclick="window.location.href='chart4.html';">
+        <div class="chart">
+          <h4  style="margin-left: 10px;">INTERNAL WORK ORDERS COUNTS</h4>
+          <div id="myChart4" style="height: 400px; width: 500px; "></div>
+        </div>
+      </div>
+
+    </div>
+   
+    <div class="row">
+      <div class="col-sm-6 " onclick="window.location.href='chart3.html';">
+        <div class="chart3">
+          <br>
+          <h4 style="margin-top: 30px;">SRF JOBS STATISTICAL COUNTS</h4>
+          <canvas id="myChart1" style="height: 300px; width: 400px; "></canvas>
+
+        </div>
+      </div>
+      <div class="col-sm-6 chart-border">
+        <div class="chart">
+          <br>
+          <h4 style="margin-top: 30px;">REPORT APPROVAL STATUS</h4>
+
+          <div id="myPlot" style="height: 400px; width: 500px;"></div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      const labelData = JSON.parse('{{ label | tojson | safe }}');
+      const valueData = JSON.parse('{{ value | tojson | safe }}');
+
+      const dataArray = [['Label', 'Value']];
+      for (let i = 0; i < labelData.length; i++) {
+        dataArray.push([labelData[i], valueData[i]]);
+      }
+
+      const data = google.visualization.arrayToDataTable(dataArray);
+
+      const options = {
+        is3D: true,
+        backgroundColor: '#F5F5F5',
+        fontSize: 15,
+        fontStyle: "bold",
+        color: '#57DBED'
+
+      }
+
+      const chart = new google.visualization.PieChart(document.getElementById('myChart'));
+      chart.draw(data, options);
+    }
+  </script>
+
+
+
+
+  <script>
+    const devices_reports = JSON.parse('{{ devices_reports | tojson}}');
+    const counts = JSON.parse('{{ counts | tojson}}');
+
+
+
+
+
+    const data = [{
+      x: devices_reports,
+      y: counts,
+      type: "bar",
+      orientation: "v",
+      marker: { color: "rgba(255,0,0,0.6)", backgroundColor: '#20B2AA' }
+    }];
+
+    const layout = {
+      fontSize: 18,
+      fontStyle: "bold",
+      color: '#57DBED',
+      backgroundColor: '#20B2AA'
+    };
+
+    Plotly.newPlot("myPlot", data, layout);
+  </script>
+
+
+
+  <script>
+    const content = JSON.parse('{{content | tojson  | safe }}');
+    const pair = JSON.parse('{{pair | tojson | safe  }}');
+
+    const barColors = [
+      "rgba(255,0,0,0.6)",
+      "rgba(255,0,0,0.6)",
+      "rgba(255,0,0,0.6)",
+      "rgba(255,0,0,0.6)",
+      "rgba(255,0,0,0.6)",
+      "rgba(255,0,0,0.6)"
+    ];
+
+    new Chart("myChart1", {
+      type: "bar",
+      data: {
+        labels: content,
+        datasets: [{
+          backgroundColor: barColors,
+          color: '#57DBED',
+          data: pair
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          fontSize: 18,
+          fontStyle: "bold",
+          color: '#57DBED',
+          backgroundColor: '	#FFFFFF'
+        },
+        legend: { display: false },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+        }
+      }
+    });
+  </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      const ques = JSON.parse('{{ ques | tojson | safe }}');
+      const ans = JSON.parse('{{ ans | tojson | safe }}');
+
+      const dataArray = [['ques', ' ans']];
+      for (let i = 0; i < ques.length; i++) {
+        dataArray.push([ques[i], ans[i]]);
+      }
+
+      const data = google.visualization.arrayToDataTable(dataArray);
+
+      const options = {
+        is3D: true,
+        backgroundColor: '#F5F5F5',
+        fontSize: 15,
+        fontStyle: "bold",
+        color: '#57DBED'
+      };
+
+      const chart = new google.visualization.PieChart(document.getElementById('myChart4'));
+      chart.draw(data, options);
+    }
+  </script>
+
+
+
+</body>
+
+</html>

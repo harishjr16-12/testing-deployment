@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB-Job-Selection</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #popup-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 45%;
+            height: 90%;
+            margin-top: 50px;
+        }
+
+        #overlay {
+
+            width: 100%;
+            height: 100%;
+            z-index: 98;
+        }
+
+        .col-form-label {
+            font-weight: bold;
+        }
+
+        .inst {
+            margin-top: 15px;
+            height: 370px;
+            overflow-y: scroll;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin-left: 25%;
+            margin-top: -13px;
+        }
+
+
+
+
+        .sa {
+            margin-bottom: 10px;
+            padding: 10px;
+            cursor: pointer;
+
+        }
+
+
+        .selected {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-left: 35%;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #Customer {
+            margin-left: 30%;
+            margin-top: -40px;
+        }
+
+        .headers {
+            background-color: white;
+            text-align: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .box {
+            background-color: #FAE392;
+        }
+
+        .headers {
+            background-color: white;
+            height: 30px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        hr {
+            margin-top: 0%;
+            border: 1px solid black;
+        }
+
+        .box1 {
+            background-color: yellow;
+        }
+
+        .box2 {
+            border: 2px solid black;
+            background-color: #F78CA2;
+            /* color: white; */
+        }
+
+        .box3 {
+            border: 2px solid black;
+            background-color: #CDFAD5;
+            /* color: white; */
+        }
+
+        .number {
+            font-size: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .box,
+        .box1,
+        .box2,
+        .box3 {
+            width: 170px;
+            height: 70px;
+            border: 2px solid black;
+            margin: 1px;
+        }
+
+        .det {
+            font-weight: bold;
+            text-align: center;
+            margin-top: -20px;
+            font-size: 26px;
+            cursor: pointer;
+
+
+        }
+
+        .form-control {
+            background-color: #f5f5f5;
+        }
+
+        #det1 {
+            font-weight: bold;
+            margin-left: 5px;
+            cursor: pointer;
+
+        }
+
+        #det2 {
+            font-weight: bold;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        #det3 {
+            font-weight: bold;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .container-fluid {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        #srftotl {
+            display: none;
+        }
+
+        body {
+            background-color: white;
+            background-color: #f5f5f5;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .header-text {
+            display: inline;
+            margin: 0px;
+            padding: 120px;
+            color: white;
+        }
+
+        .dash {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .dash:hover {
+            color: aqua !important;
+        }
+
+        .back {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer;
+        }
+
+        .back:hover {
+            color: aqua !important;
+            cursor: pointer;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: rgb(8, 8, 88);
+            height: 80px;
+        }
+
+        .button-cancel {
+            margin-left: 1%;
+        }
+
+        /* -------------------------------- */
+        table,
+        th,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+        .t1 {
+            width: 300px;
+            font-size: x-small;
+        }
+
+        .details {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .headers {
+            background-color: white;
+            height: 30px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .selected {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="overlay">
+        <div class="header-container">
+            <div class="logo"> <img src="/static/image/SoftLABWeb Logo.jpg" width="200px" ; height="80px">
+            </div>
+            <h2 style="margin-left: 140px;" class="header-text">Calibration Lab Management Software</h2>
+            <a href="/departmentcal_dashboard" class="dash">Dashboard</a>
+            <p style="color: white; font-size: 40px; margin-top: 10px;">/</p> <a onClick="history.go(-1)"
+                class="back">Back</a>
+
+        </div>
+        <div id="popup-box">
+            <div class="row">
+                <div class="col">
+                    <label style="margin-left: 20px;" for="activeSrf" class="col-form-label">Active SRF Prefix</label>
+                    <select class="form-select" id="activeSrf" name="activeSrf">
+
+                        {% for department in users %}
+
+                        <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                            {{ department }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="col">
+                    <label style="margin-left: 45px;" class="col-form-label" for="customer">Customer</label>
+
+                    <select class="form-select" id="customer" name="customer">
+
+                        <option value="select">select</option>
+
+
+                        {% for department in datas %}
+
+                        <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                            {{ department }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+
+                <div class="col" style="margin-top: 28px;">
+                    <label>
+                        <input type="radio" name="radioOption" id="allsrf"> <span class="col-form-label">All SRF</span>
+                        <br>
+                        <input type="radio" name="radioOption" checked id="labsrf"> <span class="col-form-label">Login
+                            Lab SRF</span>
+                    </label>
+                </div>
+            </div>
+
+            <marquee behavior="alternate">
+                <p style="color: #A9A9A9;" class="hero_desc"> Select Required SRF <span class="color"> To Preform
+                        Calibration</span> </p>
+            </marquee>
+
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="inst" id="inst">
+                            {% for srf in srfs %}
+                            <p style="cursor: pointer;" class="sa">{{ srf }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button style="background-color: green; border: black; margin-left: 40%;" type="button" class="btn btn-primary"
+                    id="Continue">Continue</button>
+                <!-- <button type="button" class="btn btn-primary  button-cancel">Cancel</button> -->
+
+            </div>
+            <button style="margin-top: -400px; margin-left: 73%;" type="button" class="btn btn-primary scr"
+                data-bs-toggle="modal" >
+                View SRF Details
+            </button>
+
+        </div>
+
+    </div>
+    <div class="modal" id="scrollableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="details" id="details1">
+
+                        <table>
+                            <tr>
+                                <th style="font-weight:bold; font-size: x-small;" class="c1">SRF Reference</th>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: Bold; font-size:x-small; background-color: #FBECB2;">
+                                    SRF No.
+                                </td>
+                                <td style="background-color: #FBECB2;" class="t1" id="srfno"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size: x-small;">SRF Prefix</td>
+                                <td class="t1" id="Prefix"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;  background-color: #F1F6F9;">
+                                    SRF
+                                    Date</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="Date"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size: x-small;">W.O.Ref.No</td>
+                                <td class="t1" id="woref"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size: x-small;  background-color: #F1F6F9;">
+                                    W.O.Ref.Date</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="worefdate"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size: x-small;">W.O.Type</td>
+                                <td class="t1" id="wotype"></td>
+                            </tr>
+
+                            </tr>
+                            <tr>
+                                <th style="font-weight: bold; font-size:x-small;">Received Details</th>
+                            <tr>
+                                <td style="font-weight: lighter; font-size: x-small;  background-color: #F1F6F9;">
+                                    Received Qty</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="qty"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;">Jobs Recd. Date</td>
+                                <td class="t1" id="JobsRecdDate"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small; background-color: #F1F6F9;">
+                                    SRF
+                                    Prepared by</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="SRFPerparedBy"></td>
+                            </tr>
+
+                            <tr>
+                                <th style="font-weight:bold; font-size: x-small;" class="c1">Customer Details
+                                </th>
+                            </tr>
+
+
+
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small; background-color: #F1F6F9;">
+                                    Customer
+                                    Code</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="CustomerCode"></td>
+
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;">Customer Name</td>
+                                <td class="t1" id="CustomerName"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small; background-color: #F1F6F9;">
+                                    Email ID
+                                </td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="EmailID"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;">Phone No</td>
+                                <td class="t1" id="Phone"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small; background-color: #F1F6F9;">
+                                    Location
+                                </td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="Location"></td>
+                            </tr>
+
+                            <tr>
+                                <th style="font-weight:bold; font-size: x-small;" class="c1">Additional
+                                    References</th>
+                            </tr>
+
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;  background-color: #F1F6F9;">
+                                    W.O.File</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="wofile"></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small;">D.C Ref.Date</td>
+                                <td class="t1" id="DCRefDate"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: lighter; font-size:x-small; background-color: #F1F6F9;">
+                                    E-mail
+                                    Ref</td>
+                                <td style="background-color: #F1F6F9;" class="t1" id="emailRef"></td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <div id="srftotl">
+        <div class="header-container">
+            <div class="logo"> <img src="/static/image/SoftLABWeb Logo.jpg" width="200px" ; height="80px">
+            </div>
+            <h2 style="margin-left: 140px;" class="header-text">Calibration Lab Management Software</h2>
+            <a href="/departmentcal_dashboard" class="dash">Dashboard</a>
+            <p style="color: white; font-size: 40px; margin-top: 10px;">/</p> <a class="back">Back</a>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="trrr" style="display: flex;">
+                    <p style="font-weight: bold; margin-left: 300px;" for="srfno" id="SRFNO">SRFNO: </p>
+                    <p id="det1"></p>
+                    <p style="font-weight: bold;  margin-left: 20px;" for="Customer">Customer: </p>
+                    <p id="det2"></p>
+                    <p id="det3"></p>
+
+                </div>
+            </div>
+            <div class="row" style="margin-left: 150px;">
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Total Jobs in SRF</div>
+                                <hr>
+                                <p class="det" id="totalJobsElement"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box1">
+                                <div class="headers" id="departjob"> ET Jobs</div>
+                                <hr>
+                                <p class="det" id="etJobsElement"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Other Jobs</div>
+                                <hr>
+                                <p class="det" id="countElement"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Not Configured Jobs</div>
+                                <hr>
+                                <p class="det" id="detNotConfigured"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Configured Jobs</div>
+                                <hr>
+                                <p class="det" id="detConfigured">
+
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+
+                    <div class="row ">
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Not Acknowledged</div>
+                                <hr>
+
+
+                                <div class="dropdown">
+
+                                    <p class="det dropdown-toggle" id="detNotAcknowledged" data-bs-toggle="dropdown">
+                                    </p>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#" id="detNotAcknowledgeddrp">Set As Acknowledged</a></li>
+                                    </ul>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Acknowledged</div>
+                                <hr>
+                                <p class="det" id="detAcknowledged"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Not Checked</div>
+                                <hr>
+                                <p class="det"  id="detNotChecked"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Accepted(Checked)</div>
+                                <hr>
+                                <p class="det" id="detAccepted"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box2">
+                                <div class="headers">Cancelled(checked)</div>
+                                <hr>
+                                <p class="det" id="detCancelled"></p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row ">
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">On Hold(Checked)</div>
+                                <hr>
+                                <p class="det" id="detOnHold"></p>
+
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Cal.Date Not Updtd.</div>
+                                <hr>
+                                <p class="det" id="detCalDate"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Cal.Date Updated</div>
+                                <hr>
+                                <p class="det" id="detCalDateUpdated"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Obs.Not Entered</div>
+                                <hr>
+                                <p class="det" id="detObsNot"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Obs.Result Entered</div>
+                                <hr>
+                                <p class="det" id="detObsResult"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row ">
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Rep Not Generated</div>
+                                <hr>
+                                <p class="det" id="detRepNot"></p>
+
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Rep.Don/Appr.Pend.</div>
+                                <hr>
+                                <p class="det" id="detRepDone"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">ULR.Not Assigned</div>
+                                <hr>
+                                <p class="det" id="detULRNot"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">ULR Assigned</div>
+                                <hr>
+                                <p class="det" id="detULRAssigned"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">ULR/QR Not Printed</div>
+                                <hr>
+                                <p class="det" id="ULRQR"></p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row ">
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">ULR/QR Code Printed</div>
+                                <hr>
+                                <p class="det" id="detULRQRCode"></p>
+
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box">
+                                <div class="headers">Not Scanned </div>
+                                <hr>
+                                <p class="det" id="detNotScanned"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Scanned</div>
+                                <hr>
+                                <p class="det" id="detScannedUploaded"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="headers">Not Completed</div>
+                                <hr>
+                                <p class="det" id="detNotCompleted"></p>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="box3">
+                                <div class="headers">Completed Jobs</div>
+                                <hr>
+                                <p class="det" id="detCompleted"></p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        var dataValue;
+        $(document).on('click', '.sa', function () {
+            $(this).toggleClass('selected').siblings().removeClass('selected');
+            dataValue = $(this).text();
+            console.log(dataValue);
+        });
+        $(document).ready(function () {
+
+            // Add an event listener to the select element
+            $("#activeSrf").on("change", function () {
+                var selectedPrefix = $(this).val(); // Get the selected value
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ulr_manage", // Replace with your actual backend endpoint
+                    data: { sel_pre: selectedPrefix },
+                    success: function (response) {
+                        var insted = $("#inst");
+                        insted.empty();
+                        for (var i = 0; i < response.length; i++) {
+                            $('#inst').append('<p class="sa">' + response[i] + '</p>');
+
+                            console.log("Received response:", response[i]);
+                            // Handle each response if needed
+                        }
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                $(".sa").removeClass('selected');
+            });
+
+            // Add an event listener to the select element
+            $("#customer").on("change", function () {
+                var selectedcustomer = $(this).val(); // Get the selected value
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_customer", // Replace with your actual backend endpoint
+                    data: { selectedcustomer: selectedcustomer },
+                    success: function (response) {
+                        var insted = $("#inst");
+                        insted.empty();
+
+                        if (response.length === 0) {
+                            // Display an alert if the response is empty
+                            alert("No data received for the selected customer.");
+                        } else {
+                            for (var i = 0; i < response.length; i++) {
+
+                                $('#inst').append('<p class="sa">' + response[i] + '</p>');
+                                console.log("Received response:", response[i]);
+                                // Handle each response if needed
+                            }
+                            // Handle the response if needed
+                        }
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                $(".sa").removeClass('selected');
+            });
+
+            // Add an event listener to the select element
+            $("#allsrf").on("change", function () {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_all_srf", // Replace with your actual backend endpoint
+
+                    success: function (response) {
+                        var insted = $("#inst");
+                        insted.empty();
+                        for (var i = 0; i < response.length; i++) {
+                            $('#inst').append('<p class="sa">' + response[i] + '</p>');
+                            console.log("Received response:", response[i]);
+                            // Handle each response if needed
+                        }
+                        // Handle the response if needed
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                $(".sa").removeClass('selected');
+            });
+
+            // Add an event listener to the select element
+            $("#labsrf").on("change", function () {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_lab_srf", // Replace with your actual backend endpoint
+
+                    success: function (response) {
+                        var insted = $("#inst");
+                        insted.empty();
+                        for (var i = 0; i < response.length; i++) {
+                            $('#inst').append('<p class="sa">' + response[i] + '</p>');
+                            console.log("Received response:", response[i]);
+                            // Handle each response if needed
+                        }
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                $(".sa").removeClass('selected');
+            });
+
+            // Add an event listener to the select element
+            $("#detObsNot").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_report_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detObsResult").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_report_select_obs'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+
+            $("#ULRQR").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_report_select_obs'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detNotChecked").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_not_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detCalDate").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_date_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detRepNot").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_date_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detULRNot").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_ulrassign_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            $("#detRepDone").on("click", function () {
+                // Get the selected value
+                var SRFNumber = $("#det1").text();  // Update this line if det1 is not a text element
+                var deptjobno = $("#etJobsElement").text();
+                var resultenter = "JobCal_Stat";
+                console.log(SRFNumber, deptjobno, resultenter);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_box",
+                    data: { SRFNumber: SRFNumber },
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = '/show_calibration_reportapp_select'; // Log the response from the server
+
+
+                    },
+                    error: function () {
+                        console.error("Failed to send prefix to the backend");
+                    }
+                });
+                
+            });
+            
+
+
+
+            // Event handler for #Continue click
+            $('#Continue').on('click', function () {
+                console.log("dataValue:", dataValue);
+                if (!dataValue || dataValue.length === 0) {
+                    alert("Please select at least one row before submitting.");
+                } else {
+
+                    $(document).on('click', '#Continue', function () {
+                        // Hide the first overlay
+                        $('#overlay').hide();
+
+                        // Show the second overlay
+                        $('#srftotl').show();
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: "/calibrationcc",
+                        data: { selectedValue: dataValue },
+                        success: function (response) {
+
+                            window.location.href = '/show_calibration_dashbord_select';
+                           
+                        },
+                        error: function (error) {
+                            console.error("Error:", error.responseJSON.error);
+                            alert("Error: " + error.responseJSON.error);
+                        }
+                    });
+                }
+                $(".sa").removeClass('selected');
+            });
+
+            function updateJobNames(value) {
+                value = value.replace('ETL-Electro Technical Lab', 'ET Jobs');
+                value = value.replace('PRL-Pressure Lab', 'Pressure Jobs');
+                value = value.replace('MCL-Linear', 'Linear Jobs');
+                value = value.replace('MCL-Mass', 'Mass Jobs');
+                value = value.replace('MCL-Torque', 'Torque Jobs');
+                value = value.replace('MCL-Volume', 'Volume Jobs');
+                value = value.replace('MCL-Optical', 'Optical Jobs');
+                value = value.replace('THL-Thermal Lab', 'Thermal Jobs');
+
+                return value;
+            }
+
+            // Event handler for '.scr' click
+            $(".scr").on("click", function () {
+                console.log(dataValue);
+
+                if (!dataValue || dataValue.length === 0) {
+                    alert("Please select at least one row before submitting.");
+                    $("#scrollableModal").modal('hide');
+                } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/click_srf_details",
+                    data: { selectedValue: dataValue },
+                    success: function (response) {
+                        console.log("Backend response:", response);
+                        var rowsArray = response.rows[0]; // Assuming datas is an array with one element
+                        var srfno = rowsArray[1];
+                        var Prefix = rowsArray[3];
+                        var Date = rowsArray[4];
+                        var woref = rowsArray[6]; // Accessing the first value in the datas array
+                        var worefdate = rowsArray[7];
+                        var wotype = rowsArray[5];
+                        var qty = rowsArray[11];
+                        var JobsRecdDate = rowsArray[10];
+                        var SRFPerparedBy = rowsArray[24];
+                        var CustomerCode = rowsArray[12];
+                        var CustomerName = rowsArray[13];
+                        var EmailID = rowsArray[28];
+                        var Phone = rowsArray[29];
+                        var Location = rowsArray[33];
+                        var wofile = rowsArray[1];
+                        var DCRefDate = rowsArray[15];
+
+                        var emailRef = rowsArray[21];
+
+                        document.getElementById("srfno").innerText = srfno;
+                        document.getElementById("Prefix").innerText = Prefix;
+                        document.getElementById("Date").innerText = Date;
+                        document.getElementById("woref").innerText = woref;
+                        document.getElementById("worefdate").innerText = worefdate;
+                        document.getElementById("wotype").innerText = wotype;
+                        document.getElementById("qty").innerText = qty;
+                        document.getElementById("JobsRecdDate").innerText = JobsRecdDate;
+                        document.getElementById("SRFPerparedBy").innerText = SRFPerparedBy;
+                        document.getElementById("CustomerCode").innerText = CustomerCode;
+                        document.getElementById("CustomerName").innerText = CustomerName;
+                        document.getElementById("EmailID").innerText = EmailID;
+                        document.getElementById("Phone").innerText = Phone;
+                        document.getElementById("Location").innerText = Location;
+                        document.getElementById("wofile").innerText = wofile;
+                        document.getElementById("DCRefDate").innerText = DCRefDate;
+                        document.getElementById("emailRef").innerText = emailRef;
+
+                        $("#scrollableModal").modal('show');
+
+                    },
+                    error: function (error) {
+                        console.error("Error:", error.responseJSON.error);
+                        alert("Error: " + error.responseJSON.error);
+                    }
+                   
+                });
+                $(".sa").removeClass('selected');
+            }
+            });
+
+            $('#detNotAcknowledgeddrp').click( function () {
+                console.log("dataValue:", dataValue);
+               
+               
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/check_for_acknowledged', // Replace with your actual backend endpoint
+                    type: 'POST', // or 'GET' depending on your backend configuration
+                    data: { srfnumber: dataValue,},
+                    success: function (response) {
+                        // Handle the response from the backend
+                        console.log(response);
+    
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+
+            // Other scripts...
+        });
+
+
+
+        $(document).ready(function () {
+            // Add a delegated event handler for the 'sa' class
+
+
+            // Add a click event handler for the element with class 'back'
+            $('.back').on('click', function () {
+                // Show the first overlay
+                $('#overlay').show();
+
+                // Hide the second overlay
+                $('#srftotl').hide();
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

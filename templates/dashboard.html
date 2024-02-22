@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftlabWeb Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/17b53a818d.js" crossorigin="anonymous"></script>
+
+    <!-- Add these in the <head> section -->
+
+
+
+    <style>
+        body {
+            background-color: #F5F5F5;
+
+            font-size: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            text-align: left;
+            background: transparent;
+            background-color: #F5F5F5;
+        }
+
+        .main a {
+            text-decoration: none;
+
+        }
+
+        #left {
+            background-color: #F5F5F5;
+
+            height: auto;
+            width: 350px;
+            margin-left: -10px;
+        }
+
+        #right {
+            background-color: #F5F5F5;
+
+            margin-left: -10px;
+            width: auto;
+
+        }
+
+        #hov {
+            margin-left: 10px;
+        }
+
+        #hov:hover {
+            color: rgb(245, 10, 214) !important;
+        }
+
+        .list {
+            color: black;
+
+        }
+
+
+        #myChart1 {
+            width: 500px !important;
+            height: 450px !important;
+            margin-left: 10px !important;
+            color: #000 !important;
+            font-weight: bold !important;
+        }
+
+        #sizepie {
+            background-color: #F5F5F5;
+            width: 980px;
+
+            margin-left: 10px;
+        }
+
+        #log {
+            display: flex;
+            margin-top: -15px;
+        }
+
+        #log1 {
+            display: flex;
+            margin-top: 5px;
+        }
+
+        .list li {
+            font-size: smaller;
+        }
+
+        a {
+            font-size: smaller;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script>
+        fetch('/navbar')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+
+
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 col-sm-3">
+                    <div id="left">
+                        <section class="one">
+                            <a class="btn btn-primary" href="#collapseExample" aria-expanded="false"
+                                aria-controls="collapseExample" role="button" data-bs-toggle="collapse"
+                                style="width: 350px; margin-bottom:1px; margin-left: 0px; ">
+                                Graphical Dashboard
+                            </a>
+
+                            <div id="collapseExample">
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="{{ url_for('graph_show')}}" style="color:black; " id="hov">Graphical
+                                    Dashboard</a>
+                            </div>
+                        </section>
+
+                        <section class="two">
+                            <a class="btn btn-primary" href="#collapseExample2" aria-expanded="false"
+                                aria-controls="collapseExample" role="button" data-bs-toggle="collapse"
+                                style="width: 350px; margin-bottom:1px;">
+                                Related Links
+                            </a>
+
+                            <div id="collapseExample2">
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/show_device_categories" style="color: black; margin-left: 10px;"
+                                    id="hov">Device Categories</a><br> <i class="fa-regular fa-star fa-2xs"
+                                    style="color: #1c6efd;"></i><a href="/devicemanfac" style="color: black;"
+                                    id="hov">Device Manufacturer</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/devicemodel"
+                                    style="color: black;" id="hov">Device Models</a>
+                            </div>
+                        </section>
+                        <section class="three">
+                            <a class="btn btn-primary" href="#collapseExample3" role="button" aria-expanded="false"
+                                aria-controls="collapseExample" style="width: 350px; margin-bottom:1px;">
+                                Job-Related Task
+                            </a>
+
+                            <div id="collapseExample3">
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/customer_list" style="color: black;" id="hov">Customers List</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/calibrationreport" style="color: black;" id="hov">Add New SRF Job
+                                    Card</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/srf_receiving_note"
+                                    style="color: black;" id="hov">SRF Job Card Details</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/srf_job_status" style="color: black;" id="hov">SRF Job Card Status</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/get_report_page"
+                                    style="color: black;" id="hov">SRF Job Card Reports</a><br>
+                                <!-- <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="crdreport.html" style="color: black;" id="hov">SRF Job Card File</a><br> -->
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/srf_history"
+                                    style="color: black;" id="hov">SRF Job Card History</a><br>
+                            </div>
+                        </section>
+                        <section class="four">
+                            <a class="btn btn-primary" href="#collapseExample4" role="button" role="button"
+                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 350px; margin-bottom:1px;">
+                                Additional Task
+                            </a>
+
+                            <div id="collapseExample4">
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/ulr_pre"
+                                    style="color: black;" id="hov">Lab Prefix Settings</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/ulr_manage"
+                                    style="color: black;" id="hov">ULR Management</a><br>
+                                <!-- <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/customer_list"
+                                    style="color: black;" id="hov">Customers List</a><br> -->
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="{{ url_for('email') }}" style="color: black;" id="hov">Compose Email</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/emailbookadress" style="color: black;" id="hov">Email Address Book</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/email_page"
+                                    style="color: black;" id="hov">Sent Email</a><br>
+
+                            </div>
+                        </section>
+                        <section class="five">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample5" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 350px; margin-bottom:1px;">
+                                Scope Details
+                            </a>
+
+                            <div class="collapse" id="collapseExample5">
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a
+                                    href="/master_details" style="color: black;" id="hov">Master Details</a><br>
+                                <i class="fa-regular fa-star fa-2xs" style="color: #1c6efd;"></i><a href="/cmc_home"
+                                    style="color: black;" id="hov">CMC Scope Details</a>
+                            </div>
+                        </section>
+                        <section class="six">
+                            <a class="btn btn-primary " data-bs-toggle="collapse" href="#collapseExample6" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 350px; margin-bottom:1px;">
+                                Login Details
+                            </a>
+
+                            <div class="collapse" id="collapseExample6">
+                                <div id="log1">
+                                    <i class="fa-solid fa-user" style="color: #0b5fef; margin-top: 5px;"></i>
+                                    <p class="list" style="color: black;font-size:13px; margin-left: 5px; ">Login User
+                                        Name <span style="color: black; margin-left: 3px;">:</span><span
+                                            style="color:rgb(218, 15, 245); margin-left: 2px;">{{ UserID }}</span></p>
+                                </div>
+                                <div id="log">
+                                    <i class="fa-regular fa-clock" style="color: #0b5fef; margin-top: 5px;"></i>
+                                    <p class="list" style="color: black; margin-left: 5px; font-size:13px; ">Login Time
+                                        <span style="color: black; margin-left: 36px;">:</span><span
+                                            style="color: rgb(218, 15, 245); margin-left: 2px;">{{
+                                            login_time
+                                            }}</span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 mt-0">
+                    <div class="container-fluid" id="sizepie">
+
+                        <div class="col-sm-6 col-6  " onclick=" window.location.href= '/graph_page' ;">
+                            <h4 style="text-align: center; margin-top: 15px;margin-left: 75px;"> {{ department }}<br>
+                                SRF JOBS STATISTICAL COUNTS</h4>
+                            <canvas id="myChart1"
+                                style="height: 280px; width: 400px; font-weight: bolder; margin-left: 100px; "></canvas>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+                <script>
+                    const content = JSON.parse('{{content | tojson | safe }}');
+                    const pair = JSON.parse('{{pair | tojson | safe }}');
+
+                    const barColors = [
+                        "rgba(0,0,255,0.6)",  // Blue
+                        "rgba(0,0,255,0.6)",  // Blue
+                        "rgba(0,0,255,0.6)",  // Blue
+                        "rgba(0,0,255,0.6)",  // Blue
+                        "rgba(0,0,255,0.6)",  // Blue
+                        "rgba(0,0,255,0.6)"   // Blue
+                    ];
+
+                    new Chart("myChart1", {
+                        type: "bar",
+                        data: {
+                            labels: content,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                color: '#000000',
+                                data: pair
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                fontSize: 28,
+                                fontStyle: "bold",
+                                color: '#000000',
+                                backgroundColor: '	#FFFFFF'
+                            },
+                            legend: { display: false },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                            }
+                        }
+                    });
+                </script>
+
+
+
+
+
+                <div class="col-3 col-sm-3">
+                    <div id="right">
+                        <section class="rone">
+                            <a class="btn btn-primary" href="#collapseExampler1" role="button" data-bs-toggle="collapse"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                Internal Work Order Management Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler1">
+
+                                <ol class="list">
+                                    <li style="color: black;"> Click on Customer List In Task Panel.</li>
+                                    <li> Customer Management Screen Shows Already Added Customers Details.</li>
+                                    <li> To Add New Customer Specify Customer Code and Press Add New Button. </li>
+                                    <li> Customer Code Added Into Customer List.</li>
+                                    <li> Specify Customer Name and Required Customer Details. </li>
+                                    <li> Each Details Saved After Pressing Enter Key.</li>
+                                    <li> To Move One Column To Another Press Enter Key.</li>
+                                    <li>To Delete Customer and Its Details Press Delete Button.</li>
+
+                                </ol>
+
+
+                            </div>
+                        </section>
+
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler2" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF (Job Card) Preparation Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler2">
+
+                                <ol class="list">
+
+                                    <li> Click on Add New SRF In Task Panel.</li>
+                                    <li>Select Required Customer.</li>
+                                    <li> Specify Customer Work Order Type and Its Details. </li>
+                                    <li>Specify Items Received Qty.</li>
+                                    <li>Specify Received Date and Other Details.</li>
+                                    <li>P.O File, D.C File Can Be Linked.</li>
+                                    <li> SRF Number Automatically Incremented When New SRF Added.</li>
+                                    <li>Save New SRF By Clicking Save SRF Details Button.</li>
+                                    <li> Once Saved Newly Added SRF Selection Screen Appears.</li>
+                                    <li> Select Continue Button To View SRF Job Card Register Screen.</li>
+
+                                </ol>
+
+
+                            </div>
+                        </section>
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler3" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                New SRF Help Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler3">
+
+                                <ol class="list">
+
+                                    <li>Click on SRF Job Card Register In Task Panel.</li>
+                                    <li> Select Required SRF Number Either Newly Added Or Already Configured.</li>
+                                    <li>SRF Job Card Register Screen Displays Its Details And Count Statistics. </li>
+                                    <li>If New SRF Added Then Assign Job Number Button Is Enabled To Assign Individual
+                                        Job Number For Each Job.</li>
+                                    <li> Once Job Numbers Are Assigned This Button Is Disabled.</li>
+                                    <li> To Add Additional Qty Click On Total SRF Jobs Count And Add Required Qty. </li>
+                                    <li> To Delete a Job Click On Total SRF Jobs Count And Select Last Job To Delete.
+                                    </li>
+                                    <li>To Configure Each Jobs Click On Not Configured or Configured Counts And Update
+                                        Required Details.</li>
+                                    <li>For Quick Update on Category, Type, Department, Calibration At For Multiple
+                                        Jobs, User Can Select Respective Option For Multiple Jobs Update At A Same Time.
+                                    </li>
+                                    <li>To Select Multiple Jobs Click on 'Show Selection List' Button Which Shows Jobs
+                                        List With Selection.</li>
+                                    <li> To Copy One Job Details To Multiple Jobs Click On 'Copy Details To Button'
+                                        Available Above Jobs List.</li>
+                                    <li>Once All Jobs Are Configured Then All Jobs Can Be Forwarded To Respective Labs.
+                                    </li>
+                                    <li>Forward Button Will Be Enabled When Selection List Enabled.</li>
+                                    <li>User Can Select Required Jobs To Forward.</li>
+                                    <li>Counts Dashboard Clearly Indicates About Each SRF's Actual Status.</li>
+                                </ol>
+
+
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler4" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF Job Status Quick View Help Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler4">
+
+                                <ol class="list">
+
+                                    <li> Click on SRF Job Status In Task Panel.</li>
+                                    <li> Select Required SRF Number To View Its Jobs Status.</li>
+                                    <li> User Can Select or Sort or Group The List As Per Required Field Selection.</li>
+
+                                </ol>
+
+
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler5" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF Job Files Management Help Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler5">
+
+                                <ol class="list">
+                                    <li> Click on SRF Job Files In Task Panel.</li>
+                                    <li> Select Required SRF Number To View Its Attached Jobs Files.</li>
+                                    <li> User Can Add P.O, D.C, Job Card Report, Additional Files In This Screen.</li>
+                                </ol>
+
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler6" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF Job Reports Quick View Help Tips
+
+                            </a>
+
+                            <div class="collapse" id="collapseExampler6">
+
+                                <ol class="list">
+                                    <li> Click on SRF Job Reports In Task Panel.</li>
+                                    <li> Select Required SRF Number To View Its Jobs Reports.</li>
+                                    <li> User Can Select or Sort or Group The List As Per Required Field Selection.</li>
+                                </ol>
+
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler7" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF Job History Reports Quick Help Tips
+
+                            </a>
+
+                            <div class="collapse" id="collapseExampler7">
+
+                                <ol class="list">
+                                    <li> Click on SRF Job History In Task Panel.</li>
+                                    <li> Select Required Instrument Tag No. (ID No./Asset No.) To View Its Calibration
+                                        Reports History.</li>
+                                    <li> User Can Select or Sort or Group The List As Per Required Field Selection.</li>
+                                </ol>
+
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler8" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                SRF Prefix Adding Help Tips
+
+                            </a>
+
+                            <div class="collapse" id="collapseExampler8">
+
+                                <ol class="list">
+                                    <li> Click on Lab Prefix Settings In Task Panel.</li>
+                                    <li> Specify Settings Access Password To View This Settings.</li>
+                                    <li> User Can Add New SRF Prefix For Each Year.</li>
+                                    <li> SRF Prefix Selection Given In Most Screens To View Previous Prefix Contained
+                                        SRF Numbers.</li>
+
+                                </ol>
+
+
+                            </div>
+                        </section>
+
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler9" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                ULR Management Help Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler9">
+
+                                <ol class="list">
+                                    <li> Click on ULR Management In Task Panel Under Additional Tasks Group.</li>
+                                    <li> User Can Maintain Unique Report Running Number For Each Calibrated Jobs.</li>
+                                    <li> User Can Assign ULR Number When Final Report Generated.</li>
+                                    <li> ULR Number Assigning Is Possible For Report Generated Jobs Only.</li>
+                                    <li> This Number Can Be Used As Barcode Number Purpose.</li>
+                                </ol>
+                            </div>
+                        </section>
+
+                        <section class="rone">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampler10" role="button"
+                                aria-expanded="false" aria-controls="collapseExample"
+                                style="width: 335px; margin-bottom:1px;">
+                                Email Help Tips
+                            </a>
+
+                            <div class="collapse" id="collapseExampler10">
+
+                                <ol class="list">
+                                    <li> Click on Email Address Book or Email Sending In Task Panel.</li>
+                                    <li> Add Required User Names and Its Email Address.</li>
+                                    <li> User Can Send Email Enclosed With SoftLAB Generated Reports.</li>
+                                </ol>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+
+    <input value="{{ department }}" id="depst" style="display: none;">
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var rightCollapseButtons = document.querySelectorAll('#right [data-bs-toggle="collapse"]');
+    
+            rightCollapseButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var targetSelector = button.getAttribute('href') || button.getAttribute('data-bs-target');
+                    var targetCollapse = document.querySelector(targetSelector);
+    
+                    rightCollapseButtons.forEach(function (otherButton) {
+                        if (otherButton !== button) {
+                            var otherTargetSelector = otherButton.getAttribute('href') || otherButton.getAttribute('data-bs-target');
+                            var otherTargetCollapse = document.querySelector(otherTargetSelector);
+                            if (otherTargetCollapse) {
+                                var bsCollapse = bootstrap.Collapse.getInstance(otherTargetCollapse);
+                                if (bsCollapse) {
+                                    bsCollapse.hide();
+                                }
+                            }
+                        }
+                    });
+    
+                    if (targetCollapse) {
+                        var bsCollapse = bootstrap.Collapse.getInstance(targetCollapse);
+                        if (bsCollapse) {
+                            bsCollapse.toggle();  // Modified this line to toggle the collapse
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</html>

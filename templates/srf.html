@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB SRF Details</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .tablecol {
+            overflow: hidden;
+            /* Ensure the container doesn't show overflow */
+            max-height: 70vh;
+            /* Set the max height for the container */
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+
+        .outer-wrapper {
+            margin: 40px 20px;
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+
+
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            max-height: calc(70vh - 45px);
+            /* Adjust for the header height and padding */
+            padding-bottom: 20px;
+            height: 70vh;
+
+        }
+
+        thead {
+            position: sticky;
+            z-index: 2;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 150%;
+            height: auto;
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+
+        }
+
+
+        table th,
+        table td {
+
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 10px;
+
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+
+        }
+
+        th.resize {
+            position: relative;
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+        #Continue {
+            height: 20px;
+            font-size: x-small;
+            font-weight: bold;
+            text-align: center;
+            padding: 1px;
+            width: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+
+
+        #emp-table td:first-child,
+        #emp-table th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #fff;
+
+        }
+
+
+        #emp-table td:last-child,
+        #emp-table th:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #fff;
+
+        }
+
+        /* #emp-table th {
+            position: sticky;
+            top: 0;
+            z-index: 2; 
+            background-color: #fff; 
+            background: #3C486B;
+
+        } 
+
+       */
+    </style>
+
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+    <script>
+        // Retrieve valueStoredInVariable from localStorage
+        var storedValue = localStorage.getItem('valueStoredInVariable');
+        console.log(storedValue);
+        // Now you can use valueStoredInVariable in this script or any other script on this page.
+        // Check if valueStoredInVariable is defined
+        if (storedValue === "Customer Care") {
+            fetch('/navbar')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else if (storedValue === "ETL-Electro Technical Lab") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else if (storedValue === "PRL-Pressure Lab") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "MCL-Linear") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "MCL-Mass") {
+            fetch('/navbardepartmentcal')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "QA") {
+            fetch('/navbardepartmentqa')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        }else if (storedValue === "System Administrator") {
+            fetch('/navbardepartmentsa')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        } else {
+            console.log("No conditions matched.");
+        }
+    </script>
+    
+
+
+    <div class="header" style="display: flex; margin-left: 20%; margin-top: 20px;">
+
+        <label style="font-weight: bold;" class="col-form-label" for="ULRPrefix">Active SRF Prefix:</label>
+        <select class="form-select" id="ULRPrefix" name="ULRPrefix" style="width: 15%;" required>
+
+            {% for prefix in datas %}
+            <option value="{{ prefix }}" {% if selected_dept==department %}selected{% endif %}>
+                {{ prefix }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <div class="inp">
+            <input type="radio" id="master" name="duc" class="form-check-input" value="MasterInstrument" required
+                style="margin-top: 10px; margin-left: 20px;">
+            <label style="font-weight: bold;" for="master" class="col-form-label" id="lab">Configured SRF Prefix</label>
+
+            <input type="radio" id="bothdm" name="duc" class="form-check-input" value="DUCInst-MasterInstrument"
+                required style="margin-top: 10px; margin-left: 20px;">
+            <label style="font-weight: bold;" class="col-form-label" for="bothdm" id="lab">Completed SRF Prefix</label>
+        </div>
+    </div>
+    <div class="tabercol">
+        <div class="outer-wrapper">
+            <div class="table-wrapper">
+                <table id="emp-table">
+                    <thead>
+
+                        <th style="  background: #3C486B; " col-index="1" id="fixed-column" class="resize  ">SRF Job
+                            Card No
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+
+                        </th>
+
+                        <th style="  position: sticky;" col-index="2" class="resize" id="str"> SRF Date
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th style="  position: sticky;"  col-index="3" class="resize" id="str">Customer Code
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th style="  position: sticky;"  col-index="4" class="resize" id="str"> Customer Name
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+
+
+                        <th style="  position: sticky;"  col-index="5" class="resize" id="str">P.O.No
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th  style="  position: sticky;" col-index="6" class="resize" id="str">W.O.No
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th style="  position: sticky;"  col-index="7" class="resize" id="str">No.Of Items
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th  style="  position: sticky;" col-index="8" class="resize" id="str">Recd.Date
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+
+                        <th style="  position: sticky;"  col-index="9" class="resize" id="str">
+                            Completed
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th  style="  position: sticky;" col-index="10" class="resize" id="str">
+                            Cancelled
+                            <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                <option value="all" id="op">All</option>
+                            </select>
+                        </th>
+                        <th style="  background: #3C486B;  width: 100px" col-index="11" class="resize" id="str">
+                            Action
+
+                        </th>
+
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[4] }}</td>
+                            <td>{{ user[12] }}</td>
+                            <td>{{ user[13] }}</td>
+                            <td>{{ user[6] }}</td>
+                            <td>{{ user[42] }}</td>
+                            <td>{{ user[11] }}</td>
+                            <td>{{ user[10] }}</td>
+                            <td>{{ user[25] }}</td>
+                            <td>{{ user[21] }}</td>
+                            <td class="fixed-column">
+                                <form action="{{ url_for('update_receiving_view', SRFNo=user[2]) }}" method="get">
+                                    <button title="View job Details"
+                                   
+                                    type="submit" class="btn btn-primary" id="Continue">V</button>
+                                </form>
+
+                                
+
+
+                            </td>
+
+
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            populateDropdowns();
+            setupEventListeners();
+        });
+
+        function populateDropdowns() {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            allFilters.forEach((filter) => {
+                const colIndex = filter.parentElement.getAttribute("col-index");
+                const uniqueValues = getUniqueValues(colIndex);
+
+                // Clear existing options before adding new ones
+                filter.innerHTML = '<option value="all">All</option>';
+
+                uniqueValues.forEach((value) => {
+                    filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                });
+            });
+        }
+
+        function getUniqueValues(colIndex) {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            const uniqueValuesSet = new Set();
+
+            rows.forEach((row) => {
+                const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                if (cell) {
+                    const cellValue = cell.textContent.trim();
+                    if (cellValue !== "") {
+                        uniqueValuesSet.add(cellValue);
+                    }
+                }
+            });
+
+            return Array.from(uniqueValuesSet);
+        }
+
+        function setupEventListeners() {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            allFilters.forEach((filter) => {
+                filter.addEventListener("change", function () {
+                    updateDropdowns(filter);
+                    filter_rows();
+                });
+            });
+        }
+
+        function updateDropdowns(changedFilter) {
+            const allFilters = document.querySelectorAll(".table-filter");
+            const selectedValues = {};
+
+            allFilters.forEach((filter) => {
+                selectedValues[filter.parentElement.getAttribute("col-index")] = filter.value;
+            });
+
+            const filteredValues = filterValues(selectedValues);
+
+            allFilters.forEach((filter) => {
+                if (filter !== changedFilter) {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const selectedValue = selectedValues[colIndex];
+
+                   
+                    filter.innerHTML = '<option value="all">All</option>';
+
+                    filteredValues[colIndex].forEach((value) => {
+                        filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                    });
+                }
+            });
+        }
+
+        function filterValues(selectedValues) {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            const filteredValues = {};
+
+            for (const colIndex in selectedValues) {
+                filteredValues[colIndex] = new Set();
+            }
+
+            rows.forEach((row) => {
+                let isRowMatch = true;
+
+                for (const colIndex in selectedValues) {
+                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                    const cellValue = cell ? cell.textContent.trim() : "";
+
+                    if (selectedValues[colIndex] !== "all" && cellValue !== selectedValues[colIndex]) {
+                        isRowMatch = false;
+                    }
+
+                    if (colIndex !== "1" && isRowMatch) {
+                        filteredValues[colIndex].add(cellValue);
+                    }
+                }
+            });
+
+            return filteredValues;
+        }
+
+        function filter_rows() {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            rows.forEach((row) => {
+                const allFilters = document.querySelectorAll(".table-filter");
+
+                let isRowVisible = true;
+
+                allFilters.forEach((filter) => {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const filterValue = filter.value;
+                    const cellValue = row.querySelector(`td:nth-child(${colIndex})`).textContent.trim();
+
+                    if (filterValue !== "all" && cellValue !== filterValue) {
+                        isRowVisible = false;
+                    }
+                });
+
+                row.style.display = isRowVisible ? "table-row" : "none";
+            });
+        }
+    </script>
+
+    <script>
+        function initResizableColumns() {
+            const headers = document.querySelectorAll('th.resize');
+
+            headers.forEach(header => {
+                let startX;
+                let startWidth;
+
+                header.addEventListener('mousedown', function (event) {
+                    startX = event.clientX;
+                    startWidth = header.offsetWidth;
+
+                    document.addEventListener('mousemove', resizeColumn);
+                    document.addEventListener('mouseup', stopResize);
+                });
+
+                function resizeColumn(event) {
+                    const newWidth = startWidth + (event.clientX - startX);
+                    header.style.width = newWidth + 'px';
+
+                    // Prevent column resizing from interfering with scrolling
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'auto';
+                }
+
+                function stopResize() {
+                    document.removeEventListener('mousemove', resizeColumn);
+                    document.removeEventListener('mouseup', stopResize);
+
+                    // Allow table layout to go back to fixed after resizing
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'fixed';
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initResizableColumns);
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#master").on("change", function () {
+                var selectedPrefix = "JobNos_Alloted_Stat";
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_filter_srf_receiving_note",
+                    data: { sel_pre: selectedPrefix },
+                    success: function (response) {
+                        var tableBody = $("#emp-table").find("tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (response.length > 0) {
+                            // Loop through the response data and append rows to the table
+                            $.each(response, function (index, user) {
+                                var date27 = new Date(user[4]).toISOString().split('T')[0];
+                                var date28 = new Date(user[10]).toISOString().split('T')[0];
+
+                                var newRow = "<tr>" +
+                                    "<td>" + user[1] + "</td>" +
+                                    "<td>" + date27 + "</td>" +
+                                    "<td>" + user[12] + "</td>" +
+                                    "<td>" + user[13] + "</td>" +
+                                    "<td>" + user[6] + "</td>" +
+                                    "<td>" + user[42] + "</td>" +
+                                    "<td>" + user[11] + "</td>" +
+                                    "<td>" + date28 + "</td>" +
+                                    "<td>" + user[25] + "</td>" +
+                                    "<td>" + user[21] + "</td>" +
+                                    "<td class='fixed-column'>" +
+                                    "<form action='/update_receiving_view/" + user[2] + "' method='get'>" +
+                                    "<input type='hidden' name='SRFNo' value='" + user[2] + "'>" +
+                                    "<button title='View job Details' type='submit' class='btn btn-primary' id='Continue' data-manufacturerr='" + user[2] + "'>V</button>" +
+                                    "</form>" +
+                                    "</td>" +
+                                    "</tr>";
+                                tableBody.append(newRow);
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                    }
+                });
+            });
+
+            $("#bothdm").on("change", function () {
+                var selectedPrefix = "SRFComplete_Stat";
+
+                $.ajax({
+                    type: "POST",
+                    url: "/click_filter_srf_receiving_note",
+                    data: { sel_pre: selectedPrefix },
+                    success: function (response) {
+                        var tableBody = $("#emp-table").find("tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (response.length > 0) {
+                            // Loop through the response data and append rows to the table
+                            $.each(response, function (index, user) {
+                                var date27 = new Date(user[4]).toISOString().split('T')[0];
+                                var date28 = new Date(user[10]).toISOString().split('T')[0];
+
+                                var newRow = "<tr>" +
+                                    "<td>" + user[1] + "</td>" +
+                                    "<td>" + date27 + "</td>" +
+                                    "<td>" + user[12] + "</td>" +
+                                    "<td>" + user[13] + "</td>" +
+                                    "<td>" + user[6] + "</td>" +
+                                    "<td>" + user[42] + "</td>" +
+                                    "<td>" + user[11] + "</td>" +
+                                    "<td>" + date28 + "</td>" +
+                                    "<td>" + user[25] + "</td>" +
+                                    "<td>" + user[21] + "</td>" +
+                                    "<td class='fixed-column'>" +
+                                    "<form action='/update_receiving_view/" + user[2] + "' method='get'>" +
+                                    "<input type='hidden' name='SRFNo' value='" + user[2] + "'>" +
+                                    "<button title='View job Details' type='submit' class='btn btn-primary' id='Continue' data-manufacturerr='" + user[2] + "'>V</button>" +
+                                    "</form>" +
+                                    "</td>" +
+                                    "</tr>";
+                                tableBody.append(newRow);
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOFTLABWEB</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+        <script src="/static/js/jquery.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script
+        src="{{ url_for('static', filename='js/lab.js') }}"
+    ></script>
+   
+        <script
+        src="{{ url_for('static', filename='js/departmentnav.js') }}"
+        type="module"
+    ></script>
+
+    <style>
+        link[rel="icon"] {
+            width: 92px !important;
+            height: 32px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: rgb(8, 8, 88);
+
+            height: 80px;
+        }
+
+        .header-text {
+            display: inline;
+            margin: 0px;
+           
+        }
+
+
+        body {
+
+
+            background-color: #f5f5f5;
+            background-image: url(/static/image/firstpagebg.jpeg);
+
+        }
+
+
+        #au {
+            height: 80px;
+            width: 500%;
+        }
+
+        .card-body {
+            background-color: rgb(19, 19, 95);
+
+
+            border: 5px solid #000;
+            float: left;
+        }
+
+        .card-title {
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        /*-------------------------------------------------  */
+
+        .right-container {
+
+            display: none;
+
+
+            background-color: rgb(235, 245, 235);
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container:hover+.right-container {
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: 400px;
+            background: transparent;
+            color: blue;
+        }
+
+        /* ---------------------------------------------------------- */
+        .right-container1 {
+
+            display: none;
+
+
+            /* background-color: rgb(235, 245, 235); */
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container1:hover+.right-container1 {
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: 215px;
+            background: transparent;
+            color: blue;
+        }
+
+        /* -------------------------------------------------------------------------------- */
+        .right-container2 {
+
+            display: none;
+
+
+            /* background-color: rgb(235, 245, 235); */
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container2:hover+.right-container2 {
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: -470px;
+            background: transparent;
+            color: blue;
+        }
+
+        /*-------------------------------------------------------------  */
+        .right-container3 {
+
+            display: none;
+
+
+            background-color: rgb(235, 245, 235);
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container3:hover+.right-container3 {
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: 75px;
+            background: transparent;
+            color: blue;
+        }
+
+
+        /* opacity: 0.3;  */
+
+
+
+        /* ------------------------------------------------------------------------- */
+        .right-container4 {
+
+            display: none;
+            background-color: rgb(235, 245, 235);
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container4:hover+.right-container4 {
+
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: -250px;
+            background: transparent;
+            color: blue;
+
+        }
+
+        /* ------------------------------------------------------------------------------ */
+        .right-container5 {
+
+            display: none;
+            background-color: rgb(235, 245, 235);
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .left-container5:hover+.right-container5 {
+            display: block;
+            margin-left: 35%;
+            position: fixed;
+            margin-top: -90px;
+            background: transparent;
+            color: blue;
+        }
+
+        /*-------------------------------------------------------------------------------  */
+        .customer-care {
+            margin: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            /* background-color: white; */
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            /* background-color: white; */
+        }
+
+        #kavitha {
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            margin-top: 20px;
+
+
+        }
+
+        a {
+            text-decoration: none;
+
+        }
+
+
+
+        #back {
+            color: white;
+            height: 50px !important;
+            margin-left: 150px;
+            background-color: none;
+
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+        }
+
+        .ul-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+
+            span {
+                padding-right: 5px;
+            }
+        }
+
+
+        .cards-wrapper {
+            margin-top: -530px;
+            margin-left: 500px;
+        }
+
+        .cards-container {
+            perspective: 1200px;
+        }
+
+        .cards {
+            transition: transform 0.5s ease;
+            /* Add a transition property */
+            margin: 0 auto;
+            height: 500px;
+            width: 500px;
+            max-width: 80%;
+            position: relative;
+            border-radius: 25px;
+            transition: all 1s ease;
+            transform-style: preserve-3d;
+            box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2)
+        }
+
+        .rotated {
+            transform: rotateY(-180deg);
+        }
+
+        .cards-contents {
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+
+            h2,
+            p {
+                text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            h2 {
+                font-size: 3em;
+                margin: 0 auto;
+            }
+
+            hr {
+                width: 50%;
+                margin: 20px auto;
+            }
+
+            p {
+                margin: 0 auto;
+            }
+        }
+
+        .cards-depth {
+            transform: translateZ(100px) scale(0.98);
+            perspective: inherit;
+
+        }
+
+        .card-front {
+            background: linear-gradient(to top left, #3a6186, #89253e);
+            transform-style: preserve-3d;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(to top left,  #3a6186, #89253e);
+            transform-style: preserve-3d;
+        }
+        #S{
+            color: white;
+        }
+        #S:hover{
+            color: aqua !important ;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header-container">
+
+        <div class="logo"> <img src="/static/image/SoftLABWeb Logo.jpg" width="200px" ; height="80px">
+            <h2 id="back" class="header-text">Calibration Lab Management Software</h2>
+            <div class="container">
+                <div class="left-container6">
+                    <a id="sys" href="/customer_care" class="department" style="text-decoration: dashed;">
+                        <h5 id="S" class="card-title" value="System Administrator"
+                            style=" color:white; text-decoration: underline; margin-left: 970px; margin-top: -60px;">
+                            System Admin
+                        </h5>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ------------------------------------------------------------------ -->
+
+    <div id="kavitha">
+        <div class="container">
+            <div class="left-container">
+                <div class="card mb-2" style="width: 300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.freepik.com/free-vector/customer-service-technical-support_24877-52929.jpg?w=2000"
+                                class="img-fluid rounded-start" id="au">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="cus" href="/customer_care" class="department">
+                                    <h5 id="C" class="card-title" value="Customer Care">Customer Care</h5>
+                                </a>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="right-container" class="right-container">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95);">Customer Care</h2>
+                    <ul style="color: #000;">
+                        <li> Respond quickly to client questions via chat and email.</li>
+
+                        <li> Provide customers with knowledgeable support </li>
+
+                        <li> Immediately and effectively address customer complaints </li>
+
+                        <li>Escalate customer requests to managers when there’s a complex issue.</li>
+
+                        <li> Empathy, good communication, and problem-solving. </li>
+
+                        <li>Encourage customers to provide feedback</li>
+                        <li>Communicate clearly and professionally</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!--------------------------------------------------------------------- -->
+
+        <div class="container">
+            <div class="left-container1">
+                <div class="card mb-2" style="width:300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://predictabledesigns.com/wp-content/uploads/2019/12/word-image-23.jpeg"
+                                class="img-fluid rounded-start" id="au">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="electro" href="/customer_care" class="department">
+                                    <h5 id="E" class="card-title" value="ETL-Electro Technical Lab">Electro Technical
+                                        Lab</h5>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-container" class="right-container1">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95);">Electro Technical Lab</h2>
+                    <ul style="color: #000;">
+                        <li>Electro-technical labs are often used for educational purposes</li>
+
+                        <li> The Laboratory is well equipped with high precision.</li>
+
+                        <li>Industries use electro-technical labs to test their products. </li>
+
+                        <li> The Lab Calibration Service, contributions of the STQC program.</li>
+
+                        <li> Extensive, accurate and timely electrotechnical calibration services.</li>
+
+                        <li> Laboratory is capable for calibrating industrial sourcing.</li>
+
+                        <li>This helps them test concepts, identify issues.</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ---------------------------------------------------------------------- -->
+
+
+        <!-- ------------------------------------------------------------------------- -->
+        <div class="container">
+            <div class="left-container3">
+                <div class="card mb-2" style="width: 300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="data:image/png;base64,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"
+                                class="img-fluid rounded-start" id="au">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="Press" href="/customer_care" class="department">
+                                    <h5 id="P" class="card-title" value="PRL-Pressure Lab">Pressure Lab</h5>
+                                </a>
+                                <!-- Other content inside the card-body goes here -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="right-container" class="right-container3">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95)" ;> Pressure Lab</h2>
+                    <ul style="color: #000;">
+                        <li>Pressure is the force applied per unit area. </li>
+                        <li> Pressure experiments performed various at pressures.</li>
+
+                        <li>compounds respond differently to varying pressures.</li>
+                        <li> Pressure can be measured using various instruments,like manometers. </li>
+                        <li>Proper pressure management is crucial to ensure the safety of equipment </li>
+
+                        <li>In a pressure lab, safety precautions are essential. </li>
+
+                        <li>This includes handling gases carefully and wearing safety gear.</li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- --------------------------------------------------------------------------- -->
+
+        <div class="container">
+            <div class="left-container5">
+                <div class="card mb-2" style="width: 300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://www.engineeringlabsequipment.com/images/catalog/category/1225587921Automobile%20Engineering%20Lab%20Equipment.jpg"
+                                class="img-fluid rounded-start" id="au">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="Mech" href="/customer_care" class="department">
+                                    <h5 id="M" class="card-title" value="Mechanical Lab">Mechanical Lab</h5>
+                                </a>
+                                <!-- Other content inside the card-body goes here -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="right-container" class="right-container5">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95)" ;>Mechanical Lab</h2>
+                    <ul style="color: #000;">
+                        <li>Mechanical labs are equipped with a wide range of tools and machines.</li>
+
+                        <li>These include lathes, milling machines, drill presses, and grinding machines.</li>
+
+                        <li>This used to determine the properties of materials like metals, plastic.</li>
+
+                        <li>Mechanical labs are used for a wide range of experiments and tests.</li>
+
+                        <li> Labs focused on thermodynamics might include for experiments to heat transfer.</li>
+                        <li>A designated area for equipment maintenance and repair is important.</li>
+                        <li>These are used for cutting, shaping, and machining materials for projects </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <!-- -------------------------------------------------------------------------- -->
+
+
+        <div class="container">
+            <div class="left-container4">
+
+                <div class="card mb-2" style="width: 300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="/static/image/thermal.jpeg" alt="au" style="max-width: 90px; height: auto;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="ther" href="/customer_care" class="department">
+                                    <h5 id="T" class="card-title" value="Thermal Lab">Thermal Lab</h5>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-container" class="right-container4">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95)" ;>Thermal Lab</h2>
+                    <ul style="color: #000;">
+                        <li> It designed to allow for testing of façade elements like glazing .</li>
+                        <li> These units are constructed using highly insulated shells.</li>
+                        <li>THermal Lab provide heating and cooling services. </li>
+                        <li>It is used for water heating in residential or industrial areas.</li>
+                        <li>thermal devices are impacted by in everyday life are engines. </li>
+                        <li>power plants, refrigerators, heat pumps, and air conditioners</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ----------------------------------------------------------------------------- -->
+        <div class="container">
+            <div class="left-container2">
+
+                <div class="card mb-2" style="width: 300px; height: 80px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="/static/image/4002785.jpg"
+                                class="img-fluid rounded-start" id="au">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="height: 85px; width: 200px;">
+                                <a id="qua" href="/customer_care" class="department">
+                                    <h5 id="Q" class="card-title" value="System Administrator">System Admin</h5>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-container" class="right-container2">
+                <div class="customer-care">
+                    <h2 style="color:  rgb(19, 19, 95)" ;>System Admin</h2>
+                    <ul style="color: #000;">
+                        <li>Ensuring that the materials used meet the required standards.</li>
+
+
+
+                        <li>Testing a prototype or sample of the product to identify any issues.</li>
+
+                        <li>Performing inspections at various stages of production.</li>
+
+                        <li>Organizations often have established quality standards for products.</li>
+
+                        <li>Quality control processes involve monitoring and inspecting products.</li>
+
+                        <li>Proper documentation of quality-related activities is crucial for quality approval. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+       
+
+    </div>
+
+
+    <div class="cards-wrapper">
+        <div class="cards-container">
+            <div class="cards">
+                <div class="cards-contents card-front">
+                    <div class="cards-depth">
+                        <h4> SoftLAB Web 11 - Features</h4>
+                        <hr>
+                        <ul class="ul-list" style="color: #ccc;">
+                            <li> Department wise login Module</li>
+                            <li> Job Card Registration Module</li>
+                            <li> Device Configuration Module</li>
+                            <li>Department Visualized Dashboard Module</li>
+                            <li>Calibration Procedure Import Module</li>
+                            <li>Error Claimed Calculation Module </li>
+                            <li>Automatic Uncertainty Calculations Module</li>
+                            <li>Automatic Calibration Generation Module</li>
+                            <li>CMC Scope & Scope Check Module</li>
+                            <li>Manual Certificate Upload Module</li>
+                        </ul>
+                        <br>
+                        <br>
+                        <h4>Click Me To See More Features</h4>
+                    </div>
+                </div>
+                <div class="cards-contents card-back">
+                    <div class="cards-depth">
+                        <h4> SoftLAB Web 11 - Features</h4>
+                        <hr>
+                        <ul class="ul-list" style="color: #ccc;">
+                            <li>CMC Scope & Scope Check Module</li>
+                            <li> Certificate Upload Module</li>
+                            <li>Device History Maintenance Module</li>
+                            <li>Backup and Restore Data Module</li>
+                            <li>Statistical Reports Module</li>
+                            <li>Master Calibration Reminder Module</li>
+                            <li>ULR Management Module</li>
+                            <li>QR Code Printing Module</li>
+                            <li>Server Certificate Upload Module</li>
+                            <li>Monthly QA Plan, Execution Module</li>
+                            <li>Optional Email Sending Module</li>
+                            <li>Invoice & Payment Register Module</li>
+                            <li>Optional Dispatch Register Module</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+       
+    </script>
+    
+
+
+    <script>
+        const card = document.querySelector('.cards');
+
+        function clickRotate() {
+            card.classList.toggle('rotated');
+        }
+
+        card.addEventListener('click', clickRotate);
+
+
+    </script>
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer3 = document.querySelector('.left-container3');
+        const rightContainer3 = document.querySelector('.right-container3');
+        const cardsWrapper3 = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer3.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer3).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper3.style.display = 'none';
+            }
+        });
+
+        leftContainer3.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper3.style.display = 'block';
+        });
+
+    </script>
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer4 = document.querySelector('.left-container4');
+        const rightContainer4 = document.querySelector('.right-container4');
+        const cardsWrapper4 = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer4.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer4).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper4.style.display = 'none';
+            }
+        });
+
+        leftContainer4.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper4.style.display = 'block';
+        });
+
+    </script>
+
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer5 = document.querySelector('.left-container5');
+        const rightContainer5 = document.querySelector('.right-container5');
+        const cardsWrapper5 = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer5.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer5).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper5.style.display = 'none';
+            }
+        });
+
+        leftContainer5.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper5.style.display = 'block';
+        });
+
+    </script>
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer2 = document.querySelector('.left-container2');
+        const rightContainer2 = document.querySelector('.right-container2');
+        const cardsWrapper2 = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer2.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer2).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper2.style.display = 'none';
+            }
+        });
+
+        leftContainer2.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper2.style.display = 'block';
+        });
+
+    </script>
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer1 = document.querySelector('.left-container1');
+        const rightContainer1 = document.querySelector('.right-container1');
+        const cardsWrapper1 = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer1.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer1).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper1.style.display = 'none';
+            }
+        });
+
+        leftContainer1.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper1.style.display = 'block';
+        });
+
+    </script>
+    <script>
+        // Get references to the containers and wrapper
+        const leftContainer = document.querySelector('.left-container');
+        const rightContainer = document.querySelector('.right-container');
+        const cardsWrapper = document.querySelector('.cards');
+
+        // Add a hover event listener to the left container
+        leftContainer.addEventListener('mouseenter', () => {
+            // Check if the right container is displayed
+            if (window.getComputedStyle(rightContainer).display === 'block') {
+                // Hide the cards wrapper
+                cardsWrapper.style.display = 'none';
+            }
+        });
+
+        leftContainer.addEventListener('mouseleave', () => {
+            // Show the cards wrapper when the mouse leaves the left container
+            cardsWrapper.style.display = 'block';
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>

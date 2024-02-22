@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB Edit CustomerList</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <style>
+         link[rel="icon"] {
+            width: 92px !important;
+            height: 32px;
+        }
+        .body1 {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 10px;
+            padding: 0;
+        }
+
+     
+
+        #addContent {
+            background-color: #ffffff;
+            margin: 10px auto;
+            max-width: 1600px;
+           height: 700px;
+            padding: 5px;
+            /* Decrease the padding to reduce the height */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        label {
+            font-weight: medium;
+        }
+
+        .form-control {
+            width: 50%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 30px;
+
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+
+        .row {
+            margin: 0 -5px;
+        }
+
+        .col-md-6 {
+            padding: 0 5px;
+        }
+
+
+        .group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .group .col-md-6 {
+            flex: 1;
+            margin-right: 10px;
+        }
+       
+    .centered-alert {
+        position: fixed;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+        border: 1px solid black;
+        margin-top: 50px;
+    }
+</style>
+
+    </style>
+</head>
+
+<body>
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+    <div id="alertMessage"></div>
+
+    <section id="addContent">
+        <div class="body1">
+            <form action="{{ url_for('edit_user', CustomerCode=CustomerCode) }}" method="post" >
+                <div class="container">
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="CustomerCode" class="col-form-label" id="CustomerCode">Customer Code</label>
+                            <input type="text" class="form-control" id="CustomerCode" name="CustomerCode"
+                                value="{{device_data[0]}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="CustomerName" class="col-form-label" id="CustomerName">Customer Name</label>
+                            <input type="text" class="form-control" id="CustomerName" name="CustomerName"
+                                value="{{device_data[1]}}">
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="Address" class="col-form-label" id="Address">Address</label>
+                            <input type="text-area" class="form-control" id="Address" name="Address"
+                                value="{{device_data[2]}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="City" class="col-form-label" id="City">City</label>
+                            <input type="text" class="form-control" id="City" name="City" value="{{device_data[7]}}">
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="State" class="col-form-label" id="State">State</label>
+                            <!-- <input type="text" class="form-control" id="address" name="Address" required> -->
+                            <select class="form-control" id="State" name="State" value="{{device_data[8]}}">
+                                
+                                <option value=""> TamilNadu</option>
+                                <option value=""> Rajasthan</option>
+
+                            </select>
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Pincode" class="col-form-label" id="Pincode">Pincode</label>
+                            <input type="number" class="form-control" id="Pincode" name="Pincode"
+                                value="{{device_data[9]}}">
+                        </div>
+                    </div>
+
+
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="GSTNo" class="col-form-label" id="GSTNo">GST No</label>
+                            <input type="number" class="form-control" id="GSTNo" name="GSTNo" value="{{device_data[11]}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="MobileNo1" class="col-form-label" id="MobileNo1">Mobile No</label>
+                            <input type="number" class="form-control" id="MobileNo1" name="MobileNo1"
+                                value="{{device_data[4]}}">
+                        </div>
+                    </div>
+
+
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="MobileNo2" class="col-form-label" id="MobileNo2">Mobile No</label>
+                            <input type="number" class="form-control" id="MobileNo2" name="MobileNo2"
+                                value="{{device_data[5]}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="MobileNo3" class="col-form-label" id="MobileNo3">Landline No</label>
+                            <input type="number" class="form-control" id="MobileNo3" name="MobileNo3"
+                                value="{{device_data[6]}}">
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="EmailID" class="col-form-label" id="EmailID">Email.Id</label>
+                            <input type="text" class="form-control" id="EmailID" name="EmailID"
+                                value="{{device_data[10]}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="EmailID2" class="col-form-label" id="EmailID2">Email.Id</label>
+                            <input type="text" class="form-control" id="EmailID2" name="EmailID2"
+                                value="{{device_data[13]}}">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="col-md-6">
+                            <label for="ContactPerson" class="col-form-label" id="ContactPerson">Contact Person
+                                Name</label>
+                            <input type="text" class="form-control" id="ContactPerson" name="ContactPerson"
+                                value="{{device_data[3]}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ShippingAddress" class="col-form-label" id="ShippingAddress">Shipping
+                                Address</label>
+                            <input type="text" class="form-control" id="ShippingAddress" name="ShippingAddress"
+                                value="{{device_data[12]}}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="margin-top: 10px;margin-left: 35%; width: 30%; margin-top: 20px;">Save</button>
+                </div>
+
+            </form>
+    </section>
+    <script>
+        // Function to display a centered alert message
+        function showCenteredAlert(message, type) {
+            const alertMessage = document.createElement('div');
+            alertMessage.className = `alert alert-${type} centered-alert`;
+            alertMessage.textContent = message;
+            document.body.appendChild(alertMessage);
+            
+            setTimeout(() => {
+                alertMessage.style.opacity = '0';
+                setTimeout(() => {
+                    alertMessage.remove();
+                }, 500);
+            }, 500);
+        }
+    
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const url = form.action;
+    
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+    
+                if (data.status === 'success') {
+                    showCenteredAlert(data.message, 'success');
+                    // Redirect to the next page after a successful save
+                    setTimeout(() => {
+                        window.location.href = '/customer_list'; // Replace with your desired URL
+                    }, 1000); // Redirect after 1 second
+                } else {
+                    showCenteredAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showCenteredAlert('An error occurred while saving.', 'danger');
+            }
+        });
+    </script>
+    
+    
+    
+</body>
+
+</html>

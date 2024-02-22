@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SoftLABWEB-Report-View</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/17b53a818d.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-size: 15px;
+        }
+
+        #str {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+        table {
+            margin-top: 10px;
+          
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            height: auto;
+            width: 99%;
+            font-size: 15px;
+
+        }
+
+
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #133b5c;
+            color: white;
+            text-align: center;
+            font-weight: normal;
+           
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+            font-size: 15px;
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        table td {
+            text-align: center;
+            font-size: 15px;
+            border: 1px solid rgb(177, 177, 177);
+           
+        }
+        #rfrf {
+    border: none !important; /* Add this to remove the border */
+  }
+
+     
+
+       
+
+        #label {
+            font-weight: bold;
+            display: inline;
+
+        }
+
+        #row {
+            border: 1px solid #1d1c1c;
+
+            padding: 3px;
+            display: flex !important;
+
+        }
+
+        .container {
+            border: 1px solid #000;
+            /* Add a black border to the row */
+            /* Add some margin for spacing */
+
+        }
+
+
+   
+
+        #invoice {
+            font-size: 15px;
+        }
+
+        #emp-tabel {
+            font-size: 15px;
+        }
+
+        #emp-tabel1 {
+            font-size: 15px;
+            
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <button class="btn btn-primary" id="download" style="margin-left: 80%;"> download pdf</button>
+
+
+   
+
+
+    <div class="container">
+
+        <img src="/static/image/Header_nagman-With-ILAC-R5.jpg" width="1000px"; height="150px"   id="header">
+
+
+
+        <div id="invoice" >
+           
+
+            <div class="row" id="row">
+                <div class="col" id="label">ULR No.</div>
+                <div class="col" id="label" style="color: rgb(25, 124, 212);">{{device_data[0][43]}}</div>
+                <div class="col" id="label">Certificate No.</div>
+                <div class="col" id="label" style="color: rgb(25, 124, 212);">{{device_data[0][1]}}</div>
+                <div class="col" id="DUCTagID" style="display: none;">{{device_data[0][1]}}</div>
+
+            </div>
+
+            <div class="row" id="row">
+                <div class="col" id="label">Certificate Issue Date</div>
+                <div class="col">{{device_data[0][30]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Calibration Date</div>
+                <div class="col">{{device_data[0][27]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Recommended Due Date</div>
+                <div class="col">{{device_data[0][28]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Customer Name & Address</div>
+                <div class="col">{{device_data[0][26]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">SRF No./Date</div>
+                <div class="col">{{device_data[0][3]}} /{{device_data[0][12]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">UUC (Unit Under Calibration) Details :</div>
+
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Description :</div>
+                <div class="col">{{device_data[0][7]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Machine (Setup) Name / Number :</div>
+                <div class="col">{{device_data[0][7]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Location:</div>
+                <div class="col">{{device_data[0][38]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Make:</div>
+                <div class="col">{{device_data[0][8]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Model:</div>
+                <div class="col">{{device_data[0][9]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Serial Number:</div>
+                <div class="col">{{device_data[0][10]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Identification Number:</div>
+                <div class="col">{{device_data[0][11]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Instrument Range :</div>
+                <div class="col">{{device_data[0][22]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Operating Range:</div>
+                <div class="col">{{device_data[0][44]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Resolution:</div>
+                <div class="col">{{device_data[0][85]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Accuracy:</div>
+                <div class="col">{{device_data[0][19]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Equipment received on:</div>
+                <div class="col">{{device_data[0][12]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Condition of the equipment on receipt:</div>
+                <div class="col">{{device_data[0][16]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Calibration Procedure/Method:</div>
+
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Calibration Procedure Number :</div>
+                <div class="col">{{device_data[0][65]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Method of Calibration:</div>
+                <div class="col">{{device_data[0][46]}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="label1">Calibration Performed At:</div>
+                <div class="col">{{device_data[0][15]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Environmental Conditions During Calibration:</div>
+
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Temperature:</div>
+                <div class="col">{{device_data[0][32]}}</div>
+            </div>
+            <div class="row">
+                <div class="col" id="label1">Relative Humidity:</div>
+                <div class="col">{{device_data[0][33]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Master Instrument Details:</div>
+            </div>
+
+            <div class="row">
+                <div class=" table-container">
+                    <table id="emp-table">
+                        <thead>
+                            <th col-index=1 class="resize" id="str">Nomenclature
+
+                            </th>
+                            <th col-index=2 class="resize" id="str">Certificate No.
+
+                            </th>
+                            <th col-index=3 class="resize" id="str">Validity
+
+                            </th>
+                            <th col-index=3 class="resize" id="str">Traceability</th>
+                        </thead>
+                        <tbody>
+
+                            <tr id="s">
+                                <td id="s">{{ users[0][4] }}</td>
+                                <td id="s">{{ users[0][9] }}</td>
+                                <td id="s">{{ users[0][12] }}</td>
+                                <td id="s">{{ users[0][8] }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <!-- Left Side (One below the other) -->
+                <div class="col">
+                    <div class="row">
+                        <div class="col" id="label">Calibrated By</div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="label">{{device_data[0][69]}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="label1">(Calib. Eng./Dy.TM)</div>
+                    </div>
+                </div>
+                
+                <!-- Center (Image) -->
+                <div class="col text-center"> <!-- Use text-center to center the content -->
+                    <img src="/static/image/Barcode.jpg" style="width: 150px; height: 100px;">
+                </div>
+                
+                <!-- Right Side (Remaining Content) -->
+                <div class="col">
+                    <div class="row">
+                        <div class="col" id="label">Authorised Signatory</div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="label">{{device_data[0][70]}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="label1" >(LH)/(TM)/(QM)</div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        
+      <br>
+      <br>
+     
+
+   
+
+       
+        <input type="text" id="tableCount" placeholder="{{ counts[0] }}" style="display: none;">
+        <form action="" method="" id="nextpage1">
+            <div class="row" id="row">
+                <div class="col" id="label">ULR No.</div>
+                <div class="col" id="label" style="color: rgb(25, 124, 212);">{{device_data[0][43]}}</div>
+                <div class="col" id="label">Certificate No.</div>
+                <div class="col" id="label" style="color: rgb(25, 124, 212);">{{device_data[0][1]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Discipline.</div>
+                <div class="col" id="label1"></div>
+                <div class="col" id="label">Group:</div>
+                <div class="col" id="label1">{{parameter_data[0]}}</div>
+            </div>
+            <div class="row" id="row">
+                <div class="col" id="label">Calibration Results:</div>
+                <div class="col" id="tableCount">{{counts[0]}}</div>
+    
+            </div>
+    
+            <table id="emp-table1">
+                <thead>
+    
+                </thead>
+                <tbody>
+    
+    
+                    <tr>
+                        <td id="rfrf">
+    
+                            <!-- <div >
+                            </div> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <br>
+            <div class="te" style="text-align: center;">
+                <h2>Remark:</h2>
+                <p style="text-align: left; ">1. The certificate refers only to the particular item submitted for
+                    calibration.</p>
+                <p style="text-align: left;">2. The certificate shall not be reproduced except in full without written
+                    approval of the laboratory.</p>
+                <p style="text-align: left; ">3. The calibration results reported in this certificate are valid at the time
+                    of and under the stated conditions of measurement.</p>
+                <p style="text-align: left;">4. The Reported expanded uncertainty of measurement is stated as a standard
+                    uncertainty of measurement multipled by the coverage factor "K=2" such that the coverage probability
+                    corresponds to approximately 95% confidence level.</p>
+                <p style="text-align: left; ">5. Calibration due date is provided as per customer requirement.</p>
+                <p style="text-align: left;">6. This calibration certificate is valid for scientific and industrial purpose
+                    only.</p>
+                <p style="text-align: left; ">7. In case of any complain of disagreement regarding the calibration results,
+                    please inform immediately but not later than 30 days after issuing of calibration certificate.</p>
+            </div>
+        </form>
+        <script>
+//          var parameterData = JSON.parse('{{ parameter_data | tojson | safe }}');
+
+// function createTables() {
+//     const container = document.getElementById("rfrf");
+
+//     for (var parameter in parameterData) {
+//         if (parameterData.hasOwnProperty(parameter)) {
+//             var item = parameterData[parameter];
+
+//             // Create a new table for each parameter
+//             const table = document.createElement('table');
+//             const newTableBody = document.createElement('tbody');
+
+//             // Create a table header row with the parameter value
+//             const parameterHeader = document.createElement('thead');
+//             const parameterRow = document.createElement('tr');
+//             parameterRow.innerHTML = `
+//                 <th colspan="7" id="str">${parameter}</th>
+//             `;
+//             parameterHeader.appendChild(parameterRow);
+//             table.appendChild(parameterHeader);
+
+//             // Create the main table header row
+//             const tableHeader = document.createElement('thead');
+//             const headerRow = document.createElement('tr');
+//             headerRow.innerHTML = `
+//                 <th col-index=1 id="str">S.No</th>
+//                 <th col-index=2 id="str">Range</th>
+//                 <th col-index=3 id="str">UUT</th>
+//                 <th col-index=4 id="str">Reference</th>
+//                 <th col-index=5 id="str">Error Observed</th>
+//                 <th col-index=6 id="str">Error Claimed</th>
+//                 <th col-index=7 id="str">Measurement Uncertainty</th>
+//             `;
+//             tableHeader.appendChild(headerRow);
+//             table.appendChild(tableHeader);
+
+//             // Populate the table with data
+//             let prevRangeValue = null;
+//             let rowspan = 0;
+//             item.forEach(row => {
+//                 const newRow = document.createElement('tr');
+
+//                 if (row[1] === prevRangeValue) {
+//                     rowspan++;
+//                 } else {
+//                     if (prevRangeValue !== null) {
+//                         const rangeCell = document.createElement('td');
+//                         rangeCell.textContent = prevRangeValue;
+//                         rangeCell.setAttribute('rowspan', rowspan);
+//                         newRow.appendChild(rangeCell);
+//                     }
+//                     prevRangeValue = row[1];
+//                     rowspan = 1;
+//                 }
+
+//                 newRow.innerHTML += `
+//                     <td>${row[0]}</td>
+//                     <td>${row[1]}</td>
+//                     <td>${row[2]}</td>
+//                     <td>${row[3]}</td>
+//                     <td>${row[4]}</td>
+//                     <td>${row[5]}</td>
+//                     <td>${row[6]}</td>
+//                 `;
+//                 newTableBody.appendChild(newRow);
+//             });
+
+//             // Add the last row for the "Range" column
+//             if (prevRangeValue !== null) {
+//                 const rangeCell = document.createElement('td');
+//                 rangeCell.textContent = prevRangeValue;
+//                 rangeCell.setAttribute('rowspan', rowspan);
+//                 const lastRow = document.createElement('tr');
+//                 lastRow.appendChild(rangeCell);
+//                 newTableBody.appendChild(lastRow);
+//             }
+
+//             table.appendChild(newTableBody);
+//             container.appendChild(table);
+
+//             // Add a line break after the table
+//             container.appendChild(document.createElement('br'));
+//         }
+//     }
+// }
+
+// // Call the function to populate the tables when the page loads
+// createTables();
+
+
+
+        </script>
+    
+     <script>
+    
+        var parameterData = JSON.parse(' {{ parameter_data | tojson | safe }} ');
+    
+ 
+    function createTables() {
+        const container = document.getElementById("rfrf");
+    
+        for (var parameter in parameterData) {
+            if (parameterData.hasOwnProperty(parameter)) {
+                var item = parameterData[parameter];
+    
+               
+                const table = document.createElement('table');
+                const newTableBody = document.createElement('tbody');
+    
+               
+                const parameterHeader = document.createElement('thead');
+                const parameterRow = document.createElement('tr');
+                parameterRow.innerHTML = `
+                    <th colspan="7" id="str">${parameter}</th>
+                `;
+                parameterHeader.appendChild(parameterRow);
+                table.appendChild(parameterHeader);
+    
+                
+                const tableHeader = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                headerRow.innerHTML = `
+                    <th col-index=1 id="str">S.No</th>
+                    <th col-index=2 id="str">Range</th>
+                    <th col-index=3 id="str">UUT</th>
+                    <th col-index=4 id="str">Reference</th>
+                    <th col-index=5 id="str">Error Observed</th>
+                    <th col-index=6 id="str">Error Claimed</th>
+                    <th col-index=7 id="str">Measurement Uncertainty</th>
+                `;
+                tableHeader.appendChild(headerRow);
+                table.appendChild(tableHeader);
+    
+                item.forEach(row => {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>${row[0]}</td>
+                        <td>${row[1]}</td>
+                       
+                        <td>${row[2]}</td>
+                        <td>${row[3]}</td>
+                        <td>${row[4]}</td>
+                        <td>${row[5]}</td>
+                        <td>${row[6]}</td>
+                    `;
+                    newTableBody.appendChild(newRow);
+                });
+    
+                table.appendChild(newTableBody);
+                container.appendChild(table);
+    
+               
+                container.appendChild(document.createElement('br'));
+            }
+        }
+    }
+    
+    createTables();
+</script> 
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    <script>
+        window.onload = function () {
+          document.getElementById("download").addEventListener("click", () => {
+            const invoice = document.getElementById("invoice");
+            const nextpage1 = document.getElementById("nextpage1");
+      
+            // Remove the page break at #nextpage1
+            var opt = {
+              margin: [1.3, 0.3, 0, 0.3],
+              filename: 'invoice.pdf',
+              image: { type: 'jpeg', quality: 0.98 },
+              html2canvas: { dpi: 192, scale: 2, letterRendering: true },
+              pagebreak: { mode: 'avoid-all' }, // Updated to avoid page break
+              jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait',
+                fontSize: 12,
+              },
+            };
+      
+           
+            var image = '/static/image/Header_nagman-With-ILAC-R5.jpg';
+    var img = new Image();
+    img.src = image;
+    img.onload = function () {
+      console.log("Image loaded successfully");
+      html2pdf()
+        .from(invoice)
+        .set(opt)
+        .toPdf()
+        .get('pdf')
+        .then(function (pdf) {
+          var totalPages = pdf.internal.getNumberOfPages();
+    
+          for (i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            console.log("Adding image to page " + i);
+            var pageWidth = pdf.internal.pageSize.getWidth();
+            var pageHeight = pdf.internal.pageSize.getHeight();
+            var imageHeight = pageHeight * 0.1;
+            var imageWidth = pageWidth;
+            var imageX = 0;
+            var imageY = 0;
+            pdf.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
+    
+            // Add separate borders on all four sides
+            var borderWidth = 0.3; // Adjust as needed
+            var borderHeight = 0.1; // Adjust as needed
+    
+            var leftBorderX = 0;
+            var leftBorderY = 0;
+            var leftBorderWidth = borderWidth;
+            var leftBorderHeight = pageHeight;
+    
+            var rightBorderX = pageWidth - borderWidth;
+            var rightBorderY = 0;
+            var rightBorderWidth = borderWidth;
+            var rightBorderHeight = pageHeight;
+    
+            var topBorderX = 0;
+            var topBorderY = 0;
+            var topBorderWidth = pageWidth;
+            var topBorderHeight = borderHeight;
+    
+            var bottomBorderX = 0;
+            var bottomBorderY = pageHeight - borderHeight;
+            var bottomBorderWidth = pageWidth;
+            var bottomBorderHeight = borderHeight;
+    
+            pdf.setDrawColor(0); // Border color (black)
+            pdf.setLineWidth(0); // Border thickness (adjust as needed)
+    
+            // Left side border
+            pdf.rect(leftBorderX, leftBorderY, leftBorderWidth, leftBorderHeight);
+    
+            // Right side border
+            pdf.rect(rightBorderX, rightBorderY, rightBorderWidth, rightBorderHeight);
+    
+            // Top border
+            pdf.rect(topBorderX, topBorderY, topBorderWidth, topBorderHeight);
+    
+            // Bottom border
+            pdf.rect(bottomBorderX, bottomBorderY, bottomBorderWidth, bottomBorderHeight);
+          }
+    
+          pdf.save();
+          window.location.href = '/get_report_page';
+        });
+    };
+    
+    
+          });
+        };
+      </script>
+
+  <!-- <script>
+    window.onload = function () {
+        document.getElementById("download").addEventListener("click", () => {
+            const invoice = document.getElementById("invoice");
+           
+            var opt = {
+                margin: 0.3,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 5 },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+               
+               
+               
+            };
+            const image ='/static/image/Header_nagman-With-ILAC-R5.jpg';
+
+            // Preload the image to ensure it's loaded before adding it to the PDF
+            var img = new Image();
+            img.src = image;
+            img.onload = function () {
+                html2pdf().from(invoice).set(opt).toPdf().get('pdf').then(function (pdf) {
+                    var totalPages = pdf.internal.getNumberOfPages();
+
+                    for (i = 1; i <= totalPages; i++) {
+                        pdf.setPage(i);
+                        pdf.addImage(image, "JPEG", 0,0); // Change "jpeg" to "JPEG"
+                       
+                    }
+                }).save();
+            };
+        });
+    }
+</script>   -->
+
+<!-- <script>
+    window.onload = function () {
+      document.getElementById("download").addEventListener("click", () => {
+        const invoice = document.getElementById("invoice");
+        const nextpage1 = document.getElementById("nextpage1");
+  
+        // Remove the page break at #nextpage1
+        var opt = {
+          margin: [1.3, 0.3, 0, 0.3],
+          filename: 'invoice.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { dpi: 192, scale: 2, letterRendering: true },
+          pagebreak: { mode: 'avoid-all' }, // Updated to avoid page break
+          jsPDF: {
+            unit: 'in',
+            format: 'a4',
+            orientation: 'portrait',
+            fontSize: 12,
+          },
+        }; -->
+  
+        <!-- // Get the content of #nextpage1
+  
+        // Preload the image to ensure it's loaded before adding it to the PDF
+        // var image = '/static/image/Header_nagman-With-ILAC-R5.jpg';
+        // var img = new Image();
+        // img.src = image;
+        // img.onload = function () {
+        //   console.log("Image loaded successfully");
+        //   html2pdf()
+        //     .from(invoice)
+        //     .set(opt)
+        //     .toPdf()
+        //     .get('pdf')
+        //     .then(function (pdf) {
+        //       var totalPages = pdf.internal.getNumberOfPages();
+  
+        //       for (i = 1; i <= totalPages; i++) {
+        //         pdf.setPage(i);
+        //         console.log("Adding image to page " + i);
+        //         var pageWidth = pdf.internal.pageSize.getWidth();
+        //         var pageHeight = pdf.internal.pageSize.getHeight();
+        //         var imageHeight = pageHeight * 0.1;
+        //         var imageWidth = pageWidth;
+        //         var imageX = 0;
+        //         var imageY = 0;
+        //         pdf.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
+  
+        //         // Add a border to the page
+        //         pdf.setDrawColor(0); // Border color (black)
+        //         pdf.setLineWidth(0); // Border thickness (adjust as needed)
+        //         pdf.rect(0.3,0.1, pageWidth, pageHeight);// Draw a border around the page
+        //       }
+  
+        //       pdf.save();
+        //     });
+        // };
+        var image = '/static/image/Header_nagman-With-ILAC-R5.jpg';
+var img = new Image();
+img.src = image;
+img.onload = function () {
+  console.log("Image loaded successfully");
+  html2pdf()
+    .from(invoice)
+    .set(opt)
+    .toPdf()
+    .get('pdf')
+    .then(function (pdf) {
+      var totalPages = pdf.internal.getNumberOfPages();
+
+      for (i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        console.log("Adding image to page " + i);
+        var pageWidth = pdf.internal.pageSize.getWidth();
+        var pageHeight = pdf.internal.pageSize.getHeight();
+        var imageHeight = pageHeight * 0.1;
+        var imageWidth = pageWidth;
+        var imageX = 0;
+        var imageY = 0;
+        pdf.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
+
+        // Add separate borders on all four sides
+        var borderWidth = 0.3; // Adjust as needed
+        var borderHeight = 0.1; // Adjust as needed
+
+        var leftBorderX = 0;
+        var leftBorderY = 0;
+        var leftBorderWidth = borderWidth;
+        var leftBorderHeight = pageHeight;
+
+        var rightBorderX = pageWidth - borderWidth;
+        var rightBorderY = 0;
+        var rightBorderWidth = borderWidth;
+        var rightBorderHeight = pageHeight;
+
+        var topBorderX = 0;
+        var topBorderY = 0;
+        var topBorderWidth = pageWidth;
+        var topBorderHeight = borderHeight;
+
+        var bottomBorderX = 0;
+        var bottomBorderY = pageHeight - borderHeight;
+        var bottomBorderWidth = pageWidth;
+        var bottomBorderHeight = borderHeight;
+
+        pdf.setDrawColor(0); // Border color (black)
+        pdf.setLineWidth(0); // Border thickness (adjust as needed)
+
+        // Left side border
+        pdf.rect(leftBorderX, leftBorderY, leftBorderWidth, leftBorderHeight);
+
+        // Right side border
+        pdf.rect(rightBorderX, rightBorderY, rightBorderWidth, rightBorderHeight);
+
+        // Top border
+        pdf.rect(topBorderX, topBorderY, topBorderWidth, topBorderHeight);
+
+        // Bottom border
+        pdf.rect(bottomBorderX, bottomBorderY, bottomBorderWidth, bottomBorderHeight);
+      }
+
+      pdf.save();
+    });
+};
+
+
+      });
+    };
+  </script>
+ -->
+
+
+
+
+ <!-- <script>
+    window.onload = function () {
+    document.getElementById("download").addEventListener("click", () => {
+        const invoice = document.getElementById("invoice");
+
+        var opt = {
+            margin: 0.3,
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+        };
+
+        const image = '/static/image/Header_nagman-With-ILAC-R5.jpg';
+
+        // Preload the image to ensure it's loaded before adding it to the PDF
+        var img = new Image();
+        img.src = image;
+        img.onload = function () {
+            console.log("Image loaded successfully.");
+            html2pdf().from(invoice).set(opt).toPdf().get('pdf').then(function (pdf) {
+                var totalPages = pdf.internal.getNumberOfPages();
+
+                for (i = 1; i <= totalPages; i++) {
+                    pdf.setPage(i);
+                    console.log("Adding image to page " + i);
+                    // Get the page dimensions
+                    var pageWidth = pdf.internal.pageSize.getWidth();
+                    var pageHeight = pdf.internal.pageSize.getHeight();
+
+                    // Calculate the image dimensions to cover the entire width and maintain aspect ratio
+                    var imageWidth = pageWidth;
+                    var imageHeight = (imageWidth / img.width) * img.height;
+
+                    // Set image position at the top of the page
+                    var imageX = 0;
+                    var imageY = 0;
+
+                    pdf.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
+                }
+            }).save();
+        };
+    });
+};
+
+</script>  -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script>
+  window.onload = function () {
+    document.getElementById("download").addEventListener("click", () => {
+      const invoice = document.getElementById("invoice");
+
+      var opt = {
+        margin: 0.3,
+        filename: 'myfile.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+      };
+
+      const image = '/static/image/Header_nagman-With-ILAC-R5.jpg';
+
+      // Preload the image to ensure it's loaded before adding it to the PDF
+      var img = new Image();
+      img.src = image;
+      img.onload = function () {
+        console.log("Image loaded successfully.");
+        html2pdf().from(invoice).set(opt).toPdf().get('pdf').then(function (pdf) {
+          var totalPages = pdf.internal.getNumberOfPages();
+
+          for (i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            console.log("Adding image to page " + i);
+            // Get the page dimensions
+            var pageWidth = pdf.internal.pageSize.getWidth();
+            var pageHeight = pdf.internal.pageSize.getHeight();
+
+            // Calculate the image dimensions to cover the entire width and maintain aspect ratio
+            var imageWidth = pageWidth;
+            var imageHeight = (imageWidth / img.width) * img.height;
+
+            // Set image position at the top of the page
+            var imageX = 0;
+            var imageY = 0;
+
+            pdf.addImage(image, "JPEG", imageX, imageY, imageWidth, imageHeight);
+
+            // Push the invoice content down by adjusting the starting Y position
+            var invoiceY = imageHeight;
+            // You may need to adjust the value based on your specific layout
+            // For example: var invoiceY = imageHeight + 20; (to add some spacing)
+
+            // Add the invoice content starting from the adjusted Y position
+            pdf.fromHTML(invoice, 10, invoiceY);
+          }
+
+          // Create a download link and trigger the click event
+          var pdfBlob = pdf.output('blob');
+          var pdfUrl = URL.createObjectURL(pdfBlob);
+          var downloadLink = document.createElement('a');
+          downloadLink.href = pdfUrl;
+          downloadLink.download = 'myfile.pdf';
+          downloadLink.style.display = 'none';
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+        });
+      };
+    });
+  };
+</script> -->
+
+  
+
+
+
+
+
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script>
+
+
+        //         document.querySelector('#download').addEventListener('click', function () {
+        //             const pdf = new jsPDF('p', 'mm', 'a4'); // Use A4 page size
+        //             const xOffset = 5;
+        //             const yOffset = 5;
+
+        //             // Function to add the header from a div to the PDF
+        //             function addHeaderToPDF() {
+        //                 return html2canvas(
+        //                     window.document.querySelector('#header'),
+        //                     { scale: 2 } // Scale the rendering for better resolution
+        //                 ).then((canvas) => {
+        //                     const base64image = canvas.toDataURL('image/png');
+        //                     const width = pdf.internal.pageSize.width;
+        //                     const height = pdf.internal.pageSize.height;
+        //                     pdf.addImage(base64image, 'PNG', xOffset, yOffset, width - (2 * xOffset), 40); // Add the header with a fixed height
+        //                 });
+        //             }
+
+        //             // Function to add content from a div to the PDF
+        //             function addContentToPDF(selector) {
+        //                 return html2canvas(
+        //                     window.document.querySelector(selector),
+        //                     { scale: 2 } // Scale the rendering for better resolution
+        //                 ).then((canvas) => {
+        //                     const base64image = canvas.toDataURL('image/png');
+        //                     const width = pdf.internal.pageSize.width;
+        //                     const height = pdf.internal.pageSize.height;
+        //                     pdf.addImage(base64image, 'PNG', xOffset, yOffset + 40, width - (2 * xOffset), height - (2 * yOffset) - 40);
+        //  // Subtract the header height
+        //                     pdf.addPage(); // Add a new page for the next content
+        //                 });
+        //             }
+        //             console.log("Selected element for invoice page header:", window.document.querySelector('#invoice'));
+        //             // Use Promise.all to capture and add header content to every page
+        //             addHeaderToPDF().then(() => {
+        //                 console.log("Invoice page header added successfully.");
+        //                 Promise.all([
+        //                     addContentToPDF('#invoice'),
+        //                     addContentToPDF('#content'),
+
+                           
+        //                 ]).then(() => {
+        //                     // Delete the last blank page
+        //                     pdf.deletePage(pdf.internal.getNumberOfPages());
+
+        //                     // Save the PDF
+        //                     pdf.save('webtylepress-receipt.pdf');
+        //                 });
+        //             });
+        //         });
+
+
+//     document.querySelector('#download').addEventListener('click', function () {
+//     async function generateAndDownloadPDF() {
+//     const pdf = new jsPDF('p', 'mm', 'a4'); // Use A4 page size
+//     const headerHeight = 40; // Height of the header
+
+//     // Create a function to capture and add the header to the PDF
+//     function addHeaderToPDF() {
+//         return new Promise((resolve) => {
+//             html2canvas(window.document.querySelector('#header')).then((canvas) => {
+//                 const base64image = canvas.toDataURL('image/png');
+//                 pdf.addImage(base64image, 'PNG', 5, 5, pdf.internal.pageSize.width - 10, headerHeight);
+//                 resolve();
+//             });
+//         });
+//     }
+
+//     // Create a function to capture and add content from the 'second' section to the PDF
+//     function addSecondContentToPDF() {
+//     return new Promise((resolve) => {
+//         if (pdf.internal.getNumberOfPages() > 1) {
+//             pdf.addPage();
+//         }
+
+//         html2canvas(window.document.querySelector('#second')).then((canvas) => {
+//             const base64image = canvas.toDataURL('image/png');
+//             pdf.addImage(base64image, 'PNG', 5, 45, pdf.internal.pageSize.width - 10, pdf.internal.pageSize.height - 50);
+//             resolve();
+//         }).catch(error => {
+//             console.error("Error capturing 'second' section:", error);
+//         });
+//     });
+// }
+
+
+
+//     // Create a function to capture and add content from the 'invoice' section to the PDF
+//     function addInvoiceContentToPDF() {
+//     return new Promise((resolve) => {
+//         if (pdf.internal.getNumberOfPages() > 1) {
+//             pdf.addPage();
+//         }
+
+//         html2canvas(window.document.querySelector('#invoice')).then((canvas) => {
+//             const base64image = canvas.toDataURL('image/png');
+//             pdf.addImage(base64image, 'PNG', 5, 45, pdf.internal.pageSize.width - 10, pdf.internal.pageSize.height - 50);
+//             resolve();
+//         }).catch(error => {
+//             console.error("Error capturing 'invoice' section:", error);
+//         });
+//     });
+// }
+
+//     //Call the functions to add header, 'second' content, and 'invoice' content to the PDF
+//     try {
+//             await addHeaderToPDF();
+//             await addSecondContentToPDF();
+//             await addInvoiceContentToPDF();
+//             pdf.save('webtylepress-receipt.pdf');
+//         } catch (error) {
+//             console.error('Error:', error);
+//         }
+//     }
+
+//     generateAndDownloadPDF(); // Call the async function
+
+
+ 
+// });
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+    <script>
+        // Get the table element by its ID
+        var table = document.getElementById("emp-table1");
+
+        // Loop through the rows and cells to hide cells with "None"
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            for (var j = 0, cell; cell = row.cells[j]; j++) {
+                if (cell.innerHTML === "None") {
+                    cell.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#download').on('click', function () {
+            var DUCTagID = $('#DUCTagID').text();;
+
+           console.log("DUCTagID:",DUCTagID)
+            // Make an AJAX request to the backend
+            $.ajax({
+                url: '/update_for_report', // Replace with your actual backend endpoint
+                type: 'POST', // or 'GET' depending on your backend configuration
+                data: {
+                    DUCTagID: DUCTagID,
+
+                },
+                success: function (response) {
+                    // window.location.href = '/show_calibration_dashbord_select_redirect';
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+
+</html>

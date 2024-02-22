@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftlabWeb Device Categories Edit</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+
+    <style>
+        #addButton {
+            width: 50% !important;
+            margin-left: 10px !important;
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 160px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: #ffa500;
+            text-decoration: none;
+            height: 48px;
+        }
+
+        .btn {
+            width: 63px;
+        }
+
+        body {
+            background-color: #F5F5F5;
+        }
+
+        form {
+            display: inline;
+            width: 50%;
+        }
+
+
+
+        .three {
+            background-color: white;
+        }
+
+
+
+        input[type='checkbox'] {
+            accent-color: rgb(0, 132, 255) !important;
+            align-items: center !important;
+            margin-left: 45%;
+        }
+
+        #op {
+            text-align: center;
+            justify-content: center;
+        }
+
+
+        #lab {
+            text-align: right;
+        }
+
+
+        .duc {
+            display: flex;
+            align-items: center;
+        }
+
+        .border-box {
+            border: 1px solid #ccc;
+            width: 120%;
+            /* Adjust the width as per your requirement */
+            height: 50px;
+            border-radius: 7px / 7px;
+            /* Adjust the height as per your requirement */
+        }
+
+        .border-box1 {
+            border: 1px solid #ccc;
+            width: 100%;
+            /* Adjust the width as per your requirement */
+            height: 45px;
+            border-radius: 7px / 7px;
+            /* Adjust the height as per your requirement */
+        }
+
+        .corner {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 160px;
+            left: 125px;
+            background-color: #F5F5F5;
+            /* Adjust the value as per your requirement */
+            width: auto;
+        }
+
+        .corner1 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 160px;
+            left: 695px;
+            background-color: #F5F5F5;
+            /* Adjust the value as per your requirement */
+            width: auto;
+        }
+
+        .corner2 {
+
+
+            z-index: 5;
+            position: absolute;
+             top: 236px;
+             left: 125px;
+            background-color: #F5F5F5;
+            /* Adjust the value as per your requirement */
+            width: auto;
+        }
+
+        .corner3 {
+
+
+            z-index: 5;
+            position: absolute;
+            top: 315px;
+            left: 125px;
+            background-color: #F5F5F5;
+            /* Adjust the value as per your requirement */
+            width: auto;
+        }
+
+
+        .inp {
+            display: flex;
+            align-items: center;
+
+            margin: 10px;
+        }
+
+        .inp input {
+            padding: 4px;
+            margin: 8px;
+        }
+
+        #measureField {
+            margin-top: -19px;
+        }
+
+        #sourceField {
+            margin-top: -19px;
+        }
+
+        #measureFielde {
+            margin-top: -19px;
+        }
+
+        #sourceFielde {
+            margin-top: -19px;
+        }
+
+        #measureFieldboth {
+            margin-top: -19px;
+        }
+
+        #sourceFieldboth {
+            margin-top: -19px;
+
+        }
+
+        #measureFieldbothe {
+            margin-top: -19px;
+            width: 50%;
+        }
+
+        #sourceFieldbothe {
+            margin-top: -19px;
+            width: 49%;
+            margin-left: 4px;
+
+        }
+
+        #drv {
+            margin-top: 50px !important;
+        }
+
+        .bothms {
+            display: flex;
+            align-items: center;
+
+        }
+
+        #bothems {
+            display: flex;
+            align-items: center;
+
+        }
+
+        #downloadbtn button {
+            width: 10%;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        #backToAddViewButton {
+            margin-right: 70%;
+            margin-top: -60px;
+            width: 10%;
+        }
+
+        #backToEditViewButton {
+            margin-right: 70%;
+            margin-top: -60px;
+            width: 10%;
+        }
+
+        #openButton {
+            width: 8%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #openButtonr {
+            width: 8%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #fileName {
+            margin-top: 4px;
+            margin-left: 120px;
+            color: black;
+
+        }
+
+        #fileNamer {
+            margin-top: 4px;
+            margin-left: 110px;
+            color: black;
+
+
+
+
+        }
+
+        .border-box11 {
+            border: 1px solid #ccc;
+            width: 100%;
+            /* Adjust the width as per your requirement */
+            height: 38px;
+            border-radius: 7px / 7px;
+            display: flex;
+        }
+
+        #bts {
+            margin-left: 36%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #btsr {
+            margin-left: 36%;
+            position: fixed;
+            height: 38px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <section id="editContent">
+        <form action="{{ url_for('edit_user_cat', idDevice_Types=idDevice_Types) }}" method="post" id="userForm">
+            <div class="container">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="col-form-label" id="lab" for="departmentSelects">Department</label>
+                        <input type="text" class="form-control" id="departmentSelects" name="Dev_Dept"
+                            value="{{device_data[2] }}" readonly>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="  equipmentname" class="col-form-label" id="lab">Equipment Category</label>
+                        <input type="text" class="form-control" id="equipmentname" name="Dev_Type"
+                            value="{{device_data[1]  }}" readonly>
+
+                    </div>
+                </div>
+
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+                                <div class="corner">Device Type</div>
+                                <div class="inp">
+                                    <input type="radio" id="duce" name="duc" class="form-check-input" value="DUCInst" {%
+                                        if device_data[4]==1 %}checked{% endif %} required>
+                                    <label for="duc" class="col-form-label" id="lab">Duc</label>
+
+                                    <input type="radio" id="mastere" name="duc" class="form-check-input"
+                                        value="MasterInstrument" {% if device_data[5]==1 %}checked{% endif %} required>
+                                    <label for="master" class="col-form-label" id="lab">Master</label>
+
+                                    <input type="radio" id="bothdme" name="duc" class="form-check-input"
+                                        value="DUCInst-MasterInstrument" {% if device_data[4]==1 and device_data[5]==1
+                                        %}checked{% endif %} required>
+                                    <label class="col-form-label" for="bothdm" id="lab">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-sitee">
+                            <div class="border-box">
+                                <div class="corner1">Calibration At</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault1"
+                                        value="LabDUC" {% if device_data[6]==1 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="flexRadioDefault1" id="lab">Lab</label>
+
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault2"
+                                        value="SiteDUC" {% if device_data[7]==1 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="flexRadioDefault2" id="lab">Site</label>
+
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault3"
+                                        value="LabDUC-SiteDUC" {% if device_data[6]==1 and device_data[7]==1 %}checked{%
+                                        endif %} required>
+                                    <label class="form-check-label" for="flexRadioDefault3" id="lab">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="border-box1">
+                            <div class="corner2">Measurement Type</div>
+                            <div class="inp">
+                                <input class="form-check-input" type="radio" name="labsite" id="measureRadioe"
+                                    value="Measure" {% if device_data[9]==1 %}checked{% endif %} required>
+                                <label class="form-check-label" for="measureRadioe" id="lab">
+                                    Measure
+                                </label>
+
+                                <input class="form-check-input" type="radio" name="labsite" id="sourceRadioe"
+                                    value="Simulate" {% if device_data[8]==1 %}checked{% endif %} required>
+                                <label class="form-check-label" for="sourceRadioe" id="lab">
+                                    Source
+                                </label>
+
+
+                                <input class="form-check-input" type="radio" name="labsite" id="sourceRadioboth"
+                                    value="Measure-Simulate" required {% if selected_labsite=='Measure-Simulate'
+                                    %}checked{% endif %}>
+                                <label class="form-check-label" for="sourceRadioboth" id="lab">
+                                    Both
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6" id="masterdibothms">
+                        <div class="form-row" id="measureFielde" {% if device_data=='Simulate' %}style="display:none;"
+                            {% endif %}>
+                            <label for="MeasRepFormatee">Measure Format</label>
+                            <select class="form-select" id="MeasRepFormatee" name="MeasRepFormat">
+                                <option value="{{device_data[16]}}">"{{device_data[16]}}"</option>
+
+                              
+                               
+
+                            </select>
+                        </div>
+
+                        <div class="form-row" id="sourceFielde" {% if device_data=='Measure' %}style="display:none;" {%
+                            endif %}>
+                            <label for="SourceRepFormate"> Source Format</label>
+                            <select class="form-select" id="SourceRepFormate" name="SourceRepFormat">
+                                <option value="{{device_data[17]}}">"{{device_data[17]}}"</option>
+
+                               
+                                
+                            </select>
+                        </div>
+
+                        <div id="bothems">
+
+
+
+                            <div class="form-row" id="measureFieldbothe" {% if selected_labsite=='Simulate'
+                                %}style="display:none; width: 100%; " {% endif %}>
+                                <label for="MeasRepFormatb">Measure Format</label>
+                                <select class="form-select" id="MeasRepFormatb" name="MeasRepFormat">
+                                   <option value="{{device_data[16]}}">"{{device_data[16]}}"</option>
+                                   
+                                   
+                                </select>
+                            </div>
+
+                            <div class="form-row" id="sourceFieldbothe" {% if selected_labsite=='Measure'
+                                %}style="display:none; width: 99%; margin-left:5px;" {% endif %}>
+                                <label for="SourceRepFormatb"> Source Format</label>
+                                <select class="form-select" id="SourceRepFormatb" name="SourceRepFormat">
+                                    <option value="{{device_data[17]}}">"{{device_data[17]}}"</option>
+                                   
+                                    
+
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="row g-3">
+                    <div class="col-md-6" id="drv">
+                        <div class="border-box1">
+
+                            <div class="corner3">Device Type</div>
+                            <div class="inp">
+                                <input class="form-check-input" type="radio" name="labsite1" id="flexRadioDefault1"
+                                    value="AnalogInst" {% if device_data[11]==1 %}checked{% endif %} required>
+                                <label class="form-check-label" id="lab">
+                                    Analog
+                                </label>
+
+
+                                <input class="form-check-input" type="radio" name="labsite1" id="flexRadioDefault2"
+                                    value="DigitalInst" {% if device_data[10]==1 %}checked{% endif %} required>
+
+                                <label class="form-check-label" for="flexRadioDefault1" id="lab">
+                                    Digital
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cal.Proc.Ref." class="col-form-label" id="lab">Calibration Procedure
+                            Reference</label>
+                        <input type="text" class="form-control" id="cal.Proc.Ref." name="CalProcRef"
+                            value="{{device_data[12]}}">
+                    </div>
+
+
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="Ref.Doc." class="col-form-label" id="lab">Reference Document</label>
+                        <input type="text" id="Ref.Doc." name="RefDoc" class="form-control"
+                            value="{{ device_data[13] }}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="Cal.Proc.File" class="col-form-label" id="lab"> Calibration Procedure File </label>
+                        <div class="border-box11">
+                            <button class="btn btn-primary" type="button" id="openButton">choose file</button>
+                            <input type="file" class="form-control" id="fileInput" style="display: none;" accept="/"
+                                name="CalProcRef_File" onchange="loadFile(event)">
+
+                            <p id="fileName">{{ device_data[14] }}</p>
+
+                            <button class="btn btn-primary" type="button" onclick="openExcel()" id="bts">open</button>
+                        </div>
+
+
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const fileInput = document.getElementById("fileInput");
+                                const openButton = document.getElementById("openButton");
+                                const fileNameDisplay = document.getElementById("fileName");
+
+                                openButton.addEventListener("click", function () {
+                                    fileInput.click();
+                                });
+
+                                fileInput.addEventListener("change", function () {
+                                    const files = fileInput.files;
+                                    if (files.length > 0) {
+                                        const fileName = files[0].name;
+                                        fileNameDisplay.textContent = fileName;
+                                    } else {
+                                        fileNameDisplay.textContent = "{{ device_data[14] }}"; // Display the backend value if no file selected
+                                    }
+                                });
+
+
+                            });
+                        </script>
+                        <script>
+                            var selectedFile;
+
+                            var loadFile = function (event) {
+                                selectedFile = event.target.files[0];
+                            };
+
+                            var openExcel = function () {
+                                if (selectedFile) {
+                                    var url = URL.createObjectURL(selectedFile);
+                                    var a = document.createElement('a');
+                                    a.href = url;
+
+                                    a.target = '_blank';
+
+                                    // Use the original uploaded file name as the suggested download filename
+                                    a.download = selectedFile.name;
+
+                                    a.click();
+                                    URL.revokeObjectURL(url); // Free memory
+                                } else {
+                                    alert("No file selected.");
+                                }
+                            };
+                        </script>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+
+                <div class="row g-3">
+
+
+
+                    <div class="col-md-6">
+                        <label for="Ref.Doc.File" class="col-form-label" id="lab">Reference Document File</label>
+
+
+
+
+
+
+                        <div class="border-box11">
+                            <button class="btn btn-primary" type="button" id="openButtonr">Choose File</button>
+                            <input type="file" class="form-control" id="fileInputr" style="display: none;" accept="/"
+                                name="RefDoc_File">
+
+                            <p id="fileNamer">{{ device_data[15] }}</p>
+
+                            <button class="btn btn-primary" type="button" onclick="openExcelr()" id="btsr">Open</button>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const fileInput = document.getElementById("fileInputr");
+                            const openButton = document.getElementById("openButtonr");
+                            const fileNameDisplay = document.getElementById("fileNamer");
+
+                            openButton.addEventListener("click", function () {
+                                fileInput.click();
+                            });
+
+                            fileInput.addEventListener("change", function () {
+                                const files = fileInput.files;
+                                if (files.length > 0) {
+                                    const fileName = files[0].name;
+                                    fileNameDisplay.textContent = fileName;
+                                    selectedFile = files[0]; // Update selectedFile here
+                                } else {
+                                    fileNameDisplay.textContent = "{{ device_data[15] }}"; // Display the backend value if no file selected
+                                    selectedFile = null; // Reset selectedFile
+                                }
+                            });
+                        });
+
+                        var selectedFile;
+
+                        var openExcelr = function () {
+                            if (selectedFile) {
+                                var url = URL.createObjectURL(selectedFile);
+                                var a = document.createElement('a');
+                                a.href = url;
+
+                                a.target = '_blank';
+
+                                // Use the original uploaded file name as the suggested download filename
+                                a.download = selectedFile.name;
+
+                                a.click();
+                                URL.revokeObjectURL(url); // Free memory
+                            } else {
+                                alert("No file selected.");
+                            }
+                        };
+                    </script>
+
+
+
+                    <div class="col-md-6">
+                        <label for="ReportDefaultPath" class="col-form-label" id="lab">Report Default Path</label>
+                        <input type="text" class="form-control" id="ReportDefaultPath" name="RepDefPath"
+                            value="{{ device_data[20] }}">
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+                <button type="submit" class="btn btn-primary"
+                    style="margin-top: 10px;margin-left: 35%; width: 30%;">Save</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+            <!-- <script>
+                const masterRadioe = document.getElementById('mastere');
+                const ducRadioe = document.getElementById('duce');
+                const bothRadioe = document.getElementById('bothdme');
+                const weatherLabSitee = document.getElementById('weather-lab-sitee'); // Container for Lab/Site options
+                const masterdibothms = document.getElementById('masterdibothms'); // Container for Measure/Source options
+            
+                function disableWeatherLabSitee() {
+                    weatherLabSitee.style.display = 'none';
+                    const inputs = weatherLabSitee.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                }
+            
+                function enableWeatherLabSitee() {
+                    weatherLabSitee.style.display = 'block';
+                    const inputs = weatherLabSitee.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                }
+            
+                function disableMasterdibothms() {
+                    masterdibothms.style.display = 'none';
+                    const inputs = masterdibothms.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                }
+            
+                function enableMasterdibothms() {
+                    masterdibothms.style.display = 'block';
+                    const inputs = masterdibothms.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                }
+            
+                masterRadioe.addEventListener('click', function () {
+                    disableWeatherLabSitee();
+                    disableMasterdibothms();
+                });
+            
+                ducRadioe.addEventListener('click', function () {
+                    enableWeatherLabSitee();
+                    enableMasterdibothms();
+                });
+            
+                bothRadioe.addEventListener('click', function () {
+                    enableWeatherLabSitee();
+                    enableMasterdibothms();
+                });
+            
+                // By default, disable Lab/Site and Measure/Source options if "Master" is checked
+                if (masterRadioe.checked) {
+                    disableWeatherLabSitee();
+                    disableMasterdibothms();
+                }
+            </script>
+             -->
+
+            <script>
+                // Get the radio buttons and the other part that needs to be disabled/enabled
+                const masterRadioe = document.getElementById('mastere');
+                const ducRadioe = document.getElementById('duce');
+                const bothRadioe = document.getElementById('bothdme');
+                const otherParte = document.getElementById('weather-lab-sitee');
+                const otherPartems = document.getElementById('masterdibothms');
+                // Function to disable the other part
+                function disableOtherParte() {
+                    otherParte.style.pointerEvents = 'none';
+                    otherParte.style.opacity = '0.5';
+                    const inputs = otherParte.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                    otherPartems.style.pointerEvents = 'none';
+                    otherPartems.style.opacity = '0.5';
+                    const inputems = otherPart.querySelectorAll('input');
+                    inputems.forEach(input => {
+                        input.disabled = true;
+                    });
+                }
+
+                // Function to enable the other part
+                function enableOtherParte() {
+                    otherParte.style.pointerEvents = 'auto';
+                    otherParte.style.opacity = '1';
+                    const inputs = otherParte.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                    otherPartems.style.pointerEvents = 'auto';
+                    otherPartems.style.opacity = '1';
+                    const inputems = otherPart.querySelectorAll('input');
+                    inputems.forEach(input => {
+                        input.disabled = false;
+                    });
+                }
+
+                // Add event listeners to the radio buttons
+                masterRadioe.addEventListener('click', disableOtherParte);
+                ducRadioe.addEventListener('click', enableOtherParte);
+                bothRadioe.addEventListener('click', enableOtherParte);
+
+                // By default, disable the other part if "Master" is checked
+                if (masterRadioe.checked) {
+                    disableOtherParte();
+                }
+            </script>
+            <script>
+                const measureRadioe = document.getElementById('measureRadioe');
+                const sourceRadioe = document.getElementById('sourceRadioe');
+                const bothmesoRadioe = document.getElementById('sourceRadioboth');
+
+                const measureFielde = document.getElementById('measureFielde');
+                const sourceFielde = document.getElementById('sourceFielde');
+                const measureFieldbothe = document.getElementById('measureFieldbothe');
+                const sourceFieldbothe = document.getElementById('sourceFieldbothe');
+
+                function updateSectionVisibility() {
+                    const selected_labsite = document.querySelector('input[name="labsite"]:checked').value;
+
+                    measureFielde.style.display = selected_labsite === 'Measure' ? 'block' : 'none';
+                    sourceFielde.style.display = selected_labsite === 'Simulate' ? 'block' : 'none';
+
+                    measureFieldbothe.style.display = selected_labsite === 'Measure-Simulate' ? 'block' : 'none';
+                    sourceFieldbothe.style.display = selected_labsite === 'Measure-Simulate' ? 'block' : 'none';
+                }
+
+                // Initial setup based on default/initial radio button selection
+                updateSectionVisibility();
+
+                measureRadioe.addEventListener('click', updateSectionVisibility);
+                sourceRadioe.addEventListener('click', updateSectionVisibility);
+                bothmesoRadioe.addEventListener('click', updateSectionVisibility);
+            </script>
+          
+
+            <script>
+                $(document).ready(function () {
+                    // Detect when the "Measure" radio button is clicked
+                    $('#measureRadioe').on('click', function () {
+                        var selected_dept = $('#departmentSelects').val(); // Get the selected department
+                        var selected_measure = $(this).val(); // Get the selected measure
+                             console.log(selected_dept);
+                             console.log(selected_measure);
+                        // Send the selected department and measure to the backend
+                        $.ajax({
+                            type: "POST",
+                            url: "/edit_user/" + idDevice_Types,
+                            data: { Dev_Dept: selected_dept, Measure: selected_measure },
+                            success: function (response) {
+                                $('#MeasRepFormate').html(response); // Update the "Measure Format" dropdown options
+                            }
+                        });
+                    });
+                });
+
+
+
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    var selected_dept = $('#departmentSelects').val();
+                    // Detect when the "Source" radio button is clicked
+                    $('#sourceRadioe').on('click', function () {
+                         // Get the selected department
+                        var selected_source = $(this).val(); // Get the selected source
+                        console.log(selected_dept);
+                             console.log(selected_source);
+                        // Send the selected department and source to the backend
+                        $.ajax({
+                            type: "POST",
+                            url: "/edit_user/" + idDevice_Types,
+                            data: { Dev_Dept: selected_dept, Source: selected_source },
+                            success: function (response) {
+                                $('#SourceRepFormate').html(response); // Update the "Source Format" dropdown options
+                            }
+                        });
+                    });
+                });
+
+
+
+            </script>
+            <script>
+                $(document).ready(function () {
+                    // Detect when the "Measure-Simulate" button is clicked
+                    $('#sourceRadioboth').on('click', function () {
+                        var selected_dept = $('#departmentSelects').val(); // Get the selected department
+                        var selected_formatb = $(this).val();
+                        console.log(selected_dept);
+                             console.log(selected_formatb);
+                        // Send the selected department and format to the backend
+                        $.ajax({
+                            type: "POST",
+                            url: "/edit_user/" + idDevice_Types,
+                            data: { Dev_Dept: selected_dept, measourboth: selected_formatb },
+                            success: function (response) {
+                                // Split the response using the '|' delimiter
+                                var [measure_options, source_options] = response.split('|');
+
+                                // Populate the dropdowns with the options
+                                $('#MeasRepFormatb').html(measure_options); // Update Measure Format dropdown
+                                $('#SourceRepFormatb').html(source_options); // Update Source Format dropdown
+                            }
+                        });
+                    });
+                });
+
+
+            </script>
+           
+
+           <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+           <script>
+               // Retrieve valueStoredInVariable from localStorage
+               var storedValue = localStorage.getItem('valueStoredInVariable');
+               console.log(storedValue);
+               // Now you can use valueStoredInVariable in this script or any other script on this page.
+               // Check if valueStoredInVariable is defined
+               if (storedValue === "Customer Care") {
+                   fetch('/navbar')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "ETL-Electro Technical Lab") {
+                   fetch('/navbardepartmentcal')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "PRL-Pressure Lab") {
+                   fetch('/navbardepartmentcal')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "MCL-Linear") {
+                   fetch('/navbardepartmentcal')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "MCL-Mass") {
+                   fetch('/navbardepartmentcal')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "QA") {
+                   fetch('/navbardepartmentqa')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else if (storedValue === "System Administrator") {
+                   fetch('/navbardepartmentsa')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('navbar-placeholder').innerHTML = data;
+                       });
+               } else {
+                   console.log("No conditions matched.");
+               }
+           </script>
+       
+       
+
+
+
+
+        </form>
+
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB-Parametersadd2</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #userform {
+            height: 50% !important;
+        }
+
+
+        #addContent {
+            background-color: #ffffff;
+            margin: 10px auto;
+            max-width: 900px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 50px;
+        }
+
+        label {
+            font-weight: medium;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 2px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 30px;
+
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+
+        .row {
+            margin: 0 -5px;
+        }
+
+        .col-md-6 {
+            padding: 0 5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .form-group .col-md-6 {
+            flex: 1;
+            margin-right: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-sec"></div>
+    <script>
+        fetch('/navbarsec')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-sec').innerHTML = data;
+            });
+    </script>
+    <section id="addContent">
+        <div class="body">
+            <form action="/insert_cmc_unit" method="post" id="userForm">
+                <div class="container">
+
+                    <div class="form-group">
+
+                        <div class="col-md-6">
+                            <label style="margin-top: 5px;" for="selectOption">Department</label>
+
+                            <select class="form-select" id="Department" name="Department"
+                                style="margin-top: 13px; position: sticky;">
+                                <option value="">select</option>
+                                {% for department in departments %}
+                                <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                                    {{ department }}
+                                </option>
+                                {% endfor %}
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <div class="col-md-6">
+
+
+                            <label class="col-form-label">Calibrator</label>
+                            <select class="form-select" id="Calibrator" name="Calibrator">
+                                <option value="">select</option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Parameter" class="col-form-label">parameter</label>
+                            <select class="form-control" id="Parameter" name="Parameter">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Function" class="col-form-label">Function</label>
+                            <select class="form-select" id="Function" name="Function">
+                                <option value="">-Select-</option>
+                                <option value="MEASURE">MEASURE</option>
+                                <option value="SOURCE">SOURCE</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="Scope" class="col-form-label">Scope</label>
+                            <select class="form-select" id="Scope" name="Scope">
+                                <option value="">-Select-</option>
+                                <option value="Lab Scope">Lab Scope</option>
+                                <option value="Site Scope">Site Scope</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="LowRange" class="col-form-label">Low Range</label>
+                            <input type="text" class="form-control" id="LowRange" name="LowRange">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="UnitLowRange" class="col-form-label">Unit</label>
+                            <select class="form-control" id="UnitLowRange" name="UnitLowRange">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="UncertaintyValue" class="col-form-label"> Low Uncertainty
+                                Value</label>
+                            <input type="text" class="form-control" id="UncertaintyValue" name="LowUncertaintyValue">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="UnitLowRange1" class="col-form-label">Unit</label>
+                            <select class="form-control" id="UnitLowRange1" name="LowUncertaintyValueUnit">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighRange" class="col-form-label">High Range</label>
+                            <input type="text" class="form-control" id="HighRange" name="HighRange">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="UnitLowRange2" class="col-form-label">Unit</label>
+                            <select class="form-control" id="UnitLowRange2" name="HighRangeUnit">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="HighUncertaintyValue" class="col-form-label"> High Uncertainty
+                                Value</label>
+                            <input type="text" class="form-control" id="HighUncertaintyValue"
+                                name="HighUncertaintyValue">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="UnitLowRange3" class="col-form-label">Unit</label>
+                            <select class="form-control" id="UnitLowRange3" name="HighUncertaintyValueUnit">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="kactor" class="col-form-label">K Factor</label>
+                            <input type="text" class="form-control" id="kactor" name="kactor">
+                        </div>
+                        <div class="col-md-6" id="hi">
+                            <label for="Frequency " class="col-form-label">Frequency
+
+                            </label>
+                            <br>
+                            <input class="form-check-input" type="checkbox" name="check">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="hi">
+                        <div class="col-md-6" id="hi">
+                            <label for="LowFrequency" class="col-form-label">Low Frequency</label>
+                            <input type="text" class="form-control" id="LowFrequency" name="LowFrequency">
+                        </div>
+                        <div class="col-md-6" id="hi">
+                            <label for="UnitLowRange6" class="col-form-label">Unit</label>
+                            <select class="form-control" id="UnitLowRange6" name="LowFrequencyUnit">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="hi">
+                        <div class="col-md-6" id="hi">
+                            <label for="HighFrequency" class="col-form-label">High
+                                Frequency</label>
+                            <input type="text" class="form-control" id="HighFrequency" name="HighFrequency">
+                        </div>
+                        <div class="col-md-6" id="hi">
+                            <label for="UnitLowRange7" class="col-form-label" id="Unit">Unit</label>
+                            <select class="form-control" id="UnitLowRange7" name="HighFrequencyUnit">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary"
+                        style="margin-top: 10px;margin-left: 35%; width: 30%; margin-top: 20px;">Save</button>
+                </div>
+            </form>
+        </div>
+
+
+
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Department").change(function () {
+                var selectedParameter = $(this).val();
+
+                $.post("/select_dept_params", { sel_parameter: selectedParameter }, function (data) {
+                    // Clear the previous options in the Calibrator dropdown
+                    $("#Calibrator").empty();
+                    $("#Calibrator").append("<option value=''>Select</option>");
+                    $("#Parameter").empty();
+                    $("#Parameter").append("<option value=''>Select</option>");
+                    $("#UnitLowRange").empty();
+                    $("#UnitLowRange").append("<option value=''>Select</option>");
+                    $("#UnitLowRange1").empty();
+                    $("#UnitLowRange1").append("<option value=''>Select</option>");
+                    $("#UnitLowRange2").empty();
+                    $("#UnitLowRange2").append("<option value=''>Select</option>");
+                    $("#UnitLowRange3").empty();
+                    $("#UnitLowRange3").append("<option value=''>Select</option>");
+
+                    $("#UnitLowRange6").empty();
+                    $("#UnitLowRange6").append("<option value=''>Select</option>");
+                    $("#UnitLowRange7").empty();
+                    $("#UnitLowRange7").append("<option value=''>Select</option>");
+
+
+                    // Populate the Calibrator dropdown with data.descs
+
+                    data.units.forEach(function (unit) {
+                        $("#UnitLowRange").append("<option value='" + unit + "'>" + unit + "</option>");
+                        $("#UnitLowRange1").append("<option value='" + unit + "'>" + unit + "</option>");
+                        $("#UnitLowRange2").append("<option value='" + unit + "'>" + unit + "</option>");
+                        $("#UnitLowRange3").append("<option value='" + unit + "'>" + unit + "</option>");
+                        $("#UnitLowRange6").append("<option value='" + unit + "'>" + unit + "</option>");
+                        $("#UnitLowRange7").append("<option value='" + unit + "'>" + unit + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Department").click(function () {
+                var selectedPrefix = $(this).val();
+
+                $.post("/select_calib_cmc", { sel_parameter: selectedPrefix }, function (data) {
+                    // Clear the previous models
+
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#Calibrator").append("<option value='" + model + "'>" + model + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            // When a model is selected
+            $("#Calibrator").change(function () {
+                var selectedModel = $(this).val();
+                var selectedPrefix = $("#Department").val();
+
+                // Send selected model to the backend
+                $.post("/cmc_parameters", { ModelNo: selectedModel, sel_pre: selectedPrefix }, function (data) {
+                    // Clear the previous options in the Description select element
+
+
+                    // Iterate over the descriptions and add them as options to the Description select element
+                    data.forEach(function (description) {
+                        $("#Parameter").append("<option value='" + description + "'>" + description + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+
+
+
+
+    <script>
+        // Function to display a centered alert message
+
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const url = form.action;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    alert(data.message, 'success');
+                    // Redirect to the next page after a successful save
+                    setTimeout(() => {
+                        window.location.href = '/cmc_home'; // Replace with your desired URL
+                    },); // Redirect after 1 second
+                } else {
+                    alert(data.message, 'danger');
+                }
+            } catch (error) {
+                alert('An error occurred while saving.', 'danger');
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Function to toggle the visibility of department columns and add CSS styles
+            function toggleDepartmentColumns(department) {
+                // Check if the selected department should hide columns 3 to 7
+                if (department === "PRL-Pressure Lab" || department === "MCL-Linear" || department === "MCL-Mass") {
+                    // Hide department columns
+
+                    $("#hi").hide();
+
+                } else {
+                    // Show department columns
+
+                    $("#hi").show();
+
+                }
+            }
+
+            // Initially hide department columns and add CSS styles
+            toggleDepartmentColumns($("#Department").val());
+
+            $("#Department").on("change", function () {
+                var selectedDepartment = $(this).val();
+
+                // Toggle visibility of department columns and add/remove CSS styles based on selected department
+                toggleDepartmentColumns(selectedDepartment);
+            });
+        });
+    </script>
+</body>
+
+</html>

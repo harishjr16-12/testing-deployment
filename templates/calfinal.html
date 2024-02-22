@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftLABWEB-Report-Entry</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/17b53a818d.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin-top: 30px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            font-size: smaller;
+
+        }
+
+        .form-group .col-md-6 {
+            flex: 1;
+        }
+
+
+
+        label {
+            font-weight: medium;
+            text-align: right !important;
+        }
+
+        .form-control {
+            width: 70%;
+            height: 30px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: small;
+        }
+
+        .form-group {
+            display: flex;
+
+        }
+
+        #str {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 66.4vh;
+            margin-top: 22px;
+            margin: 15px;
+            padding-bottom: 20px;
+            font-size: small;
+        }
+
+        table {
+           
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            height: auto;
+            width: 100%;
+            font-size: small;
+            
+            height: fit-content;
+            max-height: 10.4vh;
+            max-width: 100%;
+            overflow-y: scroll;
+            overflow-x: scroll;
+
+        }
+
+        .table-filter {
+            border-radius: 5px;
+            font-size: small;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #133b5c;
+            color: white;
+            text-align: center;
+            font-weight: normal;
+            font-size: 18px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+            font-size: small;
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        table td {
+            text-align: left;
+            font-size: 15px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+           
+
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: normal;
+            font-size: 18px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+            font-size: small;
+
+        }
+
+        th.resize {
+            position: relative;
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+
+        .col-md-6 {
+            display: flex;
+
+        }
+
+
+        label {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .form-group .col-md-6 {
+            flex-direction: row;
+        }
+
+        .form-group label {
+            width: 50%;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+        }
+
+        /* ------------------ */
+        /* 2 table */
+        .table2 {
+
+            margin-top: 20px;
+        }
+
+        #addparameter {
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #D0D4CA;
+            margin-top: -5px;
+            width: 100%;
+
+
+        }
+
+        #addparameter1 {
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #D0D4CA;
+            margin-top: -5px;
+            width: 100%;
+
+
+        }
+
+        #addparameter2 {
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #D0D4CA;
+            margin-top: -5px;
+            width: 100%;
+
+
+        }
+
+
+        #addRowButton {
+            margin-left: 70px;
+            height: 35px;
+        }
+
+        #dig {
+            text-align: center;
+
+            background-color: rgb(146, 212, 212);
+            color: #000;
+            border-radius: 1px solid;
+            border-color: #000;
+        }
+
+        /* td[contenteditable="true"] {
+      text-align: right;
+    } */
+        .selected {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            color: #fff;
+
+        }
+
+        .error-observed-input {
+            pointer-events: auto;
+            /* Add this line to allow interaction */
+            user-select: text;
+            /* Add this line to allow text selection */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+
+        <div class="container-fluid">
+            <fieldset id="addparameter1">
+                <legend class="float-none w-auto " style=" background-color: #D0D4CA; font-size: small;">DEVICE
+                    INFORMATION</legend>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        {% for user in selected_users1%}
+                        <label style="margin-top: 8px;" for="DeviceID" class="col-form-label">Device ID</label>
+                        <input type="text" class="form-control" id="DeviceID" name="DeviceID" value="{{user[1]}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="Itemname" class="col-form-label">Item Name</label>
+                        <input type="text" class="form-control" id="Itemname" name="Itemname" value="{{user[7]}}"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="DeviceType" class="col-form-label">Device
+                            Type</label>
+                        <select class="form-control" id="DeviceType" name="DeviceType">
+                            <option value="{{user[84]}}">{{user[84]}}</option>
+                            <option value="select">select</option>
+                            <option value="Analog">Analog</option>
+                            <option value="Digital">Digital</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lowRange" class="col-form-label" style="margin-top: 8px; ">Low Range
+                        </label>
+                        <input type="text" class="form-control" id="lowRange" name="lowRange" value="{{user[76]}}">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label for="highRange" class="col-form-label" style="margin-top: 8px; ">High Range
+                        </label>
+                        <input type="text" class="form-control" id="highRange" name="highRange" value="{{user[77]}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lowunits" class="col-form-label" style="margin-top: 8px; ">Range Units
+                        </label>
+                        <select class="form-control" id="lowunits" name="lowunits">
+                            <option value="{{user[23]}}">{{user[23]}}</option>
+                            {% endfor %}
+                            {% for department in ununits %}
+
+                            <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                                {{ department }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <button class="btn btn-primary"
+                            style="margin-left: 250px; width: 200px; height: 30px; margin-top: 10px;"
+                            id="save1">Save</button>
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                    </div>
+
+
+                </div>
+            </fieldset>
+            <button class="btn btn-primary" style="margin-top: 5px;margin-left: 35%; width: 30%; margin-top: 20px;"
+                id="add"> Add Device Parameter Details</button>
+            <br>
+            <br>
+            <fieldset id="addparameter">
+                <legend class="float-none w-auto " style=" background-color: #D0D4CA; font-size: small;">PARAMETER
+                    ASSIGNMENT</legend>
+
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="DeviceParameter" class="col-form-label">Device
+                            Parameter </label>
+                        <select class="form-control" id="DeviceParameter" name="DeviceParameter">
+                            <option value="select">select</option>
+                            {% for department in datas %}
+
+                            <option value="{{ department[0] }}" {% if selected_dept==department[0] %}selected{% endif
+                                %}>
+                                {{ department[0] }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="description" class="col-form-label" style="margin-top: 8px; ">Description
+                        </label>
+                        <input type="text" class="form-control" id="description" name="description">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="Deviceunits" class="col-form-label">Device Units
+
+                        </label>
+                        <select class="form-control" id="Deviceunits" name="Deviceunits">
+
+                            <option value="select">select</option>
+
+
+
+                        </select>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="Points" class="col-form-label">No of Test
+                            Points</label>
+                        <input type="text" class="form-control" id="Points" name="Points">
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <label style="margin-top: 8px; " for="totalValue" class="col-form-label">Device
+                            Tolerance
+
+                        </label>
+                        <input type="text" class="form-control" id="totalValue" name="totalValue"
+                            style=" height: 30px;">
+                    </div>
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="DeviceTolerance" class="col-form-label">Device
+                            Tolerance type select
+                        </label>
+                        <select class="form-control" id="calculationType" name="calculationType">
+
+                            <option value="select">Select</option>
+                            <option value="% of FS">"% of FS"</option>
+                            <option value="% of Rdg">"% of Rdg"</option>
+                            <option value="value">Value</option>
+                            <option value="-" id="NA">-(NA)</option>
+                            <option value="Manuval" id="Manuval">Manuval
+                            </option>
+
+                        </select>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="Device" class="col-form-label">Device
+                            Function</label>
+                        <select class="form-control" id="Device" name="Device">
+
+                            <option value="select">select</option>
+                            <option value="Measure">Measure</option>
+                            <option value="Source">Source</option>
+                        </select>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="button-container" style="display: flex; justify-content: center;">
+
+
+                            <button type="submit" class="btn btn-success"
+                                style="width:auto; margin: 10px; margin-left: 180px;" id="save2">Save</button>
+                            <button type="submit" class="btn btn-danger" style="width:auto; margin: 10px; "
+                                id="Close">Close</button>
+                            <button type="reset" class="btn btn-primary" style="width:auto; margin: 10px;"
+                                id="Clear">Clear</button>
+                            <button type="submit" class="btn btn-danger" style="width:auto; margin: 10px; "
+                                id="delete">Delete Parameter
+                                Details</button>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+            </fieldset>
+
+
+
+
+            <br>
+            <fieldset id="addparameter">
+                <legend class="float-none w-auto " style=" background-color: #D0D4CA; font-size: small;">MASTER
+                    ASSIGNMENT
+                </legend>
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="DeviceParameter1" class="col-form-label">Device
+                            Parameter </label>
+                        <select class="form-control" id="DeviceParameter1" name="DeviceParameter1">
+                            <option value="value">Select</option>
+                            {% for department in param_datas %}
+
+                            <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                                {{ department}}
+                            </option>
+                           
+                            {% endfor %}
+                        </select>
+                    </div>
+                  
+                    <div class="col-md-6 ">
+                        <label style="margin-top: 8px;  " for="Standard" class="col-form-label">Standard
+                            Selection
+                        </label>
+                        <select class="form-control" id="Standard" name="Standard">
+                            <option value="select">select</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- {% for department in param_datas %}
+                <input value=" {{ department[0]}}" id="idparm">
+                {% endfor %} -->
+                <div class="button-container" style="display: flex; justify-content: center;">
+
+                    <button style=" width: auto; margin: 5px;" class="btn btn-primary" id="add1" type="submit">Add
+                        Master Details</button>
+                    <button style=" width: auto; margin: 5px;" class="btn btn-danger" id="delete1" type="submit">Delete
+                        Master Details</button>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class=" table-container">
+                            <table id="emp-table">
+                                <thead>
+                                    <th col-index=1 class="resize" id="str">Parameter
+
+                                    </th>
+                                    <th col-index=2 class="resize" id="str">Standard
+
+                                    </th>
+
+                                    <th col-index=3 class="resize" id="str">Nomenclature
+
+                                    </th>
+                                    <th col-index=4 class="resize" id="str">Certificate No.
+
+                                    </th>
+                                    <th col-index=5 class="resize" id="str">Validity
+
+                                    </th>
+                                    <th col-index=6 class="resize" id="str">Traceability</th>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </fieldset>
+
+
+
+            <input type="text" id="Tolerance" name="Tolerance" style="display: none;" >
+            <input type="text" id="DeviceTolerance" name="DeviceTolerance" style="display: none;" >
+            <input type="text" id="MeasType" name="MeasType" style="display: none;" >
+
+
+            <br>
+            <br>
+
+            <fieldset id="addparameter">
+                <legend class="float-none w-auto " style=" background-color: #D0D4CA; font-size: small;">CALIBRATION
+                    SETTINGS
+                </legend>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="DeviceParameter2" class="col-form-label">Device
+                            Parameter </label>
+                        <select class="form-control" id="DeviceParameter2" name="DeviceParameter2">
+                            <option value="value">Select</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="pointsed" class="col-form-label">No of Test
+                            Points</label>
+                        <input type="text" class="form-control" id="pointsed" name="pointsed">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="DeviceResolution" class="col-form-label">Device
+                            Resolution</label>
+                        <select class="form-control" id="DeviceResolution" name="DeviceResolution"  onclick="validateResolution()">
+                            <option value="select">select</option>
+                            <option value="1">1</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.01">0.01</option>
+                            <option value="0.001">0.001</option>
+                            <option value="0.0001">0.0001</option>
+                            <option value="0.00001">0.00001</option>
+                            <option value="0.000001">0.000001</option>
+                            <option value="0.0000001">0.0000001</option>
+                            <option value="0.00000001">0.00000001</option>
+                            <option value="0.0000000o1">0.000000001</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px;" for="StandardResolution" class="col-form-label">Standard
+                            Resolution</label>
+                        <select class="form-control" id="StandardResolution" name="StandardResolution" onclick="validateResolution()">
+                            <option value="select">select</option>
+                            <option value="1">1</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.01">0.01</option>
+                            <option value="0.001">0.001</option>
+                            <option value="0.0001">0.0001</option>
+                            <option value="0.00001">0.00001</option>
+                            <option value="0.000001">0.000001</option>
+                            <option value="0.0000001">0.0000001</option>
+                            <option value="0.00000001">0.00000001</option>
+                            <option value="0.000000001">0.000000001</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label style="margin-top: 8px; " for="sample" class="col-form-label">Sample</label>
+                        <select class="form-control" id="sample" name="sample">
+                            <option value="select">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="uutunits" style="margin-top: 8px; " class="col-form-label">UUT Units:</label>
+                        <select class="form-control" id="uutunits" name="uutunits">
+
+                        </select>
+                    </div>
+
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button style="margin-left: 45%; margin-top: 10px;" class="btn btn-primary" id="add2"
+                        onclick="performCalculationAndOpenDialog()">Start Entry Details</button>
+                </div>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Range Details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        {% for user in selected_users1%}
+                                        <label for="lowRange1" class="col-form-label" style="margin-top: 8px; ">Low
+                                        </label>
+                                        <input type="text" class="form-control" id="lowRange1" name="lowRange1"
+                                            value="{{user[76]}}">
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <label for="highRange1" class="col-form-label" style="margin-top: 8px; ">High
+                                        </label>
+                                        <input type="text" class="form-control" id="highRange1" name="highRange1"
+                                            value="{{user[77]}}">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="rangeunits" style="margin-top: 8px; "
+                                            class="col-form-label">Units:</label>
+                                        <select class="form-control" id="rangeunits" name="rangeunits">
+                                            <option value="{{user[23]}}">{{user[23]}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick=" updateRange(event)"
+                                    id="add3">Save </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <fieldset id="addparameter2">
+                <legend class="float-none w-auto " style=" background-color: #D0D4CA; font-size: small;">CALIBRATION
+                    RESULTS ENTRY
+                </legend>
+                <div class="table2">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <table id="emp-table1">
+                                <thead>
+                                    <th col-index=1 class="resize" id="str">S.No
+
+                                    </th>
+                                    <th col-index=2 class="resize" id="str">Range
+
+                                    </th>
+                                    <th col-index=3 class="resize" id="str">UUT
+
+                                    </th>
+                                    <th col-index=4 class="resize" id="str">Reference
+
+                                    </th>
+                                    <th col-index=5 class="resize" id="str">Error Observed
+
+                                    </th>
+                                    <th col-index=6 class="resize" id="str">Error Claimed
+
+                                    </th>
+                                    <th col-index=7 class="resize" id="str">Measurement Uncertainty</th>
+
+
+                                </thead>
+                                <tbody>
+
+
+                                    <tr>
+                                        <td name="SNO"></td>
+                                        <td><input type="text" name="Range" style="width: 150px;" id="Range"></td>
+                                        <td><input type="number" name="uutValue" style="width: 150px;" id="uutValue">
+                                        </td>
+                                        <td><input type="number" name="Reference" style="width: 150px;" id="Reference">
+                                        </td>
+                                        <td><input type="text" name="ErrorObserved" style="width: 150px;"
+                                                id="ErrorObserved" value="&plusmn;">
+                                        </td>
+                                        <td><input type="text" name="ErrorClaimed" style="width: 150px;"
+                                                id="ErrorClaimed">
+                                        </td>
+                                        <td><input type="number" name="MeasurementUncertainty" style="width: 150px;"
+                                                id="MeasurementUncertainty"></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="container" id="dig" style="display: none;">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                {% for user in selected_users1%}
+                                <div class="header" id="moheader" style="font-weight: bold;"> {{user[7]}}</div>
+                                {% endfor %}
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="he1">
+                                    <p id="morange"> </p>
+                                    <p id="setPoints">Set Points:</p>
+                                </div>
+                                <div id="sampleFieldsContainer"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="saveButton" onclick="saveData()" class="btn btn-primary">Save</button>
+                                <button id="cancelButton" onclick="cancelDialog()" class="btn btn-danger"
+                                    data-bs-dismiss="modal">Cancel</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container" style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-primary" style="width: 15%; margin: 10px;" id="submit_a">Save
+                    Result</button>
+                <button type="submit" class="btn btn-primary" style="width: 15%; margin: 10px;" id="printreport">Print
+                    Report</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+       
+        $(document).ready(function () {
+            $('#printreport').on('click', function () {
+                var DeviceID = $('#DeviceID').val();
+               
+                console.log('Data:', {
+                    DeviceID: DeviceID,
+                   
+                });
+                // Make an AJAX request to the backend
+                $.ajax({
+    url: '/print_calibration', // Replace with your actual backend endpoint
+    type: 'POST', // or 'GET' depending on your backend configuration
+    data: { 
+        DeviceID: DeviceID, 
+       
+    },
+    success: function (response) {
+        window.location.href = '/click_each_claibrationprint_select';
+    },
+    error: function (error) {
+        console.error('Error:', error);
+    }
+});
+
+            });
+        });
+    </script>
+    <script>
+       
+        $(document).ready(function () {
+            $('#save1').on('click', function () {
+                var DeviceID = $('#DeviceID').val();
+                var Itemname = $('#Itemname').val();
+                var DeviceType = $('#DeviceType').val();
+                var lowRange = $('#lowRange').val();
+                var highRange = $('#highRange').val();
+                var lowunits = $('#lowunits').val();
+                console.log('Data:', {
+                    DeviceID: DeviceID,
+                    Itemname: Itemname,
+                    DeviceType: DeviceType,
+                    lowRange: lowRange,
+                    highRange: highRange,
+                    lowunits: lowunits
+                });
+                // Make an AJAX request to the backend
+                $.ajax({
+    url: '/save_duc', // Replace with your actual backend endpoint
+    type: 'POST', // or 'GET' depending on your backend configuration
+    data: { 
+        DeviceID: DeviceID, 
+        Itemname: Itemname,
+        DeviceType: DeviceType, 
+        lowRange: lowRange, 
+        highRange: highRange, 
+        lowunits: lowunits 
+    },
+    success: function (response) {
+        if (response.status === "success") {
+            // Show a success alert
+            alert("Saved successfully!");
+            window.location.href='/click_each_paramsredirect';
+   
+    
+
+    
+        } else {
+            // Show a failure alert
+            alert("Failed to save.");
+            console.error(response.error); // Log the error for debugging
+        }
+    },
+    error: function (error) {
+        console.error('Error:', error);
+    }
+});
+
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#DeviceParameter").click(function () {
+                var selectedPrefix = $(this).val();
+
+                $.post("/show_units_for_parameter", { sel_parameter: selectedPrefix }, function (data) {
+
+
+                    $("#Deviceunits").empty();
+                    $("#Deviceunits").append("<option value=''>Select</option>");
+
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#Deviceunits").append("<option value='" + model + "'>" + model + "</option>");
+
+                    });
+                }, "json");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#DeviceParameter2").click(function () {
+                var selectedPrefix = $(this).val();
+
+                $.post("/show_units_for_parameter", { sel_parameter: selectedPrefix }, function (data) {
+
+
+                    $("#uutunits").empty();
+                    $("#uutunits").append("<option value=''>Select</option>");
+
+
+
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#uutunits").append("<option value='" + model + "'>" + model + "</option>");
+                        $("#rangeunits").append("<option value='" + model + "'>" + model + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+<script>
+    $(document).ready(function () {
+        $("#DeviceParameter2").click(function () {
+            var parameter1 = $(this).val();
+            var DeviceID = $('#DeviceID').val();
+
+            $.post("/get_parameter_details", { parameter1: parameter1, DeviceID: DeviceID }, function (data) {
+
+                // Log the received data for debugging
+                console.log("Received data:", data);
+
+                // Check if there is at least one element in the array
+                if (data.length > 0) {
+                    var firstElement = data[0];
+
+                    // Log the individual values for debugging
+                    console.log("Value for #pointsed:", firstElement[8]);
+                    console.log("Value for #Tolerance:", firstElement[13]);
+                    console.log("Value for #DeviceTolerance:", firstElement[14]);
+                    console.log("Value for #MeasType:", firstElement[9]);
+
+
+                    // Set values to the input fields
+                    $("#pointsed").val(firstElement[8]);
+                    $("#Tolerance").val(firstElement[13]);
+                    $("#DeviceTolerance").val(firstElement[14]);
+                    $("#MeasType").val(firstElement[9]);
+
+                } else {
+                    // Handle the case when the data is empty
+                    console.error("Empty data array");
+                }
+            }, "json");
+        });
+    });
+</script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#save2').on('click', function () {
+                var DeviceID = $('#DeviceID').val();
+                var DeviceParameter = $('#DeviceParameter').val();
+                var Deviceunits = $('#Deviceunits').val();
+                var totalValue = $('#totalValue').val();
+                var calculationType = $('#calculationType').val();
+                var Points = $('#Points').val();
+
+                var Device = $('#Device').val();
+                var description = $('#description').val();
+
+
+
+                console.log("DeviceID:", DeviceID);
+                console.log("DeviceParameter:", DeviceParameter);
+                console.log("Deviceunits:", Deviceunits);
+                console.log("totalValue:", totalValue);
+                console.log("calculationType:", calculationType);
+                console.log("Points:", Points);
+                // Make an AJAX request to the backend
+                $.ajax({
+    url: '/save_parameter', // Replace with your actual backend endpoint
+    type: 'POST',
+    data: {
+        DeviceParameter: DeviceParameter,
+        Deviceunits: Deviceunits,
+        totalValue: totalValue,
+        calculationType: calculationType,
+        Points: Points,
+        DeviceID: DeviceID,
+        Device: Device,
+        description: description
+    },
+    success: function (response) {
+        if (response.status === "success") {
+         
+            alert("Saved successfully!");
+           
+            window.location.href='/click_each_paramsredirect';
+           
+            console.log(response);
+        } else {
+            alert("Failed to save.");
+        }
+    },
+    error: function (error) {
+        alert("Failed to save.");
+        console.error('Error:', error);
+    }
+});
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#DeviceParameter1").click(function () {
+                var DeviceParameter1 = $(this).val();
+
+                $.post("/standard_values", { DeviceParameter1: DeviceParameter1 }, function (data) {
+
+
+                    $("#Standard").empty();
+                    $("#Standard").append("<option value=''>Select</option>");
+
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#Standard").append("<option value='" + model + "'>" + model + "</option>");
+
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#emp-table tr', function () {
+                $(this).addClass('selected').siblings().removeClass('selected');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Create a set to store unique rows
+            var uniqueRows = new Set();
+
+            $("#DeviceParameter1").click(function () {
+                var DeviceParameter1 = $(this).val();
+                var DeviceID = $('#DeviceID').val();
+
+                $.post("/click_standards_for_parameter", { DeviceParameter1: DeviceParameter1, DeviceID: DeviceID }, function (data) {
+                    // Assuming the data received is an array of arrays
+
+
+                    // Iterate through the data and append unique rows to the tbody
+                    var standardsData = data.standards_data;
+                  
+
+                    // Iterate through the data and append unique rows to the tbody
+                    $.each(standardsData, function (index, row) {
+                        if (row[0]) {
+                            var uniqueKey = DeviceParameter1 + "-" + row[0][1]; // Create a unique key for each row
+
+                            // Check if the row already exists
+                            if (!uniqueRows.has(uniqueKey)) {
+                                var newRow = "<tr>";
+                                newRow += "<td name='Parameter' id='Parameter'>" + DeviceParameter1 + "</td>";
+                                newRow += "<td name='standards' id='standards'>" + row[0][1] + "</td>";
+
+                                newRow += "<td>" + row[0][4] + "</td>";
+                                newRow += "<td>" + row[0][10] + "</td>";
+                                newRow += "<td>" + row[0][12] + "</td>";
+                                newRow += "<td>" + row[0][8] + "</td>";
+
+                                // Adding DeviceParameter1 value to one of the cells
+                                console.log("DeviceParameter1: ", DeviceParameter1);
+                                console.log("row[0][1]: ", row[0][1]);
+
+                                newRow += "</tr>";
+
+                                // Append the new row to the tbody
+                                $("#emp-table tbody").append(newRow);
+
+                                // Add the unique key to the set
+                                uniqueRows.add(uniqueKey);
+
+                                // Update the pointsed value
+                                // document.getElementById("pointsed").value = points;
+
+                                console.log("uniqueRows:", uniqueRows)
+                                collectUniqueDeviceParameters();
+                            }
+                        }
+                    });
+                }, "json");
+            });
+            $('#add1').click( function () {
+                var DeviceParameter1 = $('#DeviceParameter1').val();
+                console.log("DeviceParameter1:",DeviceParameter1)
+                var Standard = $('#Standard').val();
+                var DeviceID = $('#DeviceID').val();
+
+                // Make an AJAX request to the backend
+                $.ajax({
+                    url: '/save_standard', // Replace with your actual backend endpoint
+                    type: 'POST', // or 'GET' depending on your backend configuration
+                    data: { DeviceParameter1: DeviceParameter1, Standard: Standard, DeviceID: DeviceID },
+                    success: function (response) {
+                        // Handle the response from the backend
+                        console.log(response);
+                        var datas = response.datas;
+                        var points = response.points;
+                        // Extract specific values from the response
+                        var standards = datas[0][1];
+                        var nomenclature = datas[0][4];
+                        var certificateNo = datas[0][10];
+                        var validity = datas[0][12];
+                        var traceability = datas[0][8];
+                        var DeviceParameter1 = $('#DeviceParameter1').val();
+
+
+
+                        // document.getElementById("pointsed").value = points;
+                        // Populate the table with the extracted values
+                        populateTable([{ DeviceParameter1: DeviceParameter1, standards: standards, Nomenclature: nomenclature, CertificateNo: certificateNo, Validity: validity, Traceability: traceability }]);
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            function populateTable(data) {
+                var tableBody = $('#emp-table tbody');
+                // Clear existing table data
+
+                data.forEach(function (item) {
+                    var uniqueKey = item.DeviceParameter1 + "-" + item.standards; // Create a unique key for each row
+
+                    // Check if the row already exists
+                    if (!uniqueRows.has(uniqueKey)) {
+                        var row = $('<tr>');
+                        row.append('<td name="Parameter" id="Parameter">' + item.DeviceParameter1 + '</td>');
+                        row.append('<td name="standards" id="standards">' + item.standards + '</td>');
+                        row.append('<td name="Nomenclature">' + item.Nomenclature + '</td>');
+                        row.append('<td name="CertificateNo">' + item.CertificateNo + '</td>');
+                        row.append('<td name="Validity">' + item.Validity + '</td>');
+                        row.append('<td name="Traceability">' + item.Traceability + '</td>');
+
+                        tableBody.append(row);
+                        var deviceParameter = item.DeviceParameter1;
+                        var standards = item.standards;
+                        console.log("deviceParameter:", deviceParameter);
+                        console.log("standards:", standards);
+
+                        // Add the unique key to the set
+                        uniqueRows.add(uniqueKey);
+                        console.log("uniqueRows:", uniqueRows);
+                        collectUniqueDeviceParameters();
+                    }
+                });
+            }
+            // Create a set to store unique DeviceParameter1 values in the table
+
+
+        });
+        // Function to collect unique DeviceParameter1 values and update the select element
+        function collectUniqueDeviceParameters() {
+            var uniqueDeviceParametersInTable = new Set();
+
+            // Iterate through existing rows in the table and collect unique DeviceParameter1 values
+            $('#emp-table tbody tr').each(function () {
+                var deviceParameters = $(this).find('td[name="Parameter"]').text();
+                uniqueDeviceParametersInTable.add(deviceParameters);
+            });
+
+            // Convert the Set to an array if needed
+            var deviceParametersArray = Array.from(uniqueDeviceParametersInTable);
+
+            // Log the result to the console
+            console.log("Unique DeviceParameter1 values in the table:", deviceParametersArray);
+
+            // Update the options of the select element with id="DeviceParameter2"
+            var selectElement = $('#DeviceParameter2');
+            selectElement.empty(); // Clear existing options
+
+            // Add a default option
+            selectElement.append('<option value="value">Select</option>');
+
+            // Add options based on the uniqueDeviceParametersArray
+            deviceParametersArray.forEach(function (deviceParameter) {
+                selectElement.append('<option value="' + deviceParameter + '">' + deviceParameter + '</option>');
+            });
+        }
+
+        // ...
+
+        // Call the function after the table is populated
+        collectUniqueDeviceParameters();
+
+
+
+    </script>
+
+<script>
+    $(document).ready(function () {
+        $('#addparameter').hide();
+
+        $('#add').click(function (event) {
+            event.preventDefault();
+            $('#addparameter').show();
+        });
+
+        $('#Close').click(function (event) {
+            event.preventDefault();
+            $('#addparameter').hide();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#emp-table1').hide();
+        $('#addparameter2').hide();
+
+        $('#add3').click(function (event) {
+            event.preventDefault();
+
+            $('#exampleModal1').modal('hide');
+            $('#addparameter2').show();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#emp-table1').hide();
+        $('#addparameter2').hide();
+
+        $('#saveButton').click(function (event) {
+            event.preventDefault();
+
+            $('#exampleModal').modal('hide');
+            $('#addparameter2').show();
+        });
+    });
+</script>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+
+
+        $('#add2').click(function (event) {
+            event.preventDefault();
+            checkAndShowTable();
+
+
+
+
+        });
+    });
+
+    function checkAndShowTable() {
+        var deviceResolution = $('#DeviceResolution').val();
+        var standardResolution = $('#StandardResolution').val();
+        var sample = $('#sample').val();
+        var uutunits = $('#uutunits').val();
+
+        if (deviceResolution !== 'select' && standardResolution !== 'select' && sample !== 'select' && uutunits !== 'select') {
+
+            if (deviceResolution < standardResolution) {
+                alert("Standard Resolution must be greater than Device Resolution.");
+                // Close the current modal
+
+            }
+            else {
+                $('#emp-table1').show();
+                $('#addparameter2').show();
+
+            }
+        } else {
+            alert("Please select Device Resolution,  Standard Resolution,  Sample,  UUT Units ");
+            // Close the current modal
+
+        }
+    }
+</script>
+<script>
+    function validateResolution() {
+        var deviceResolution = parseFloat(document.getElementById('DeviceResolution').value);
+        var standardResolution = parseFloat(document.getElementById('StandardResolution').value);
+
+        if (deviceResolution < standardResolution) {
+            alert('Standard Resolution must be greater than Device Resolution');
+            document.getElementById('DeviceResolution').value = 'select'; // Reset the value to 'select'
+            document.getElementById('StandardResolution').value = 'select'; // Reset the value to 'select'
+        }
+    }
+</script>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the clear button element
+        var clearButton = document.getElementById("Clear");
+
+        // Add a click event listener to the clear button
+        clearButton.addEventListener("click", function () {
+            // Clear DeviceParameter select
+            document.getElementById("DeviceParameter").value = "";
+
+            // Clear Description input
+            document.getElementById("description").value = "";
+
+            // Clear Deviceunits select
+            document.getElementById("Deviceunits").value = "";
+
+            // Clear Points input
+            document.getElementById("Points").value = "";
+
+            // Clear TotalValue input
+            document.getElementById("totalValue").value = "";
+
+            // Clear CalculationType select
+            document.getElementById("calculationType").value = "";
+
+            document.getElementById("Device").value = "";
+        });
+    });
+
+
+</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Call openDialog function after the document has fully loaded
+            performCalculationAndOpenDialog();
+        });
+        var referenceInputs;
+        var errorObservedInputs;
+
+        var globalUutValue;
+
+        var currentRow;
+
+        var clickedValue;
+        var rangededInputs;
+        var measurementUncertainty;
+        var serialNumber;
+        var rangesInputsval;
+        var globalUutValuepoit;
+        var rangededInputs;
+        var rangesInputsvalString;
+
+
+        function addRows() {
+            var pointsed = parseInt(document.getElementById("pointsed").value);
+            console.log("pointsed:", pointsed)
+            var tableBody = document.querySelector("#emp-table1 tbody");
+            var selectedResolution = parseFloat(document.getElementById("StandardResolution").value);
+            var decimalPlaces = Math.min(9, Math.abs(Math.log10(selectedResolution)));
+
+            clickedValue = 1;
+
+
+            // Display the range as "lowRange - highRange"
+            tableBody.innerHTML = "";
+
+            for (var i = 1; i <= pointsed; i++) {
+                var newRow = tableBody.insertRow(tableBody.rows.length);
+
+
+                var serialNumberCell = newRow.insertCell(0);
+                serialNumberCell.textContent = i;
+                var rangeCell = newRow.insertCell(1);
+                var rangeInput = document.createElement("input");
+                rangeInput.type = "text";
+                rangeInput.name = "Range";
+                rangeInput.style.width = "150px";
+                rangeInput.classList.add("range-value-input");
+               
+                rangeInput.addEventListener('keydown', function (event) {
+                    if (event.key !== "Enter") {
+                        alert("Please press the Enter key. Text and numbers are not allowed.");
+                        event.preventDefault();
+                    } else if (event.key === "Enter") {
+                        // Get the closest table row to the input field
+                        currentRow = this.closest('tr');
+                        var modal = new bootstrap.Modal(document.getElementById('exampleModal1'));
+                        modal.show();
+                        var serialNumber = currentRow.cells[0].textContent;
+                        console.log("serialNumber:",serialNumber);
+
+
+                    }
+                });
+                rangeCell.appendChild(rangeInput);
+                if (i === 1) {
+        rangeInput.focus();
+    }
+                var rangeCell2 = newRow.insertCell(2);
+                var rangeInput2 = document.createElement("input");
+                rangeInput2.type = "number";
+                rangeInput2.name = "uutValue";
+                rangeInput2.style.width = "150px";
+                rangeInput2.classList.add("uut-value-input");
+               
+                rangeCell2.appendChild(rangeInput2);
+
+                var rangeCell3 = newRow.insertCell(3);
+                var rangeInput3 = document.createElement("input");
+                rangeInput3.type = "number";
+                rangeInput3.name = "Reference";
+                rangeInput3.style.width = "150px";
+                rangeInput3.addEventListener('keyup', function (event) {
+                    if (event.key === "Enter") {
+                        console.log("Enter key pressed. Calling openDialog.");
+                        var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                        modal.show();
+                        currentRow = this.closest('tr');
+                        // openDialog(event);
+                        // enterData(event);
+                        handleEnterKey(currentRow, event);
+
+                    }
+                });
+                rangeInput3.classList.add("reference-input");
+                rangeCell3.appendChild(rangeInput3);
+                function handleEnterKey(row, event) {
+                    openDialog(event);
+                    enterData(row, event);
+                    // You can perform other actions related to the currentRow here
+                }
+
+                var rangeCell4 = newRow.insertCell(4);
+                var rangeInput4 = document.createElement("input");
+                rangeInput4.type = "number";
+                rangeInput4.name = "ErrorObserved";
+                rangeInput4.style.width = "150px";
+                rangeInput4.classList.add("error-observed-input");
+                rangeInput4.readOnly = true;
+                rangeInput4.style.backgroundColor="#D0D4CA";
+
+                rangeInput4.addEventListener("keydown", function (event) {
+                    // Prevent any key input
+                    event.preventDefault();
+                    // Show an alert
+                    alert("This input is for view purposes only. You cannot edit its value.");
+                });
+                rangeCell4.appendChild(rangeInput4);
+
+                var rangeCell5 = newRow.insertCell(5);
+                var rangeInput5 = document.createElement("input");
+                rangeInput5.type = "text";
+                rangeInput5.name = "ErrorClaimed";
+                rangeInput5.style.width = "150px";
+                rangeInput5.classList.add("error-climed-input");
+                rangeInput5.readOnly = true;
+                rangeInput5.style.backgroundColor="#D0D4CA";
+                rangeInput5.addEventListener("keydown", function (event) {
+                    // Prevent any key input
+                    event.preventDefault();
+                    // Show an alert
+                    alert("This input is for view purposes only. You cannot edit its value.");
+                });
+                rangeCell5.appendChild(rangeInput5);
+
+                var rangeCell6 = newRow.insertCell(6);
+                var rangeInput6 = document.createElement("input");
+                rangeInput6.type = "text";
+                rangeInput6.name = "MeasurementUncertainty";
+                rangeInput6.style.width = "150px";
+                rangeInput6.classList.add("error-MeasurementUncertainty-input");
+                rangeInput6.readOnly = true;
+                rangeInput6.style.backgroundColor="#D0D4CA";
+                rangeInput6.addEventListener("keydown", function (event) {
+                    // Prevent any key input
+                    event.preventDefault();
+                    // Show an alert
+                    alert("This input is for view purposes only. You cannot edit its value.");
+                });
+                rangeCell6.appendChild(rangeInput6);
+
+
+            }
+
+
+        }
+
+
+        function performCalculationAndOpenDialog() {
+            addRows();
+            setTimeout(function () {
+        var firstRangeInput = document.querySelector(".range-value-input");
+        if (firstRangeInput) {
+            firstRangeInput.focus();
+        }
+    }, 0);
+
+
+
+        }
+
+
+
+
+
+        function updateRange(event) {
+            const highRange = parseFloat(document.getElementById("highRange1").value);
+            const lowRange = parseFloat(document.getElementById("lowRange1").value);
+            const lowunits = document.getElementById("rangeunits").value;
+
+          
+
+            // Display the range as "lowRange - highRange"
+            const ran = lowRange + " - " + highRange + "  " + lowunits;
+
+            // Assuming firstRow and currentRow are defined somewhere in your code
+
+
+
+            console.log("click:", clickedValue);
+
+            if (clickedValue === "1") {
+                // If firstRow is defined and clickedValue is "1", update the value for the first element with the class 'range-value-input' in that row
+                const firstRowInput = currentRow.querySelectorAll('.range-value-input');
+                if (firstRowInput) {
+                    firstRowInput.value = ran;
+                }
+            } else if (currentRow) {
+                // If currentRow is defined, update the values for elements with class 'range-value-input' in the current row
+                var specificInput = currentRow.querySelectorAll('.range-value-input');
+                if (specificInput && specificInput.length > 0) {
+                    // If there are multiple elements with the class, you need to iterate through them
+                    specificInput.forEach(function (input) {
+                        input.value = ran;
+                    });
+                }
+            }
+            rangesInputsval = Array.from(specificInput).map(input => input.value);
+            console.log("rangesInputsval:",rangesInputsval);
+             rangesInputsvalString = rangesInputsval.join(',');
+
+
+
+        }
+
+
+
+
+
+        // Example of how to call the function (assuming it's triggered by a button click)
+        // document.getElementById("yourButtonId").onclick = updateRange;
+
+
+
+
+        var inputs = [];
+
+        function openDialog(event) {
+            var dialog = document.getElementById('dig');
+            var setPoints = document.getElementById('setPoints');
+            var morange = document.getElementById('morange');
+            var selectedResolution = parseFloat(document.getElementById("StandardResolution").value);
+
+            // Get the referenceInput value directly from the event object
+            var referenceValuet = parseFloat(event.target.value) || 0;
+            var decimalPlaces = Math.min(9, Math.abs(Math.log10(selectedResolution)));
+            var referenceValue = referenceValuet.toFixed(decimalPlaces);
+            var uutValueInput = currentRow.querySelector('.uut-value-input');
+
+            // Get the value of "uutValue" and store it in the global variable
+            globalUutValue = parseFloat(uutValueInput.value || 0);
+
+            globalUutValuepoit = globalUutValue.toFixed(decimalPlaces);
+
+            setPoints.innerHTML = 'Set Points: <strong>' + globalUutValuepoit + '</strong> ';
+
+            var rangededInputsrange = currentRow.querySelector('.range-value-input');
+
+             rangededInputs = rangededInputsrange.value;
+            // Clean up the input by removing non-numeric characters and spaces
+
+
+            console.log("rangededInputs:", rangededInputs);
+
+
+            morange.innerHTML = "Range: " + "<strong>" + rangesInputsval + "</strong>";
+
+
+            dialog.style.display = 'block';
+
+            // Add event listener to the sample dropdown
+            var selectedSample = document.getElementById("sample").value;
+
+            // Clear previous input fields
+            document.getElementById("sampleFieldsContainer").innerHTML = "";
+            inputs = []; // Reset inputs array
+
+            // Create new input fields based on the selected sample value
+            for (var i = 1; i <= selectedSample; i++) {
+                var label = document.createElement("label");
+                label.setAttribute("for", "Sample" + i);
+                label.textContent = "Sample " + i;
+
+                var input = document.createElement("input");
+                input.type = "number";
+                input.id = "Sample" + i;
+                input.value = referenceValue;
+                input.style.marginLeft = "10px";
+                input.style.marginBottom = "10px";
+                var step = Math.pow(10, - decimalPlaces);
+                input.step = step;
+                
+                document.getElementById("sampleFieldsContainer").appendChild(label);
+                document.getElementById("sampleFieldsContainer").appendChild(input);
+
+                document.getElementById("sampleFieldsContainer").appendChild(document.createElement("br"));
+              
+                inputs.push(input);
+                console.log('inputs:', inputs);
+            }
+            if (inputs.length > 0) {
+    inputs[0].focus();
+    inputs[0].style.border = '3px solid green';
+   
+}
+
+           
+           
+        }
+     
+
+        function saveData(event) {
+
+            $('#exampleModal1').modal('hide');
+
+            var selectedSample = document.getElementById("sample").value;
+            const highRangeInput = document.getElementById("highRange1");
+            const lowRangeInput = document.getElementById("lowRange1");
+
+            // Get the values from the input fields and convert them to positive using Math.abs()
+            const highRange = Math.abs(parseFloat(highRangeInput.value));
+            const lowRange = Math.abs(parseFloat(lowRangeInput.value));
+            const lowunits = document.getElementById("lowunits").value;
+            const uutunits = document.getElementById("uutunits").value;
+            const DeviceType = document.getElementById("DeviceType").value;
+            var Tolerance = document.getElementById('Tolerance').value;
+            var DeviceTolerance = document.getElementById('DeviceTolerance').value;
+            var MeasType = document.getElementById('MeasType').value;
+            var selectedResolution = parseFloat(document.getElementById("StandardResolution").value);
+            var decimalPlacesed = Math.min(9, Math.abs(Math.log10(selectedResolution)));
+            const testPoint = document.getElementById("pointsed").value;
+            console.log("Tolerance:", Tolerance);
+            console.log("DeviceTolerance:", DeviceTolerance);
+
+            var serialNumber = currentRow.cells[0].textContent;
+            console.log("serialNumber:",  currentRow);
+           
+
+
+            var inputValues = [];
+            var sum = 0;
+
+            // Assuming selectedSample is the number of input values
+            for (var i = 0; i < selectedSample; i++) {
+                var inputValue = parseFloat(inputs[i].value || 0);
+                inputValues.push(inputValue);
+                sum += inputValue;
+            }
+
+            var mean = sum / selectedSample;
+
+            var sumOfSquares = inputValues.reduce(function (accumulator, inputValue) {
+                return accumulator + Math.pow(mean - inputValue, 2);
+            }, 0);
+
+
+            console.log("Mean:", mean);
+            console.log("Sum of Squares:", sumOfSquares);
+
+
+
+
+            var decimalPlaces = Math.min(9, Math.abs(Math.log10(selectedResolution)));
+
+
+            var referenceInputs = currentRow.querySelectorAll('.reference-input');
+
+            // Iterate through the NodeList and set the value for each element
+            for (var i = 0; i < referenceInputs.length; i++) {
+                referenceInputs[i].value = mean;
+
+                // Apply toFixed to each element individually
+                var referenceValue = parseFloat(mean).toFixed(decimalPlacesed);
+                referenceInputs[i].value = referenceValue;
+            }
+
+            var uutValueInput = currentRow.querySelector('.uut-value-input');
+
+            // Get the value of "uutValue" and store it in the global variable
+            globalUutValue = parseFloat(uutValueInput.value || 0);
+            // Access the elements with the class "error-observed-input" within the current row
+            var errorObservedInputs = currentRow.querySelectorAll('.error-observed-input');
+
+
+            for (var j = 0; j < errorObservedInputs.length; j++) {
+                // Apply toFixed to each element individually
+                var erroredsValue = (globalUutValue - mean).toFixed(decimalPlacesed);
+                errorObservedInputs[j].value = erroredsValue;
+            }
+
+
+            let spanRange;  // Declare spanRange outside the if statement
+
+                spanRange = highRange - lowRange;
+                console.log("spanRange:", spanRange);
+            
+
+
+            // Now spanRange is accessible outside the if statement
+            // You can use it here or wherever else you need it in your code
+
+            var errorClaimedInputs = currentRow.querySelectorAll('.error-climed-input');
+
+            if (DeviceTolerance === "% of FS") {
+                errorClaimedInputs.forEach(function (input) {
+                    input.value = ((spanRange / 100) * Tolerance).toFixed(decimalPlacesed);
+                });
+            } else if (DeviceTolerance === "% of Rdg") {
+                errorClaimedInputs.forEach(function (input) {
+                    input.value = ((globalUutValue / 100) * Tolerance).toFixed(decimalPlacesed);
+                });
+            } else if (DeviceTolerance === "value") {
+                errorClaimedInputs.forEach(function (input) {
+                    input.value = parseFloat(Tolerance).toFixed(decimalPlacesed);
+                });
+            } else if (DeviceTolerance === "-") {
+                errorClaimedInputs.forEach(function (input) {
+                    input.placeholder = '-';
+                    input.value = '';  // Clear the value
+                    input.style.textAlign = 'center';
+                    input.style.fontWeight = 'bold';
+                    input.disabled = true;
+                });
+
+                return; 
+            }
+            console.log("Values updated successfully:", errorClaimedInputs);
+            var errorMeasurementUncertaintyInputs = currentRow.querySelectorAll('.error-MeasurementUncertainty-input');
+            var claimedValues = Array.from(errorClaimedInputs).map(input => input.value);
+            var observedValues = Array.from(errorObservedInputs).map(input => input.value);
+            var globalUutValueValues = Array.from(globalUutValue).map(input => input.value);
+            var referenceInputsValues = Array.from(referenceInputs).map(input => input.value);
+            var claimedValuesString = claimedValues.join(',');
+var observedValuesString = observedValues.join(',');
+var globalUutValueString = globalUutValueValues.join(',');
+var referenceInputsString = referenceInputsValues.join(',');
+           
+            var measurementUncertaintyValues = Array.from(errorMeasurementUncertaintyInputs).map(input => input.value);
+            var claimedNumber = parseFloat(claimedValues[0]);
+var observedNumber = parseFloat(observedValues[0]);
+
+var minValue = -Math.abs(claimedNumber);
+var maxValue = Math.abs(claimedNumber);
+var clcvalue = observedValues + measurementUncertaintyValues ;
+console.log("clcvalue:", clcvalue);
+
+// Check if parsed values are valid numbers
+if (observedNumber < minValue || observedNumber > maxValue) {
+    // Compare values and set color accordingly
+    
+        // Set red color for observedValues
+        errorObservedInputs.forEach(function (input) {
+            input.style.backgroundColor = 'red';
+            input.style.color = 'white';
+
+        });
+    } else {
+        // Reset the color for observedValues
+        errorObservedInputs.forEach(function (input) {
+            input.style.backgroundColor = '#D0D4CA'; // or whatever the default color is
+        });
+    }
+
+   
+
+console.log("Claimed Values:", claimedValues);
+console.log("Observed Values:", observedValues);
+
+
+            var requestData = {};
+
+
+            for (var i = 0; i < inputs.length; i++) {
+            
+            
+                var inputId = inputs[i].id;
+                var inputValue = inputs[i].value;
+                requestData[inputId] = inputValue;
+            }
+
+            var inputValues = [];
+            var sum = 0;
+
+            // Assuming inputs is an array of input elements
+            for (var i = 0; i < inputs.length; i++) {
+                var inputValue = parseFloat(inputs[i].value || 0);
+                inputValues.push(inputValue);
+                sum += inputValue;
+            }
+
+            var mean = sum / inputs.length;
+
+            console.log("Sum:", sum);
+            console.log("Mean:", mean);
+
+
+            var deviceResolution = $('#DeviceResolution').val();
+            var standardResolution = $('#StandardResolution').val();
+            var sample = $('#sample').val();
+
+
+            // var DeviceType = $('#DeviceType').val();
+            var uutValueInput = currentRow.querySelector('.uut-value-input');
+
+            var standardsData = [];
+var DeviceParameter2 = $('#DeviceParameter2').val();
+
+$('#emp-table tbody tr').each(function () {
+    var standards = $(this).find('#standards').text();
+    var Parameter = $(this).find('#Parameter').text();  // Assuming there is a cell with the ID 'Parameter'
+    
+    if (Parameter === DeviceParameter2) {
+        standardsData.push({
+            standards: standards,
+          
+        });
+    }
+});
+
+// Now, standardsData array contains objects with the matching DeviceParameter2 value.
+console.log(standardsData);
+
+        //    var standardsData =[];
+        //     var DeviceParameter2 = $('#DeviceParameter2').val();
+
+    //         var selectedRow = $('#emp-table tbody').find('td:first-child').filter(function() {
+    //     return $(this).text() === DeviceParameter2;
+    //   }).closest('tr');
+    //   var rowData = {
+    //     parameter: selectedRow.find('td:eq(0)').text(),
+    //     value: selectedRow.find('td:eq(1)').text()
+    //   };
+     
+
+      // Store rowData in the standardsData array
+    //   standardsData.push(rowData);
+    //   console.log("standardsData:", standardsData);
+
+//     $('#emp-table tbody tr').each(function () {
+//     var standards = $(this).find('#standards').text();
+//     var Parameter = $(this).find('#Parameter').text();
+
+//     standardsData.push({
+//         standards: standards,
+//         Parameter: Parameter
+//     });
+// });
+
+console.log("Standards Data:", standardsData);
+ // Assuming Standard is a select element
+            var numberOfRowsAdded = $('#emp-table tbody tr').length;
+
+            // Get the value of "uutValue" and store it in the global variable
+            globalUutValue = parseFloat(uutValueInput.value || 0);
+            // Second snippet
+            var DeviceParameter1 = $('#DeviceParameter1').val();
+           
+            var Standard = $('#Standard').val();
+            var DeviceID = $('#DeviceID').val();
+            console.log("Requestdata:", requestData)
+            console.log("standardsData:", standardsData)
+            console.log("numberOfRowsAdded:", numberOfRowsAdded)
+            console.log("errorClaimedInputs:", claimedValues)
+            console.log("errorObservedInputs:", observedValues)
+            console.log("referenceInputs:", referenceInputsValues)
+            console.log("globalUutValue:", globalUutValueValues)
+            console.log("testPoint:", testPoint)
+            console.log("rangesInputsval:", rangesInputsval)
+            console.log("serialNumber:", serialNumber)
+            console.log("MeasType:", MeasType)
+            console.log("globalUutValuepoit:", globalUutValuepoit)
+            console.log("claimedValuesString:", claimedValuesString)
+
+           
+            // Use jQuery AJAX to send data to the backend
+            $.ajax({
+                url: '/uncertainty_cal',
+                method: 'POST',
+                contentType: 'application/json', // Set the content type to JSON
+                data: JSON.stringify({
+                    requestData: requestData,
+                    sample: sample,
+                    standardResolution: standardResolution,
+                    deviceResolution: deviceResolution,
+                    DeviceType: DeviceType,
+                    DeviceParameter2: DeviceParameter2,
+                    uutunits: uutunits,
+                    Standard: Standard,
+                    mean: mean,
+                    standardsData: standardsData,
+                    numberOfRowsAdded: numberOfRowsAdded,
+                  
+                    DeviceID:DeviceID,
+                    testPoint:testPoint,
+                    rangesInputsval:rangesInputsvalString,
+                    serialNumber:serialNumber,
+                    MeasType:MeasType,
+                    globalUutValuepoit:globalUutValuepoit,
+                    claimedValues: claimedValuesString,
+                    observedValues: observedValuesString,
+                    globalUutValueValues: globalUutValueString,
+                    referenceInputs: referenceInputsString,
+
+                   
+
+
+                }),
+    //             success: function (response) {
+    //                 console.log('Data successfully sent to the backend:', response);
+
+    //                 var newValue = response.rounded_exp_unc;
+
+    //                 var measurementUncertainty = currentRow.querySelector('.error-MeasurementUncertainty-input');
+    //                 measurementUncertainty.value = newValue;
+
+    //                 if (clcvalue < minValue || clcvalue > maxValue) {
+   
+    //                 errorMeasurementUncertaintyInputs.forEach(function (input) {
+    //                 input.style.backgroundColor = 'yellow';
+    //                 input.style.color = 'black';
+
+    //                 });
+    //                 }else{
+    //                 errorMeasurementUncertaintyInputs.forEach(function (input) {
+    //                 input.style.backgroundColor = '#D0D4CA'; // or whatever the default color is
+    //                 });
+    //                 }    
+
+
+    //             },
+                
+    //             error: function (xhr, status, error) {
+    //                 console.error('Error sending data to the backend:', error);
+    //                 if (xhr.responseJSON && xhr.responseJSON.status && xhr.responseJSON.status === "fail") {
+    //     alert('Failed to retrieve matching record. ' + xhr.responseJSON.message);
+    // }
+    //             }
+    success: function (response) {
+        console.log('Data successfully sent to the backend:', response);
+
+        if (response.status === 'success') {
+            var newValue = response.rounded_exp_unc;
+            var measurementUncertainty = currentRow.querySelector('.error-MeasurementUncertainty-input');
+            measurementUncertainty.value = newValue;
+
+            if (clcvalue < minValue || clcvalue > maxValue) {
+                errorMeasurementUncertaintyInputs.forEach(function (input) {
+                    input.style.backgroundColor = 'yellow';
+                    input.style.color = 'black';
+                });
+            } else {
+                errorMeasurementUncertaintyInputs.forEach(function (input) {
+                    input.style.backgroundColor = '#D0D4CA'; // or whatever the default color is
+                });
+            }
+        } else if (response.status === 'fail') {
+            console.log('Request failed:', response.message);
+            alert('Failed to fetch data. ' + response.message);
+            var errorClaimedInputs = currentRow.querySelectorAll('.error-climed-input');
+            var errorObservedInputs = currentRow.querySelectorAll('.error-observed-input');
+            errorClaimedInputs.forEach(function (input) {
+                input.value = '';
+            });
+            errorObservedInputs.forEach(function (input) {
+                input.value = '';
+            });
+        } else {
+            console.log('Unexpected response:', response);
+            alert('Unexpected response from the server.');
+        }
+    },
+    error: function (xhr, status, error) {
+        console.log('Request failed with status:', status, 'and error:', error);
+        alert('Failed to connect to the server. Please try again later.');
+    }
+            });
+
+
+
+
+            // You can add more logic here to save the data if needed
+
+        }
+
+        function enterData(row, event) {
+            var selectedResolution = parseFloat(document.getElementById("StandardResolution").value);
+            var DeviceResolution = parseFloat(document.getElementById("DeviceResolution").value);
+            var decimalPlaces = Math.min(9, Math.abs(Math.log10(DeviceResolution)));
+            var decimalPlacesed = Math.min(9, Math.abs(Math.log10(selectedResolution)));
+
+            var uutValueInput = currentRow.querySelector('.uut-value-input');
+
+            // Get the value of "uutValue" and store it in the global variable
+            globalUutValue = parseFloat(uutValueInput.value || 0);
+
+            // Update globalUutValuepoit
+            globalUutValuepoit = globalUutValue.toFixed(decimalPlaces);
+
+            // Update the value of '.uut-value-input' with globalUutValuepoit
+            uutValueInput.value = globalUutValuepoit;
+            var referenceInputs = currentRow.querySelectorAll('.reference-input');
+
+            var referenceValuet = parseFloat(event.target.value) || 0;
+            var referenceValue = referenceValuet.toFixed(decimalPlacesed);
+            referenceInputs.value = referenceValue;
+
+            var errorObservedInputs = currentRow.querySelectorAll('.error-observed-input');
+
+            var errorreferenceValuet = parseFloat(event.target.value) || 0;
+
+            var erroredsValue = errorreferenceValuet.toFixed(decimalPlacesed);
+            errorObservedInputs.value = erroredsValue;
+
+
+        }
+
+
+
+
+
+        function cancelDialog() {
+            var dialog = document.getElementById('dig');
+            dialog.style.display = 'none'; // Hide the content when Cancel is clicked
+
+            // Additional logic for canceling, if needed
+        }
+
+    </script>
+
+
+
+
+
+   
+
+   
+
+<script>
+    // function validateResolution() {
+    //     var deviceResolution = $('#DeviceResolution').val();
+    //         var standardResolution = $('#StandardResolution').val();
+           
+    //         // Check if Standard Resolution is greater than Device Resolution
+    //         if ( deviceResolution < standardResolution) {
+    //             alert('Standard Resolution must be greater than Device Resolution. Please select a valid value.');
+    //             // Reset the Standard Resolution to the default value (select)
+    //             $('#StandardResolution').val('select');
+                
+    //         }
+    //     }
+</script>
+
+   
+   
+    <script>
+        document.getElementById('submit_a').addEventListener('click', function () {
+            // Create an array to store the data
+            var tableData = [];
+            var tableRows = document.querySelectorAll("#emp-table1 tbody tr");
+
+            tableRows.forEach(function (row) {
+                var rowData = {
+                    range: row.querySelector(".range-value-input").value,
+                    uutValue: row.querySelector(".uut-value-input").value,
+                    reference: row.querySelector(".reference-input").value,
+                    errorObserved: row.querySelector(".error-observed-input").value,
+                    errorClaimed: row.querySelector(".error-climed-input").value,
+                    measurementUncertainty: row.querySelector(".error-MeasurementUncertainty-input").value
+                };
+
+                tableData.push(rowData);
+            });
+
+            console.log("tableData:", tableData);
+
+            // Use AJAX to send the data to the backend
+            $.ajax({
+                url: 'your_backend_endpoint', // Replace with your actual backend endpoint
+                method: 'POST',
+                data: { tableData: JSON.stringify(tableData) },
+                success: function (response) {
+
+                    if (response.status === "success") {
+                        // Show a success alert
+                        alert("Saved successfully!");
+                    } else {
+                        alert("Failed to save.");
+
+                    }
+
+                },
+                error: function (error) {
+                    alert("Failed to save.");
+                    console.error('Error sending data:', error);
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

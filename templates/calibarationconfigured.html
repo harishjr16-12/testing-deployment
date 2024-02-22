@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB CalibrationConfigured</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .containersranges {
+            gap: 15px;
+            margin-top: 10px;
+            margin-left: 35px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #3C486B;
+            padding: 7px;
+            margin: 35px;
+
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* --------------------- */
+        .inp {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .corner2 {
+            z-index: 5;
+            position: absolute;
+            left: 80px;
+            background-color: #F5F5F5;
+            width: auto;
+            margin-top: -15px;
+
+        }
+
+        .border-box1 {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 60px;
+            border-radius: 7px / 7px;
+            margin-top: 40px;
+            justify-content: space-between;
+
+        }
+
+
+
+        /* -------- */
+        .border-box2 {
+            border: 1px solid #ccc;
+            width: 35%;
+            height: 60px;
+            border-radius: 7px / 7px;
+            margin-top: -60px;
+            justify-content: space-between;
+            margin-left: 63%;
+        }
+
+        .corner3 {
+            z-index: 5;
+            position: absolute;
+            left: 80px;
+            background-color: #F5F5F5;
+            width: auto;
+            margin-top: -15px;
+            margin-left: 60%;
+        }
+
+        /* ------------------- */
+        /* table */
+        .header {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            width: 30%;
+            margin-left: 35%;
+        }
+
+
+        .btn {
+            width: 63px;
+        }
+
+        form {
+            display: inline;
+            width: 50%;
+        }
+
+        .three {
+            background-color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .outer-wrapper1 {
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        .table-wrapper1 {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 60.4vh;
+            padding-bottom: 5px;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 500%;
+            /* height: -50%; */
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            height: auto;
+
+        }
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+            /* height: 30px; */
+            padding: 5px 5px;
+        }
+
+        .table-wrapper1 th.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+        .table-wrapper1 th.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+        .table-wrapper1 td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+
+        }
+
+        .table-wrapper1 td.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+        }
+
+        table th,
+        table td {
+
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 5px;
+            overflow: hidden;
+        }
+
+        .col-form-label {
+            padding: 10px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: rgb(8, 8, 88);
+            height: 80px;
+        }
+
+        .header-text {
+            display: inline;
+            margin: 0px;
+            padding: 120px;
+            color: white;
+        }
+
+        .back {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer;
+        }
+
+        .back:hover {
+            color: aqua !important;
+            cursor: pointer;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+        /* Style the Dashboard link */
+.dash {
+    color: white; /* Set text color to white */
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+/* Optional: Hover effect for the Dashboard link */
+.dash:hover {
+    text-decoration: underline; /* Add underline on hover (optional) */
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header-container">
+        <div class="logo"> <img src="/static/image/SoftLABWeb Logo.jpg" width="200px" ; height="80px">
+        </div>
+        <h2 style="margin-left: 140px;" class="header-text">Calibration Lab Management Software</h2>
+        <a href="/departmentcal_dashboard" class="dash">Dashboard</a>
+        <p style="color: white; font-size: 40px; margin-top: 10px;">/</p> <a class="back"
+            href="/show_calibration_dashbord_select_redirect">Back</a>
+    </div>
+    <form>
+
+        <form method="POST" action="/"></form>
+        <div class="containersranges" style="display: flex;">
+            <label style="font-weight: bold;" class="col-form-label">SRF Prefix</label>
+            <select class="form-select" id="SRFPrefix" name="SRFPrefix" style="border-radius: 30px; width: 20%;"
+                required>
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[3] }}" {% if selected_dept==srfno[3]%}selected{% endif %}>
+                    {{ srfno[3] }}
+                </option>
+                {% endfor %}
+            </select>
+            <!---------------------------------------------------------------------------- -->
+            <label style="font-weight: bold;" class="col-form-label">SRF NO.</label>
+            <select class="form-select" id="srfno" name="srfno"
+                style=" font-weight: 500;   border-radius: 30px;   width: 20%;" required>
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[2] }}" {% if selected_dept==srfno[2]%}selected{% endif %}>
+                    {{ srfno[2]}}
+                </option>
+                {% endfor %}
+            </select>
+
+            <!-- ------------------------------------------------------------------------------------- -->
+            <label style="font-weight: bold;" class="col-form-label">Customer</label>
+            <select class="form-select" id="Customer" name="Customer"
+                style=" font-weight: 500;   border-radius: 30px;   width: 20%;" required>
+
+                {% for srfno in srf_datas %}
+                <option value="{{ srfno[13] }}" {% if selected_dept==srfno[13]%}selected{% endif %}>
+                    {{ srfno[13]}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="border-box1">
+            <div style="font-weight: bold;" class="corner2">Multi Job Updation</div>
+            <div class="inp">
+                <label style="font-weight: 600;" class="col-form-label" for="from">From</label>
+                <input style="width: 5%; height: 5%;" type="text" id="from" name="from" value="1">
+                <!-- --------------- -->
+                <label style="font-weight: 600;" class="col-form-label" for="To">To</label>
+                {% for srfno in srf_datas %}
+                <input style="width: 5%;  height: 5%;" type="text" id="To" name="To" value="{{srfno[11]}}">
+                {% endfor %}
+                <!-- ------------- -->
+                <label style="font-weight: 600; margin-left: 20px;" class="col-form-label">ColumnName</label>
+                <select class="form-select" id="departmentSelect" name="departmentSelect"
+                    style=" font-weight: 500;   border-radius: 30px;   width: 45%;" required
+                    onchange=" updateDataOptionsSecond() ">
+                    <option value="Select">Select</option>
+                    <option value="CalibDept">Calibration Department</option>
+                    <option value="ItemName">Item Name</option>
+                    <option value="Dev_Type">Device Category </option>
+                    <option value="Make">Make</option>
+                    <option value="Model">Model</option>
+                    <option value="DVType">Inst.Type</option>
+                    <option value="DUCRange">Range</option>
+                    <option value="LowRange">Low Range</option>
+                    <option value="HighRange">High Range</option>
+                    <option value="DUCRangeUnit">Unit</option>
+                    <option value="LC">LC</option>
+                    <option value="SerialNo">Serial No</option>
+                    <option value="IDNo">Inst.ID</option>
+
+                    <option value="LCUnit">LCUnit</option>
+                    <option value="CalInterVal">Cal.Interval</option>
+                    <option value="Accuracy">Accuracy</option>
+                    <option value="AcceptCondition">Accept Creteria</option>
+                    <option value="AddlInfo1">Calibration Method</option>
+                    <option value="StatusonRec">Received Condition</option>
+                    <option value="Comments">Remarks</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+                <!------------------------------------>
+                <label style="font-weight: 600; margin-left: 20px;" class="col-form-label">Filter</label>
+                <select class="form-select" id="Filter" name="Filter"
+                    style=" font-weight: 500;   border-radius: 30px;   width: 40%;" onchange="updateDataOptions()">
+                    <option value="Select">Select</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Pressure">Pressure</option>
+                    <option value="Thermal">Thermal</option>
+                    <option value="Dimension">Dimension</option>
+                    <option value="Mass">Mass</option>
+                    <option value="All">All</option>
+                </select>
+
+
+
+                <label style="margin-left:5px;" for="selectedValue">Data</label>
+                <input type="text" style="width: 50%; height: 30px; margin-left:2px; margin-top: -2px;" list="browsers"
+                    name="browser" id="browser" onclick="clearInput()">
+
+
+                <datalist id="browsers">
+
+                </datalist>
+
+
+
+                <button
+                    style=" border-radius: 20px; border: none; background-color: darkgreen; color: white;  width: 10%; height: 20%; letter-spacing: 1px;"
+                    id="updateButton" name="update">Update</button>
+            </div>
+
+        </div>
+        <section id="viewContent">
+            <div class="tabercol1">
+                <div class="outer-wrapper1">
+                    <div class="table-wrapper1">
+                        <table id="emp-table1">
+                            <thead>
+                                <th col-index=1 style="display: none;">select</th>
+
+                                <th col-index=2 style="background: #3C486B; color: white; width: 60px;" class="fixed-column">Item.No
+
+                                </th>
+
+                                <th col-index=3 class="fixed-column" style="background: #3C486B; color: white;">SRF Job No.
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=4 class="resize">Inst.ID 
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=5 class="resize">Calib.Dept.
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=6 class="resize">Device Category
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=7 class="resize">Item Name
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=8 class="resize">Make
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=9 class="resize">Model
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=10 class="resize">Serial No.
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=11 class="resize">Tag ID
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=12 class="resize">Inst.Type
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=13 class="resize">Inst.Range
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=14 class="resize">Low Range
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=15 class="resize">High Range
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=16 class="resize">Range Unit
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=17 class="resize">Other Ranges
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=18 class="resize">L.C/Resoluction
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=19 class="resize">Unit
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=20 class="resize">Accuracy
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=21 class="resize">Cal.Interval
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+                                <th col-index=22 class="resize">Cal.Method
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=23 class="resize">Accessories(Max.200 Characters)
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+
+                                <th col-index=24 class="resize">Remarks(Max.100 Characters)
+                                    <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                        <option value="all" id="op">All</option>
+                                    </select>
+                                </th>
+               
+
+                            </thead>
+                            <tbody>
+                                {% for user in duc_datas %}
+                                <tr>
+                                    <td style="display: none;"><input type="checkbox" name="rowCheckbox" value="0"></td>
+                                    <td class="fixed-column">{{ user[87] if user [ 87] else '' }}</td>
+                                   
+                                    <td class="fixed-column">{{ user[1] if user [1] else ''}}</td>
+                                    <td>{{ user[11] if user [ 11] else ''}}</td>
+                                    <td>{{ user[18] if user [ 18] else ''}}</td>
+                                    <td>{{ user[6] if user [ 6] else ''}}</td>
+                                    <td>{{ user[7] if user [ 7] else ''}}</td>
+                                    <td>{{ user[8] if user[  8] else ''}}</td>
+                                    <td>{{ user[9] if user[  9] else ''}}</td>
+                                    <td>{{ user[10] if user [ 10] else ''}}</td>
+                                    <td>{{ user[11] if user [ 11] else ''}}</td>
+                                    <td>{{ user[42] if user [ 42] else ''}}</td>
+                                    <td>{{ user[22] if user [ 22] else ''}}</td>
+                                    <td>{{ user[76] if user [ 76] else ''}}</td>
+                                    <td>{{ user[77] if user [ 77] else ''}}</td>
+                                    <td>{{ user[23] if user [ 23] else ''}}</td>
+                                    <td>{{ user[44] if user [ 44] else ''}}</td>
+                                    <td>{{ user[20] if user [ 20] else ''}}</td>
+                                    <td>{{ user[21] if user [ 21] else ''}}</td>
+                                    <td>{{ user[19] if user [ 19] else ''}}</td>
+                                    <td>{{ user[13] if user [ 13] else ''}}</td>
+                                    <td>{{ user[46] if user [ 46] else ''}}</td>
+                                    <td>{{ user[86] if user [ 86] else ''}}</td>
+                                    <td>{{ user[50] if user [ 50] else ''}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            document.getElementById('departmentSelect').addEventListener('change', function () {
+                var selectedValue = this.value;
+                var filterDropdown = document.getElementById('Filter');
+
+                // Add your filtering logic here based on the selectedValue
+                // For example:
+                if (selectedValue === 'CalibDept' || selectedValue === 'SerialNo' ||selectedValue === 'IDNo' || selectedValue === 'DUCRange' || selectedValue === 'LowRange' || selectedValue === 'HighRange' || selectedValue === 'LC' || selectedValue === 'CalInterVal' || selectedValue === 'Accuracy' || selectedValue === 'AcceptCondition' || selectedValue === 'AddlInfo1' || selectedValue === 'StatusonRec' || selectedValue === 'Comments' || selectedValue === 'Accessories') {
+                    // Disable or hide the Filter dropdown
+                    filterDropdown.disabled = true;
+                    filterDropdown.value = "";
+                } else {
+                    // Enable or show the Filter dropdown
+                    filterDropdown.disabled = false;
+                }
+            });
+        </script>
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        populateDropdowns();
+        setupEventListeners();
+    });
+
+    function populateDropdowns() {
+        const allFilters = document.querySelectorAll(".table-filter");
+
+        allFilters.forEach((filter) => {
+            const colIndex = filter.parentElement.getAttribute("col-index");
+            const uniqueValues = getUniqueValues(colIndex);
+
+            // Clear existing options before adding new ones
+            filter.innerHTML = '<option value="all">All</option>';
+
+            uniqueValues.forEach((value) => {
+                filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+            });
+        });
+    }
+
+    function getUniqueValues(colIndex) {
+        const rows = document.querySelectorAll("#emp-table1");
+        const uniqueValuesSet = new Set();
+
+        rows.forEach((row) => {
+            const cell = row.querySelector(`td:nth-child(${colIndex})`);
+            if (cell) {
+                const cellValue = cell.textContent.trim();
+                if (cellValue !== "") {
+                    uniqueValuesSet.add(cellValue);
+                }
+            }
+        });
+
+        return Array.from(uniqueValuesSet);
+    }
+
+    function setupEventListeners() {
+        const allFilters = document.querySelectorAll(".table-filter");
+
+        allFilters.forEach((filter) => {
+            filter.addEventListener("change", function () {
+                updateDropdowns(filter);
+                filter_rows();
+            });
+        });
+    }
+
+    function updateDropdowns(changedFilter) {
+        const allFilters = document.querySelectorAll(".table-filter");
+        const selectedValues = {};
+
+        allFilters.forEach((filter) => {
+            selectedValues[filter.parentElement.getAttribute("col-index")] = filter.value;
+        });
+
+        const filteredValues = filterValues(selectedValues);
+
+        allFilters.forEach((filter) => {
+            if (filter !== changedFilter) {
+                const colIndex = filter.parentElement.getAttribute("col-index");
+                const selectedValue = selectedValues[colIndex];
+
+                // Clear existing options before adding new ones
+                filter.innerHTML = '<option value="all">All</option>';
+
+                // Add specific values to the dropdown based on the selected value
+                filteredValues[colIndex].forEach((value) => {
+                    filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                });
+            }
+        });
+    }
+
+    function filterValues(selectedValues) {
+        const rows = document.querySelectorAll("#emp-table1");
+        const filteredValues = {};
+
+        for (const colIndex in selectedValues) {
+            filteredValues[colIndex] = new Set();
+        }
+
+        rows.forEach((row) => {
+            let isRowMatch = true;
+
+            for (const colIndex in selectedValues) {
+                const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                const cellValue = cell ? cell.textContent.trim() : "";
+
+                if (selectedValues[colIndex] !== "all" && cellValue !== selectedValues[colIndex]) {
+                    isRowMatch = false;
+                }
+
+                if (colIndex !== "1" && isRowMatch) {
+                    filteredValues[colIndex].add(cellValue);
+                }
+            }
+        });
+
+        return filteredValues;
+    }
+
+    function filter_rows() {
+        const rows = document.querySelectorAll("#emp-table1");
+        rows.forEach((row) => {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            let isRowVisible = true;
+
+            allFilters.forEach((filter) => {
+                const colIndex = filter.parentElement.getAttribute("col-index");
+                const filterValue = filter.value;
+                const cellValue = row.querySelector(`td:nth-child(${colIndex})`).textContent.trim();
+
+                if (filterValue !== "all" && cellValue !== filterValue) {
+                    isRowVisible = false;
+                }
+            });
+
+            row.style.display = isRowVisible ? "table-row" : "none";
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            function updateDataOptionsSecond() {
+                var lcSelect = document.getElementById("departmentSelect");
+                var dataSelect = document.getElementById("browsers");
+
+                // Remove existing options
+                dataSelect.innerHTML = '';
+
+                // Add options based on the selected LC
+                if (lcSelect.value === "LC") {
+                    var lcOptions = ["1", "0.1", "0.01", "0.001", "0.0001", "0.00001", "0.000001", "0.0000001", "0.00000001", "0.000000001"];
+                    lcOptions.forEach(function (optionValue, index) {
+                        var option = document.createElement("option");
+                        option.value = optionValue;
+                        option.text = optionValue;
+                        option.id = "option"; // Set unique id for each option
+                        option.style.cursor = "pointer"; // Apply cursor CSS
+                        dataSelect.appendChild(option);
+                    });
+                } else if (lcSelect.value === "CalInterVal") {
+                    var lcOptions = ["1 Year", "1 Months", "2 Months", "3 Months", "4 Months", "5 Months", "6 Months", "7 Months", "8 Months", "9 Months", "10 Months", "11 Months", "12 Months", "2 Year", "3 Year"];
+                    lcOptions.forEach(function (optionValue, index) {
+                        var option = document.createElement("option");
+                        option.value = optionValue;
+                        option.text = optionValue;
+                        option.id = "option"; // Set unique id for each option
+                        option.style.cursor = "pointer"; // Apply cursor CSS
+                        dataSelect.appendChild(option);
+                    });
+                } else if (lcSelect.value === "AddlInfo1") {
+                    var lcOptions = ["Comparison Method", "Direct Method", "Direct Method,Comparison Method"];
+                    lcOptions.forEach(function (optionValue, index) {
+                        var option = document.createElement("option");
+                        option.value = optionValue;
+                        option.text = optionValue;
+                        option.id = "option"; // Set unique id for each option
+                        option.style.cursor = "pointer"; // Apply cursor CSS
+                        dataSelect.appendChild(option);
+                    });
+                } else if (lcSelect.value === "StatusonRec") {
+                    var lcOptions = ["Good", "Satisfactory", "Damaged", "Not functional"];
+                    lcOptions.forEach(function (optionValue, index) {
+                        var option = document.createElement("option");
+                        option.value = optionValue;
+                        option.text = optionValue;
+                        option.id = "option"; // Set unique id for each option
+                        option.style.cursor = "pointer"; // Apply cursor CSS
+                        dataSelect.appendChild(option);
+                    });
+                }
+            }
+
+        </script>
+
+        <script>
+            function updateDataOptions() {
+                var filterSelect = document.getElementById("Filter");
+                var dataSelect = document.getElementById("browsers");
+
+                // Clear existing options
+                dataSelect.innerHTML = '';
+
+                // Add options based on the selected filter
+                if (filterSelect.value === "Electrical") {
+                    addOption(dataSelect, "Analog", "Analog");
+                    addOption(dataSelect, "Digital", "Digital");
+                    addOption(dataSelect, "Direct", "Direct");
+                    addOption(dataSelect, "Conversion", "Conversion");
+                    addOption(dataSelect, "AnalogTimer", "Analog Timer");
+                    addOption(dataSelect, "DigitalTimer", "Digital Timer");
+                    addOption(dataSelect, "TCJ", "TCJ");
+                    addOption(dataSelect, "TCK", "TCK");
+                    addOption(dataSelect, "TCR", "TCR");
+                    addOption(dataSelect, "TCS", "TCS");
+                    addOption(dataSelect, "TCT", "TCT");
+                    addOption(dataSelect, "TCB", "TCB");
+                    addOption(dataSelect, "TCE", "TCE");
+                    addOption(dataSelect, "TCN", "TCN");
+                    addOption(dataSelect, "RTDPT100", "RTDPT100");
+                } else if (filterSelect.value === "Pressure") {
+                    addOption(dataSelect, "Anlog/Pneumatic", "Anlog/Pneumatic");
+                    addOption(dataSelect, "Anlog/Hydraulic", "Anlog/Hydraulic");
+                    addOption(dataSelect, "Digital/Pneumatic", "Digital/Pneumatic");
+                    addOption(dataSelect, "Digital/Hydraulic", "Digital/Hydraulic");
+                } else if (filterSelect.value === "Thermal") {
+                    addOption(dataSelect, "Analog", "Analog");
+                    addOption(dataSelect, "Digital", "Digital");
+                    addOption(dataSelect, "TCJ", "TCJ");
+                    addOption(dataSelect, "TCK", "TCK");
+                    addOption(dataSelect, "TCR", "TCR");
+                    addOption(dataSelect, "TCS", "TCS");
+                    addOption(dataSelect, "TCT", "TCT");
+                    addOption(dataSelect, "TCB", "TCB");
+                    addOption(dataSelect, "TCE", "TCE");
+                    addOption(dataSelect, "TCN", "TCN");
+                    addOption(dataSelect, "RTDPT100", "RTDPT100");
+                } else if (filterSelect.value === "Dimension") {
+                    addOption(dataSelect, "Analog/Bore", "Analog/Bore");
+                    addOption(dataSelect, "Analog/Flat", "Analog/Flat");
+                    addOption(dataSelect, "Analog/Pointed", "Analog/Pointed");
+                    addOption(dataSelect, "Digital/Bore", "Digital/Bore");
+                    addOption(dataSelect, "Digital/Flat", "Digital/Flat");
+                    addOption(dataSelect, "Digital/Pointed", "Digital/Pointed");
+                } else if (filterSelect.value === "Mass") {
+                    addOption(dataSelect, "Analog", "Analog");
+                    addOption(dataSelect, "Digital", "Digital");
+                } else if (filterSelect.value === "All") {
+                    addOption(dataSelect, "Analog", "Analog");
+                    addOption(dataSelect, "Digital", "Digital");
+                    addOption(dataSelect, "Direct", "Direct");
+                    addOption(dataSelect, "Conversion", "Conversion");
+                    addOption(dataSelect, "AnalogTimer", "Analog Timer");
+                    addOption(dataSelect, "DigitalTimer", "Digital Timer");
+                    addOption(dataSelect, "TCJ", "TCJ");
+                    addOption(dataSelect, "TCK", "TCK");
+                    addOption(dataSelect, "TCR", "TCR");
+                    addOption(dataSelect, "TCS", "TCS");
+                    addOption(dataSelect, "TCT", "TCT");
+                    addOption(dataSelect, "TCB", "TCB");
+                    addOption(dataSelect, "TCE", "TCE");
+                    addOption(dataSelect, "TCN", "TCN");
+                    addOption(dataSelect, "RTDPT100", "RTDPT100");
+                    addOption(dataSelect, "Anlog/Pneumatic", "Anlog/Pneumatic");
+                    addOption(dataSelect, "Anlog/Hydraulic", "Anlog/Hydraulic");
+                    addOption(dataSelect, "Digital/Pneumatic", "Digital/Pneumatic");
+                    addOption(dataSelect, "Digital/Hydraulic", "Digital/Hydraulic");
+                    addOption(dataSelect, "Analog/Bore", "Analog/Bore");
+                    addOption(dataSelect, "Analog/Flat", "Analog/Flat");
+                    addOption(dataSelect, "Analog/Pointed", "Analog/Pointed");
+                    addOption(dataSelect, "Digital/Bore", "Digital/Bore");
+                    addOption(dataSelect, "Digital/Flat", "Digital/Flat");
+                    addOption(dataSelect, "Digital/Pointed", "Digital/Pointed");
+                }
+                // Add more conditions for other filters if needed
+            }
+
+            function addOption(selectElement, text, value) {
+                var option = document.createElement("option");
+                option.textContent = text;
+                option.value = value;
+                selectElement.appendChild(option);
+            }
+
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#updateButton').on('click', function () {
+                    // Get values from input fields and select dropdowns
+                    var fromValue = $('#from').val();
+                    var toValue = $('#To').val();
+                    var dataValue = $('#departmentSelect').val();
+                    var selectedValue = $('#browser').val();
+                    var Filter = $('#Filter').val();
+                    var selectedSRFPrefix = $('#srfno').val();
+
+                    // Log the values to the console
+                    console.log('From:', fromValue);
+                    console.log('To:', toValue);
+                    console.log('dataValue:', dataValue);
+                    console.log('selectedValue:', selectedValue);
+                    console.log('Filter:', Filter);
+                    console.log('Selected SRFPrefix:', selectedSRFPrefix);
+
+                    // Make an AJAX request to the backend
+                    $.ajax({
+                        url: '/update_configuration', // Replace with your actual backend endpoint
+                        type: 'POST', // or 'GET' depending on your backend configuration
+                        data: {
+                            fromValue: fromValue,
+                            toValue: toValue,
+                            dataValue: dataValue,
+                            selectedValue: selectedValue,
+                            selectedSRFPrefix: selectedSRFPrefix // Include the selected SRFPrefix
+                        },
+                        success: function (response) {
+                            // Handle the response from the backend
+                            console.log(response);
+                            location.reload(true);
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                });
+            });
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // On change of either "ColumnName" or "Filter" dropdowns
+                $("#departmentSelect, #Filter").change(function () {
+                    // Get selected values
+                    var columnValue = $("#departmentSelect").val();
+                    var filterValue = $("#Filter").val();
+                    console.log("columnValue:", columnValue)
+                    console.log("Filter:", filterValue)
+
+                    // Make Ajax request to the backend
+                    $.ajax({
+                        type: "POST",
+                        url: "click_column_config", // Replace with your backend endpoint
+                        data: {
+                            column: columnValue,
+                            filter: filterValue
+                        },
+                        success: function (response) {
+                            $('#browsers').empty(); // Clear previous options
+                            $.each(response, function (index, value) {
+                                // Create an option element
+                                var option = $('<option></option>');
+                                // Set the value and text of the option
+                                option.val(value).text(value);
+                                // Append the option to the select dropdown with id selectData
+                                $('#browsers').append(option);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Ajax request error:", status, error);
+                        }
+                    });
+                });
+            });
+
+
+        </script>
+
+<script>
+     var selectedValue = "";
+
+document.getElementById('browser').addEventListener('change', function() {
+    selectedValue = this.value;
+});
+
+document.getElementById('browser').addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) { // Enter key pressed
+        selectedValue = this.value;
+    }
+});
+
+document.getElementById('browser').addEventListener('input', function() {
+    var inputText = this.value;
+    var options = document.querySelectorAll('#browsers option');
+
+    options.forEach(function(option) {
+        if (option.value !== inputText) {
+            option.style.display = 'none';
+        } else {
+            option.style.display = 'block';
+        }
+    });
+});
+
+function clearInput() {
+    document.getElementById('browser').value = "";
+  
+    selectedValue = "";
+}
+</script>
+
+
+</body>
+
+</html>

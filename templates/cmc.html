@@ -1,0 +1,2021 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB-CMC CHART LAB-SCOPE</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        eintegrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
+    <style>
+        .addbutton {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            width: 8%;
+            border: 1px solid transparent;
+            letter-spacing: 1px;
+            min-width: 100px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 400;
+            text-align: center;
+            margin-left: 40px;
+            margin-top: 3px;
+            color: #fff;
+            background-color: #ffa500;
+            height: 35px;
+        }
+
+        .addbutton1 {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            width: 8%;
+            border: 1px solid transparent;
+            letter-spacing: 1px;
+            min-width: 100px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 400;
+            text-align: center;
+            margin-left: 40px;
+            margin-top: 3px;
+            color: #fff;
+            background-color: #ffa500;
+            height: 35px;
+        }
+
+        .tablecol {
+            overflow: hidden;
+            max-height: 70vh;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .outer-wrapper {
+            margin: 40px 20px;
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            max-height: calc(70vh - 45px);
+            padding-bottom: 20px;
+
+        }
+
+        thead {
+            position: sticky;
+            z-index: 2;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 400%;
+            height: auto;
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+
+        }
+
+        #fixed-column {
+            position: sticky;
+            left: 0;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+
+        #fixed-column:last-child {
+            left: auto;
+            right: 0;
+        }
+
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+
+        }
+
+        table thead th:first-child {
+            position: sticky !important;
+            left: 0 !important;
+            z-index: 2 !important;
+        }
+
+        .table-wrapper th#fixed-column {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+        #str {
+            position: sticky;
+            background: #3C486B;
+            color: white;
+            z-index: 1;
+            left: 0;
+        }
+
+        .table-wrapper th#fixed-column:last-child {
+            right: 0;
+        }
+
+        .table-wrapper td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+        }
+
+        .table-wrapper td.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+        }
+
+        table th,
+        table td {
+
+            padding: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+        }
+
+        th.resize {
+            position: relative;
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+        #searchInput {
+            margin-top: -40px;
+            position: fixed;
+        }
+
+        #download {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 100px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            height: 48px;
+            margin-left: 40px;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+
+        #deleteButton {
+        height: 20px;
+        font-size: x-small;
+        font-weight: bold;
+        text-align: center;
+        padding: 2px;
+        width: 30px;
+    }
+
+    #deleteButton1{
+         height: 20px;
+         font-size: x-small;
+         font-weight: bold;
+         text-align: center;
+         padding: 2px;
+         width: 30px;   
+    }
+
+    #editButton{
+          height: 20px;
+          font-size: x-small;
+          font-weight: bold;
+          text-align: center;
+          padding: 2px;
+          width: 30px; 
+    }
+
+
+    #editButton1{
+          height: 20px;
+          font-size: x-small;
+          font-weight: bold;
+          text-align: center;
+          padding: 2px;
+          width: 30px; 
+    }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+<script>
+    // Retrieve valueStoredInVariable from localStorage
+    var storedValue = localStorage.getItem('valueStoredInVariable');
+    console.log(storedValue);
+    // Now you can use valueStoredInVariable in this script or any other script on this page.
+    // Check if valueStoredInVariable is defined
+    if (storedValue === "Customer Care") {
+        fetch('/navbar')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else if (storedValue === "ETL-Electro Technical Lab") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else if (storedValue === "PRL-Pressure Lab") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "MCL-Linear") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "MCL-Mass") {
+        fetch('/navbardepartmentcal')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "QA") {
+        fetch('/navbardepartmentqa')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    }else if (storedValue === "System Administrator") {
+        fetch('/navbardepartmentsa')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    } else {
+        console.log("No conditions matched.");
+    }
+</script>
+
+
+
+    <div class="containersranges" style="display: flex; margin-top: 50px;">
+        <label class="col-form-label" for="department"
+            style="margin-right: 10px; margin-left: 40px;  font-weight: bold;">Department</label>
+        <select class="form-select" id="department" name="department" style="width: 25%; height: 20%;">
+
+            <option value="">Select</option>
+            {% for department in departments %}
+            <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                {{ department }}
+            </option>
+            {% endfor %}
+        </select>
+        <!-------------------------------------------------------------------------------->
+        <label class="col-form-label" style="margin-right: 10px;  margin-left: 40px;  font-weight: bold;">
+            Calibrator</label>
+        <select class="form-select" id="Calibrator" name="Calibrator"
+            style=" font-weight: 500; width: 25%;  height: 20%;">
+
+            <option value="">Select</option>
+        </select>
+        <button         class="addbutton" style="margin-left: 16.5%;">Add New 
+        </button>
+    </div>
+
+    <!-- -------------------------------------------------------------------------------- -->
+    <br>
+    <div class="tabercol">
+        <div class="outer-wrapper">
+            <div class="table-wrapper">
+
+                <table id="emp-table" style="width: 250%;">
+                    <thead>
+                        <th col-index=1 class="resize">Department
+
+                        </th>
+                        <th col-index=2 id="fixed-column" class="resize">Calibrator ID
+
+
+                        </th>
+
+                        <th col-index=3 class="resize" id="str">Function
+
+                        </th>
+                        <th col-index=4 class="resize" id="str">Parameter
+
+                        </th>
+                        <th col-index=5 class="resize" id="str">Scope
+
+                        </th>
+                        <th col-index=6 class="resize" id="str">Meas.Type
+
+                        </th>
+
+                        <th col-index="7" class="resize department-columns" id="str">Frequency/Volt Required
+
+                        </th>
+
+                        <th col-index="8" class="resize department-columns" id="str">Low Frequency
+
+
+                        </th>
+
+                        <th col-index="9" class="resize department-columns" id="str">Unit
+
+
+                        </th>
+                        <th col-index="10" class="resize department-columns" id="str">High Frequency
+
+
+                        </th>
+
+                        <th col-index="11" class="resize department-columns" id="str">Unit
+
+
+                        </th>
+
+
+                        <th col-index="12" class="resize" id="fixed-column" style="width: 120px;">Action
+
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td class="fixed-column" id="customerCode">{{ user[2] }}</td>
+                            <td>{{ user[1] }}</td>
+
+                            <td>{{ user[4] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>{{ user[6] }}</td>
+                            <td>{{ user[5] }}</td>
+                            <td><input type="checkbox" {% if user[7] %}checked{% endif %} disabled> </td>
+
+
+                            <td>{{ user[8] }}</td>
+                            <td>{{ user[9] }}</td>
+                            <td>{{ user[10] }}</td>
+                            <td>{{ user[11] }}</td>
+
+
+                            <td class="fixed-column">
+                                <div style="display: flex; align-items: center; ">
+
+
+                                    <button   title="Delete CMC Scope"    type="submit" id="deleteButton" class="btn btn-danger"
+                                        data-model-id="{{ user[0] }}">X</button>
+
+
+                                    <button title="Edit CMC"     style="font-family: 'Times New Roman';"  type="submit" id="editButton" class="btn btn-primary"
+                                        data-manufacturer-id="{{ user[0] }}">I</button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------------------->
+    <br>
+    <div class="containersranges" style="display: flex; margin-top: -30px;">
+        <label class="col-form-label"
+            style=" margin-left: 30%;  font-weight: bold;">Parameter</label>
+        <select class="form-select" id="Parameter" name="Parameter" style="width: 25%; height: 20%;">
+
+            <option value="">Select</option>
+        </select>
+        <button class="addbutton1" style="margin-left: 25%" href="/insert_cmc_unit">Add New </button>
+
+    </div>
+
+    <!----------------------------------------------------------------------------------------- -->
+    <br>
+    <div class="tabercol">
+        <div class="outer-wrapper">
+            <div class="table-wrapper">
+
+                <table id="emp-table1" style="height: 50px;">
+                    <thead>
+                        <th col-index=1 class="resize">Department
+
+                        </th>
+                        <th col-index=2 id="fixed-column" class="resize">Calibrator ID
+
+
+                        </th>
+
+                        <th col-index=3 class="resize" id="str">Function
+
+                        </th>
+                        <th col-index=4 class="resize" id="str">Parameter
+
+                        </th>
+                        <th col-index=5 class="resize" id="str">Scope
+
+                        </th>
+
+                        <th col-index="6" class="resize" id="str">Low Range
+
+
+                        </th>
+
+                        <th col-index="7" class="resize" id="str">Unit
+
+
+                        </th>
+
+                        <th col-index="8" class="resize" id="str">Low Uncertanity Value
+
+
+                        </th>
+                        <th col-index="9" class="resize" id="str">Unit
+
+
+                        </th>
+
+                        <th col-index="10" class="resize" id="str">High Range
+
+
+                        </th>
+
+                        <th col-index="11" class="resize" id="str">Unit
+
+
+                        </th>
+
+                        <th col-index="12" class="resize" id="str">High Uncertanity Value
+
+
+                        </th>
+
+                        <th col-index="13" class="resize" id="str">Unit
+
+
+                        </th>
+
+                        <th col-index="14" class="resize" id="str">K.Factor
+
+                        </th>
+                        <th col-index="15" class="resize department-columns " id="str">Frequency Required
+
+                        </th>
+                        <th col-index="16" class="resize department-columns " id="str">Low Frequency Unit
+
+                        </th>
+
+                        <th col-index="17" class="resize department-columns " id="str">Unit
+
+                        </th>
+
+                        <th col-index="18" class="resize department-columns " id="str"> High Frequency Unit
+
+                        </th>
+
+                        <th col-index="19" class="resize department-columns " id="str">Unit
+
+                        </th>
+
+                        <th col-index="20" class="resize" id="fixed-column" style="width: 120px;">Action
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for datsas in datsa %}
+                        <tr>
+                            <td class="fixed-column" id="customerCode">{{ datsas[14] }}</td>
+                            <td>{{ datsas[1] }}</td>
+                            <td>{{ datsas[2] }}</td>
+                            <td>{{ datsas[3] }}</td>
+                            <td>{{ datsas[13] }}</td>
+                            <td>{{ datsas[4] }}</td>
+                            <td>{{ datsas[5] }}</td>
+                            <td>{{ datsas[8] }}</td>
+                            <td>{{ datsas[9] }}</td>
+                            <td>{{ datsas[6] }}</td>
+                            <td>{{ datsas[7] }}</td>
+                            <td>{{ datsas[10] }}</td>
+                            <td>{{ datsas[11] }}</td>
+                            <td>{{ datsas[12] }}</td>
+                            <td><input type="checkbox" {% if datsas[14] %}checked{% endif %} disabled> </td>
+
+                            <td>{{ datsas[15] }}</td>
+                            <td>{{ datsas[16] }}</td>
+                            <td>{{ datsas[17] }}</td>
+                            <td>{{ datsas[18] }}</td>
+
+
+                            <td class="fixed-column">
+                                <div style="display: flex; align-items: center; ">
+                                    <button   title="Delete CMC Scope" type="submit" id="deleteButton1" class="btn btn-danger"
+                                        data-model-id="{{ datsas[0] }}">X</button>
+
+
+                                    <button  title="Edit CMC" style="font-family: 'Times New Roman';   " type="submit" id="editButton1" class="btn btn-primary"
+                                        data-manufacturer1-id="{{ datsas[0] }}">I</button>
+
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding-left: 360px; gap:30px; margin-top: 20px; margin-left: 200px;">
+        <button style="background-color: darkgreen;" id="download">Download</button>
+    </div>
+    <!-- --------------------------------------------------------------------------------- -->
+    <!-- Department and calibrator input  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#department").click(function () {
+                var selectedPrefix = $(this).val();
+
+                $.post("/select_calib_cmc", { sel_parameter: selectedPrefix }, function (data) {
+                    // Clear the previous models
+                    $("#Calibrator").empty();
+                    $("#Calibrator").append("<option value=''>Select</option>");
+                    $("#Parameter").empty();
+                    $("#Parameter").append("<option value=''>Select</option>");
+
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#Calibrator").append("<option value='" + model + "'>" + model + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // When a model is selected
+            $("#Calibrator").change(function () {
+                var selectedModel = $(this).val();
+                var selectedPrefix = $("#department").val();
+
+                // Send selected model to the backend
+                $.post("/cmc_parameters", { ModelNo: selectedModel, sel_pre: selectedPrefix }, function (data) {
+                    // Clear the previous options in the Description select element
+
+
+                    // Iterate over the descriptions and add them as options to the Description select element
+                    data.forEach(function (description) {
+                        $("#Parameter").append("<option value='" + description + "'>" + description + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#Calibrator").on("change", function () {
+                var selectedModel = $(this).val();
+                var Calibrator = $("#Calibrator").val();
+                var selectedPrefix = $("#department").val();
+
+                // Log the values to the console for debugging
+                console.log("Selected Model:", selectedModel);
+                console.log("Calibrator:", Calibrator);
+                console.log("selectedPrefix:", selectedPrefix);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/get_cmc_calibration",
+                    data: {
+                        ModelNo: selectedModel,
+                        sel_parameter: Calibrator,
+                        sel_pre: selectedPrefix
+                    },
+                    success: function (response) {
+                        try {
+                            // Initialize empty values and datas arrays
+                            var values = [];
+                            var datas = [];
+
+                            // Check the selected department and populate data accordingly
+                            if (selectedPrefix === "ETL-Electro Technical Lab") {
+                                values = response.values;
+                                datas = response.datas;
+
+                                var tableBody = $("#emp-table").find("tbody");
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody.empty();
+                                tableBody2.empty(); // Clear existing table rows
+
+                                // Loop through 'values' to populate the first table
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td class='fixed-column'>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td>" + values[i][6] + "</td>" +
+                                        "<td>" + values[i][5] + "</td>" +
+                                        "<td>" +
+                                        "<input type='checkbox' name='someCheckboxName' value='" + values[i][7] + "'" + (values[i][7] === "1" ? "checked" : "disabled") + ">" +
+                                        "</td>" +
+
+
+                                        "<td>" + values[i][8] + "</td>" +
+                                        "<td>" + values[i][9] + "</td>" +
+
+                                        "<td>" + values[i][10] + "</td>" +
+                                        "<td>" + values[i][11] + "</td>" +
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton' class='btn btn-danger' data-device-id='" + values[i][0] + "'>X</button>" +
+                                        "<form action='/edit_parametercmc/" + values[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + values[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<button type='submit' id='editButton' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                    $(document).on('click', '#editButton', function (event) {
+                                        event.preventDefault();  // Prevent the default form submission
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+
+                                // Loop through 'datas' to populate the second table
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][1] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" +
+                                        "<input type='checkbox' name='someCheckboxName' value='" + datas[i][15] + "'" + (datas[i][15] === "1" ? "checked" : "disabled") + ">" +
+                                        "</td>" +
+                                        "<td>" + datas[i][16] + "</td>" +
+                                        "<td>" + datas[i][17] + "</td>" +
+
+                                        "<td>" + datas[i][18] + "</td>" +
+                                        "<td>" + datas[i][19] + "</td>" +
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault();  // Prevent the default form submission
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "PRL-Pressure Lab") {
+                                values = response.PressureValues;
+                                datas = response.PressureDatas;
+                                var tableBody = $("#emp-table").find("tbody");
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody.empty();
+                                tableBody2.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td class='fixed-column'>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td>" + values[i][6] + "</td>" +
+                                        "<td>" + values[i][5] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton' class='btn btn-danger' data-device-id='" + values[i][0] + "'>X</button>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][1] + "</td>" +
+                                        "<td>" + datas[i][3] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][2] + "</td>" +
+
+                                        "<td>" + datas[i][4] + "</td>" +
+                                        "<td>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+
+
+
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault();  // Prevent the default form submission
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "MCL-Mass") {
+                                values = response.MassValues;
+                                datas = response.MassDatas;
+                                var tableBody = $("#emp-table").find("tbody");
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody.empty();
+                                tableBody2.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td class='fixed-column'>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td>" + values[i][6] + "</td>" +
+                                        "<td>" + values[i][5] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton' class='btn btn-danger' data-device-id='" + values[i][0] + "'>X </button>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+                                    var newRow1 = "<tr>" +
+
+                                        "<td class='fixed-column'>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][15] + "</td>" +
+
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault();  // Prevent the default form submission
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "MCL-Linear") {
+                                values = response.LinearValues;
+                                datas = response.LinearDatas;
+                                var tableBody = $("#emp-table").find("tbody");
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody.empty();
+                                tableBody2.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td class='fixed-column'>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td>" + values[i][6] + "</td>" +
+                                        "<td>" + values[i][5] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton' class='btn btn-danger' data-device-id='" + values[i][0] + "'>X</button>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][15] + "</td>" +
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                }
+                                $(document).on('click', '#editButton1', function (event) {
+                                    event.preventDefault();  // Prevent the default form submission
+
+                                    var master = "CMC Scope Settings";
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/per_forcmc_mod",
+                                        data: { masterdetails: master },
+                                        success: function (response) {
+                                            if (response.status === "success") {
+                                                // Redirect to the edit page
+                                                var editForm = $(event.target).closest('form');
+                                                editForm.submit();
+                                            } else if (response.status === "failure") {
+                                                alert("Not allowed to edit.");
+                                            } else {
+                                                alert("Failed to add.");
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+
+                            // Output the received data to the console for debugging
+                            console.log("Received Values:", values);
+                            console.log("Received Datas:", datas);
+                        } catch (error) {
+                            console.error("Error:", error);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                    }
+                });
+
+            });
+        });
+    </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#emp-table').on('click', '#deleteButton', function () {
+                var rowToDelete = $(this).closest('tr'); // Get the closest <tr> element
+                var modelId = $(this).data('device-id');
+                var manf = 'CMC Scope Settings';
+                var confirmation = 'YES';
+                $.ajax({
+                    type: "POST",
+                    url: "/delete_params/" + modelId,
+                    data: { model: manf },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            if (confirm("Are you sure you want to delete this CMC Parameter?")) {
+
+                                rowToDelete.remove();
+                                alert("Deleted successfully");
+                            } else {
+                                // User clicked "No", handle it accordingly (e.g., send a different action to the backend)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/confirm_delete_params",
+                                    data: { confirmation: confirmation },
+
+                                });
+                            }
+
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to delete.");
+                        } else {
+                            alert("Failed to delete.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#emp-table1').on('click', '#deleteButton1', function () {
+                var rowToDelete = $(this).closest('tr'); // Get the closest <tr> element
+                var modelId = $(this).data('parameter-id');
+                var manf = 'CMC Scope Settings';
+                var confirmation = 'YES';
+                $.ajax({
+                    type: "POST",
+                    url: "/delete_params/" + modelId,
+                    data: { model: manf },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            if (confirm("Are you sure you want to delete this Parameter Ranges ?")) {
+
+                                rowToDelete.remove();
+                                alert("Deleted successfully");
+                            } else {
+                                // User clicked "No", handle it accordingly (e.g., send a different action to the backend)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/confirm_delete_range",
+                                    data: { confirmation: confirmation },
+
+                                });
+                            }
+
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to delete.");
+                        } else {
+                            alert("Failed to delete.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Use event delegation to handle clicks on edit buttons
+            $("#emp-table").on("click", '#editButton', function () {
+                // Retrieve user ID from the data attribute
+                var userId = $(this).data('manufacturer-id');
+                var editUrl = "/edit_parametercmc/" + userId;
+                console.log("userId:", userId);
+                console.log("editUrl:", editUrl);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/per_forcmc_mod",
+                    data: { masterdetails: "CMC Scope Settings" },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            // User is allowed to edit, redirect to the edit URL
+                            window.location.href = editUrl;
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to edit.");
+                        } else {
+                            alert("Failed to fetch edit URL.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        alert("Failed to retrieve edit URL.");
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Use event delegation to handle clicks on edit buttons
+            $("#emp-table1").on("click", '#editButton1', function () {
+                // Retrieve user ID from the data attribute
+                var userId = $(this).data('parameter-id');
+                var editUrl = "/edit_ranges/" + userId;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/per_forcmc_mod",
+                    data: { masterdetails: "CMC Scope Settings" },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            // User is allowed to edit, redirect to the edit URL
+                            window.location.href = editUrl;
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to edit.");
+                        } else {
+                            alert("Failed to fetch edit URL.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        alert("Failed to retrieve edit URL.");
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            $('.addbutton').click(function () {
+
+                var master = "CMC Scope Settings";
+                console.log(master);
+                $.ajax({
+                    type: "POST",
+                    url: "/add_cmc_details",
+                    data: { masterdetails: master },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            confirm("Are you sure you want to add this CMC Calibrator Parameter Details?");
+
+
+                            window.location.href = '/show_cmc';
+
+
+
+
+
+
+
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to add.");
+
+
+                        } else {
+                            alert("Failed to add.");
+                        }
+                    }
+                });
+            });
+
+            // When "Add NEW" button is clicked
+
+
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            $('.addbutton1').click(function () {
+
+                var master = "CMC Scope Settings";
+                console.log(master);
+                $.ajax({
+                    type: "POST",
+                    url: "/add_cmc_details",
+                    data: { masterdetails: master },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            confirm("Are you sure you want to add this CMC Calibrator Parameter Details?");
+
+
+                            window.location.href = '/show_cmc_ad';
+
+
+
+
+
+
+
+                        } else if (response.status === "failure") {
+                            alert("Not allowed to add.");
+
+
+                        } else {
+                            alert("Failed to add.");
+                        }
+                    }
+                });
+            });
+
+            // When "Add NEW" button is clicked
+
+
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+    <!-- table script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- <script>
+        $(document).ready(function () {
+            // Function to toggle the visibility of department columns and add CSS styles
+            function toggleDepartmentColumns(department) {
+                if (department === "ETL-Electro Technical Lab") {
+                    $(".department-columns").show();
+
+
+
+
+                    // Optionally, you can remove the CSS styles from elements with the class .table-wrapperranges here
+
+                    return;
+                }
+
+                // Check if the selected department should hide columns 3 to 7
+                if (department === "PRL-Pressure Lab" || department === "MCL-Linear" || department === "MCL-Mass") {
+                    // Hide department columns
+                    $(".department-columns").hide();
+
+                    // Set the width of columns 1 and 2 to auto
+                    $("[col-index=1], [col-index=2]").css("width", "auto");
+
+
+                } else {
+                    // Show department columns
+                    $(".department-columns").show();
+
+                    // Optionally, you can reset the width of columns 1 and 2 to their original values here
+
+                }
+            }
+
+            // Initially hide department columns and add CSS styles
+            toggleDepartmentColumns($("#department").val());
+
+            $("#department").on("change", function () {
+                var selectedDepartment = $(this).val();
+
+                // Toggle visibility of department columns and add/remove CSS styles based on selected department
+                toggleDepartmentColumns(selectedDepartment);
+
+                // Rest of your code...
+            });
+        });
+    </script> -->
+
+
+
+
+    <script>
+        // Function to handle edit button click
+        function handleEditButtonClick() {
+            var selectedDepartment = $(this).data("department");
+
+            // Log the selected department for debugging
+            console.log("Selected Department for Edit Button Click:", selectedDepartment);
+
+            // Now, you can use the selectedDepartment value as needed for your edit action.
+            // Add your logic here to work with the selected department.
+        }
+
+        // Attach the function to the click event of the edit button
+        $(document).on("click", "#editButton1", handleEditButtonClick);
+    </script>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            getUniqueValuesFromColumn();
+        });
+
+        function searchTable() {
+            selectedRows = [];
+            const input = document.getElementById("searchInput");
+            const filterValue = input.value.trim().toLowerCase();
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            rows.forEach((row) => {
+                let rowMatch = false;
+
+                // Check if any cell in the row contains the search term
+                row.querySelectorAll("td").forEach((cell) => {
+                    const cellValue = cell.textContent.trim().toLowerCase();
+                    if (cellValue.includes(filterValue)) {
+                        rowMatch = true;
+                    }
+                });
+
+                // Check if the checkbox value matches the search term
+                const checkbox = row.querySelector("input[name='rowCheckbox']");
+
+                if (checkbox && checkbox.checked) {
+                    rowMatch = true;
+                    selectedRows.push(row); // Store the selected row for later use
+                }
+                if (rowMatch) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        // Attach the searchTable function to the search input
+        document.getElementById("searchInput").addEventListener("input", searchTable);
+
+
+        function getUniqueValuesFromColumn() {
+            var unique_col_values_dict = {};
+
+            const allFilters = document.querySelectorAll(".table-filter");
+            allFilters.forEach((filter_i) => {
+                const col_index = filter_i.parentElement.getAttribute("col-index");
+                const rows = document.querySelectorAll("#emp-table > tbody > tr");
+
+                unique_col_values_dict[col_index] = [];
+
+                rows.forEach((row) => {
+                    const cell = row.querySelector("td:nth-child(" + col_index + ")");
+                    if (!cell) return; // Skip if the cell does not exist
+                    const cell_value = cell.textContent.trim();
+                    if (!unique_col_values_dict[col_index].includes(cell_value)) {
+                        unique_col_values_dict[col_index].push(cell_value);
+                    }
+                });
+            });
+
+            updateSelectOptions(unique_col_values_dict);
+        }
+
+        function updateSelectOptions(unique_col_values_dict) {
+            const allFilters = document.querySelectorAll(".table-filter");
+
+            allFilters.forEach((filter_i) => {
+                const col_index = filter_i.parentElement.getAttribute("col-index");
+
+                // Clear existing options before adding new ones
+                filter_i.innerHTML = '<option value="all">All</option>';
+
+                unique_col_values_dict[col_index].forEach((value) => {
+                    filter_i.innerHTML += `\n<option value="${value}">${value}</option>`;
+                });
+            });
+
+            filter_rows(); // Apply initial filtering after updating options
+        }
+
+        function filter_rows() {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            rows.forEach((row) => {
+                row.style.display = "table-row"; // Reset row display before applying filters
+
+                const allFilters = document.querySelectorAll(".table-filter");
+                allFilters.forEach((filter_i) => {
+                    const col_index = filter_i.parentElement.getAttribute("col-index");
+                    const filter_value = filter_i.value;
+                    if (filter_value !== "all") {
+                        const cell = row.querySelector(`td:nth-child(${col_index})`);
+                        if (!cell) return; // Skip if the cell does not exist
+                        const row_cell_value = cell.textContent.trim();
+                        if (row_cell_value !== filter_value) {
+                            row.style.display = "none"; // Hide the row if any filter condition does not match
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+    <script>
+        function initResizableColumns() {
+            const headers = document.querySelectorAll('th.resize');
+
+            headers.forEach(header => {
+                let startX;
+                let startWidth;
+
+                header.addEventListener('mousedown', function (event) {
+                    startX = event.clientX;
+                    startWidth = header.offsetWidth;
+
+                    document.addEventListener('mousemove', resizeColumn);
+                    document.addEventListener('mouseup', stopResize);
+                });
+
+                function resizeColumn(event) {
+                    const newWidth = startWidth + (event.clientX - startX);
+                    header.style.width = newWidth + 'px';
+
+                    // Prevent column resizing from interfering with scrolling
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'auto';
+                }
+
+                function stopResize() {
+                    document.removeEventListener('mousemove', resizeColumn);
+                    document.removeEventListener('mouseup', stopResize);
+
+                    // Allow table layout to go back to fixed after resizing
+                    const table = header.closest('table');
+                    table.style.tableLayout = 'fixed';
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initResizableColumns);
+    </script>
+  
+     <script>
+        $(document).ready(function () {
+            $("#Parameter").on("change", function () {
+                var selectedModel = $(this).val();
+                var selectedPrefix = $("#department").val();
+
+                // Log the values to the console for debugging
+               
+
+                $.ajax({
+                    type: "POST",
+                    url: "/cmc_parameters_filters",
+                    data: {
+                        ParamName: selectedModel, sel_pre: selectedPrefix
+                    },
+                    success: function (response) {
+                        try {
+                            // Initialize empty values and datas arrays
+                          
+                            var datas = [];
+
+                            // Check the selected department and populate data accordingly
+                            if (selectedPrefix === "ETL-Electro Technical Lab") {
+                                datas = response.datas;
+
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody2.empty(); // Clear existing table rows
+
+                               
+                                
+
+                                // Loop through 'datas' to populate the second table
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][1] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" +
+                                        "<input type='checkbox' name='someCheckboxName' value='" + datas[i][15] + "'" + (datas[i][15] === "1" ? "checked" : "disabled") + ">" +
+                                        "</td>" +
+                                        "<td>" + datas[i][16] + "</td>" +
+                                        "<td>" + datas[i][17] + "</td>" +
+
+                                        "<td>" + datas[i][18] + "</td>" +
+                                        "<td>" + datas[i][19] + "</td>" +
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X </button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault();  // Prevent the default form submission
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "PRL-Pressure Lab") {
+                                datas = response.PressureDatas;
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody2.empty();
+
+                               
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][1] + "</td>" +
+                                        "<td>" + datas[i][3] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][2] + "</td>" +
+
+                                        "<td>" + datas[i][4] + "</td>" +
+                                        "<td>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+
+
+
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault(); 
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "MCL-Mass") {
+                                datas = response.MassDatas;
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody2.empty();
+
+                               
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; 
+                                    }
+                                    var newRow1 = "<tr>" +
+
+                                        "<td class='fixed-column'>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][15] + "</td>" +
+
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X </button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                    $(document).on('click', '#editButton1', function (event) {
+                                        event.preventDefault(); 
+
+                                        var master = "CMC Scope Settings";
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/per_forcmc_mod",
+                                            data: { masterdetails: master },
+                                            success: function (response) {
+                                                if (response.status === "success") {
+                                                    // Redirect to the edit page
+                                                    var editForm = $(event.target).closest('form');
+                                                    editForm.submit();
+                                                } else if (response.status === "failure") {
+                                                    alert("Not allowed to edit.");
+                                                } else {
+                                                    alert("Failed to add.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            } else if (selectedPrefix === "MCL-Linear") {
+                                datas = response.LinearDatas;
+                                var tableBody2 = $("#emp-table1").find("tbody");
+                                tableBody2.empty();
+
+                                
+                                for (var i = 0; i < datas.length; i++) {
+                                    var bgColor = '';
+
+                                    if (datas) {
+                                        bgColor = 'background-color: #FEFFAC;'; // Set background color to red if condition is met
+                                    }
+                                    var newRow1 = "<tr>" +
+                                        "<td class='fixed-column'>" + datas[i][6] + "</td>" +
+                                        "<td>" + datas[i][2] + "</td>" +
+                                        "<td>" + datas[i][4] + "</td>" +
+
+                                        "<td style='" + bgColor + "'>" + datas[i][3] + "</td>" +
+
+                                        "<td>" + datas[i][5] + "</td>" +
+                                        "<td>" + datas[i][7] + "</td>" +
+                                        "<td>" + datas[i][8] + "</td>" +
+                                        "<td>" + datas[i][11] + "</td>" +
+                                        "<td>" + datas[i][12] + "</td>" +
+                                        "<td>" + datas[i][9] + "</td>" +
+                                        "<td>" + datas[i][10] + "</td>" +
+                                        "<td>" + datas[i][13] + "</td>" +
+                                        "<td>" + datas[i][14] + "</td>" +
+                                        "<td>" + datas[i][15] + "</td>" +
+
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<button type='submit' id='deleteButton1' class='btn btn-danger' data-parameter-id='" + datas[i][0] + "'>X</button>" +
+                                        "<form action='/edit_ranges/" + datas[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + datas[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<input type='hidden' name='value' value='CMC Scope Settings'>" +
+                                        "<button type='submit' id='editButton1' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody2.append(newRow1);
+                                }
+                                $(document).on('click', '#editButton1', function (event) {
+                                    event.preventDefault();  // Prevent the default form submission
+
+                                    var master = "CMC Scope Settings";
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/per_forcmc_mod",
+                                        data: { masterdetails: master },
+                                        success: function (response) {
+                                            if (response.status === "success") {
+                                                // Redirect to the edit page
+                                                var editForm = $(event.target).closest('form');
+                                                editForm.submit();
+                                            } else if (response.status === "failure") {
+                                                alert("Not allowed to edit.");
+                                            } else {
+                                                alert("Failed to add.");
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+
+                        
+                            console.log("Received Values:", values);
+                            console.log("Received Datas:", datas);
+                        } catch (error) {
+                            console.error("Error:", error);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                    }
+                });
+
+            });
+        });
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to toggle the visibility of department columns and add CSS styles
+        function toggleDepartmentColumns(department) {
+            if (department === "ETL-Electro Technical Lab") {
+                $(".department-columns").show();
+                var tableBody = $("#emp-table").find("tbody");
+                tableBody.empty();
+
+                $(".outer-wrapperranges1").css({
+                    "border": "1px solid black",
+                    "border-radius": "4px",
+                    "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",
+                    "max-width": "100%",
+                    "max-height": "fit-content",
+                    "margin-left": "0px"
+                });
+
+
+
+                // Optionally, you can remove the CSS styles from elements with the class .table-wrapperranges here
+                $(".table-wrapperranges1").css({
+                    "overflow-y": "scroll",
+                    "overflow-x": "scroll",
+
+
+                    "height": "fit-content",
+                    "max-height": "66.4vh"
+                });
+
+                $("#emp-tableranges table th, #emp-tableranges table td").css({
+                    "padding": "15px",
+                    "padding-top": "10px",
+                    "padding-bottom": "10px"
+
+                });
+                return;
+            }
+
+            // Check if the selected department should hide columns 3 to 7
+            if (department === "PRL-Pressure Lab" || department === "MCL-Linear" || department === "MCL-Mass") {
+                // Hide department columns
+                $(".department-columns").hide();
+                var tableBody = $("#emp-table").find("tbody");
+                tableBody.empty();
+
+
+                // Set the width of columns 1 and 2 to auto
+                $("[id='emp-table'][col-index='1'], [id='emp-table'][col-index=2]").css("width", "160px");
+
+                // Add CSS styles to elements with the class .outer-wrapperranges
+                $(".outer-wrapperranges1").css({
+                    "border": "1px solid black",
+                    "border-radius": "4px",
+                    "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",
+                    "max-width": "35%",
+                    "max-height": "fit-content",
+                    "margin-left": "350px"
+                });
+
+                // Add CSS styles to elements with the class .table-wrapperranges
+                $(".table-wrapperranges1").css({
+                    "overflow-y": "scroll",
+                    "overflow-x": "scroll",
+                    "height": "fit-content",
+                    "max-height": "60.4vh",
+                    "width": "40%"
+                });
+
+                $("#emp-tableranges table th, #emp-tableranges table td").css({
+                    "padding": "5px",
+                    "padding-top": "5px",
+                    "width": "50px",
+                    "height": "10px",
+                    "padding-bottom": "5px"
+                });
+            } else {
+                // Show department columns
+                $(".department-columns").show();
+
+                // Optionally, you can reset the width of columns 1 and 2 to their original values here
+                $("[col-index=1], [col-index=2]").css("width", "");
+
+                // Optionally, you can remove the CSS styles from elements with the class .outer-wrapperranges here
+                $(".outer-wrapperranges1").css({
+                    "border": "1px solid black",
+                    "border-radius": "4px",
+                    "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",
+                    "max-width": "100%",
+                    "max-height": "fit-content",
+                    "margin-left": "0px"
+                });
+
+
+
+                // Optionally, you can remove the CSS styles from elements with the class .table-wrapperranges here
+                $(".table-wrapperranges1").css({
+                    "overflow-y": "scroll",
+                    "overflow-x": "scroll",
+
+
+                    "height": "fit-content",
+                    "max-height": "66.4vh"
+                });
+
+                $("#emp-tableranges table th, #emp-tableranges table td").css({
+                    "padding": "15px",
+                    "padding-top": "10px",
+                    "padding-bottom": "10px"
+
+                });
+            }
+        }
+
+        // Initially hide department columns and add CSS styles
+        toggleDepartmentColumns($("#department").val());
+
+        $("#department").on("change", function () {
+            var selectedDepartment = $(this).val();
+
+            // Toggle visibility of department columns and add/remove CSS styles based on selected department
+            toggleDepartmentColumns(selectedDepartment);
+
+            // Rest of your code...
+        });
+    });
+</script>
+
+
+
+
+<script>
+    // Function to handle edit button click
+    function handleEditButtonClick() {
+        var selectedDepartment = $(this).data("department");
+
+        // Log the selected department for debugging
+        console.log("Selected Department for Edit Button Click:", selectedDepartment);
+
+        // Now, you can use the selectedDepartment value as needed for your edit action.
+        // Add your logic here to work with the selected department.
+    }
+
+    // Attach the function to the click event of the edit button
+    $(document).on("click", "#editButton1", handleEditButtonClick);
+</script> 
+
+
+</body>
+</html>

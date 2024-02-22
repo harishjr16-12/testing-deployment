@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> SoftlabWeb SRF Add</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        #addContent {
+
+            background-color: #ffffff;
+            margin: 5px auto;
+            width: 890px;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        #addContent1 {
+
+            background-color: #ffffff;
+            margin: 2px auto;
+            max-width: 680px;
+            padding: 2px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 15px;
+
+        }
+
+        .container-fluid p {
+            font-size: 15px;
+            font-weight: bolder;
+            margin-top: 2px;
+            margin-bottom: 0px;
+        }
+
+
+        .inst {
+            margin-top: 15px;
+            height: 500px;
+            overflow-y: scroll;
+            overflow-x: scroll;
+
+
+
+            background-color: #ffffff;
+
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        label {
+            font-weight: medium;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1px;
+            margin-bottom: 1px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+
+
+        .row {
+            margin: 0 -2px;
+        }
+
+
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+        }
+
+        .form-group .col-md-6 {
+            flex: 1;
+            margin-right: 2px;
+        }
+
+        .body1 {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .sa:hover {
+            background-color: blue;
+            color: white;
+
+        }
+
+      
+
+      
+
+       
+
+        #second {
+            display: none;
+        }
+
+        .col-form-label {
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="first">
+        <div id="navbar-sec"></div>
+        <script>
+            fetch('/navbarsec')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-sec').innerHTML = data;
+                });
+        </script>
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col">
+
+                    <input type="text" class="form-control" placeholder="Customer Name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Location">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="inst">
+                        {% for data in datas %}
+                        <p style="cursor: pointer; " class="sa" data-value="{{ data }}">{{ data }}</p>
+                         {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <section id="addContent">
+
+                        <div class="body1">
+                            <div class="container">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="CustomerCode" class="col-form-label">Customer
+                                            Code</label>
+                                        <input type="text" class="form-control" id="CustomerCode" name="CustomerCode">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="CustomerName" class="col-form-label">Customer
+                                            Name</label>
+                                        <input type="text" class="form-control" id="CustomerName" name="CustomerName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="Address" class="col-form-label">Address</label>
+                                        <textarea class="form-control" id="Address" name="Address"
+                                            style="height: 30px; "></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="City" class="col-form-label">City</label>
+                                        <input type="text" class="form-control" id="City" name="City">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="State" class="col-form-label">State</label>
+                                        <input type="text" class="form-control" id="State" name="State">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="Pincode" class="col-form-label">Pincode</label>
+                                        <input type="text" class="form-control" id="Pincode" name="Pincode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="GSTNo" class="col-form-label">GST No</label>
+                                        <input type="text" class="form-control" id="GSTNo" name="GSTNo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="MobileNo1" class="col-form-label">Mobile No</label>
+                                        <input type="text" class="form-control" id="MobileNo1" name="MobileNo1">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="MobileNo2" class="col-form-label">Mobile No</label>
+                                        <input type="text" class="form-control" id="MobileNo2" name="MobileNo2">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="MobileNo3" class="col-form-label">Landline No</label>
+                                        <input type="text" class="form-control" id="MobileNo3" name="MobileNo3">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="EmailID" class="col-form-label">Email.Id</label>
+                                        <input type="text" class="form-control" id="EmailID" name="EmailID">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="EmailID2" class="col-form-label">Email.Id</label>
+                                        <input type="text" class="form-control" id="EmailID2" name="EmailID2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="ContactPerson" class="col-form-label">Contact
+                                            Person
+                                            Name</label>
+                                        <input type="text" class="form-control" id="ContactPerson" name="ContactPerson">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ShippingAddress" class="col-form-label">Shipping
+                                            Address</label>
+                                        <textarea class="form-control" id="ShippingAddress" name="ShippingAddress"
+                                            style="height: 30px; "></textarea>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary"
+                style="margin-top: 10px;margin-left: 55%; width: 10%; margin-top: 20px;" id="saa">Save</button>
+            <button id="backToAddViewButton" style="margin-top: 20px; width: 10%;" class="btn btn-danger">Back</button>
+        </div>
+
+    </div>
+    <div id="second">
+        <div id="addContent1">
+            <form method="post" action="/save_srf_no" onsubmit="submitForm(event)">
+                <h3 style="margin-left: 25%;">SRF Job Card Details</h3>
+                <div class="body1">
+                    <!-- <h3>SRF Job Card Details</h3> -->
+                    <div class="container-fluid">
+                        <p>SRF References</p>
+                        <div class="form-group" style="margin-top: 0px; padding: 0%;">
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <label for="SRFNo" class="col-form-label">
+                                    SRF No</label>
+                                <input type="text" class="form-control" id="SRFNo" name="SRFNo">
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <label for="SRFPrefix" class="col-form-label">SRF Prefix
+                                </label>
+                                <input type="text" class="form-control" id="SRFPrefix" name="SRFPrefix">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 0;">
+                            <div class="col-md-6">
+                                <label for="SRFDate" class="col-form-label">SRF Date</label>
+                                <input type="date" class="form-control" id="SRFDate" name="SRFDate"
+                                    style="height: 30px; "></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="wotype" class="col-form-label">W.O.Type</label>
+                                <select style="width: 100%;" class="form-control" id="wotype" name="wotype">
+                                    <option value=""> Select</option>
+                                    <option value="P.O"> P.O</option>
+                                    <option value="Email confirmation">Email confirmation</option>
+                                    <option value="Verbal">Verbal</option>
+                                    <option value="others">others</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="worefno" class="col-form-label">W.O.Ref.No</label>
+                                <input type="text" class="form-control" id="worefno" name="worefno">
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="worefdate" class="col-form-label">W.O.Ref.Date</label>
+                                <input type="date" class="form-control" id="worefdate" name="worefdate">
+                            </div>
+                        </div>
+                        <p>Received Details</p>
+                        <div class="form-group" style="margin-top: 0px;">
+                            <div class="col-md-6">
+                                <label for="ReceivedQty" class="col-form-label">Received Qty</label>
+                                <input type="text" class="form-control" id="ReceivedQty" name="ReceivedQty">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="JobsRecdDate" class="col-form-label">Jobs Recd Date</label>
+                                <input type="date" class="form-control" id="JobsRecdDate" name="JobsRecdDate">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="SRFPerparedBy" class="col-form-label">SRF Perpared By</label>
+                                <input type="text" class="form-control" id="SRFPerparedBy" name="SRFPerparedBy">
+                            </div>
+
+                        </div>
+                        <p>Customer Details</p>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="CustomerCode1" class="col-form-label">Customer
+                                    Code</label>
+                                <input type="text" class="form-control" id="CustomerCode1" name="CustomerCode1">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="CustomerName1" class="col-form-label">Customer
+                                    Name</label>
+                                <input type="text" class="form-control" id="CustomerName1" name="CustomerName1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="ContactPerson1" class="col-form-label">Address
+                                    Change
+                                </label>
+                                <input style="margin-left: 250px; " type="checkbox" id="ContactPerson1"
+                                    name="ContactPerson1">
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label for="Location1" class="col-form-label">Location</label>
+                                <input type="text" class="form-control" id="Location1" name="Location1">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="EmailID111" class="col-form-label">Email.Id</label>
+                                <input type="text" class="form-control" id="EmailID111" name="EmailID111">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="MobileNo111" class="col-form-label">Mobile No</label>
+                                <input type="text" class="form-control" id="MobileNo111" name="MobileNo111">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="Address1" class="col-form-label">Address</label>
+                                <textarea class="form-control" id="Address1" name="Address1"
+                                    style="height: 30px; "></textarea>
+                            </div>
+
+                        </div>
+
+                        <p>Additional References</p>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="wofile" class="col-form-label">W.O.File
+                                </label>
+                                <input type="file" class="form-control" id="wofile" name="wofile">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="InwardDCRef" class="col-form-label">Inward D.C.Ref</label>
+                                <input type="file" class="form-control" iid="InwardDCRef" name="InwardDCRef">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="DCRefDate" class="col-form-label">D.C Ref. Date
+                                </label>
+                                <input type="date" class="form-control" id="DCRefDate" name="DCRefDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emailRef" class="col-form-label">E-Mail Ref</label>
+                                <input type="file" class="form-control" id="emailRef" name="emailRef">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="emailDate" class="col-form-label">E-Mail Date
+                                </label>
+                                <input type="date" class="form-control" id="emailDate" name="emailDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="turnarounddate" class="col-form-label">Turn Around Date</label>
+                                <input type="date" class="form-control" id="turnarounddate" name="turnarounddate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="dueDate" class="col-form-label">Due Date Reqd.
+                                </label>
+                                <input style="margin-left: 150px;" type="checkbox" id="dueDate" name="dueDate">
+                            </div>
+
+                        </div>
+
+
+                        <p>SRF Job Card Status</p>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="SRFCancelled" class="col-form-label">SRF Cancelled
+                                </label>
+                                <input style="margin-left: 150px;" type="checkbox" id="SRFCancelled"
+                                    name="SRFCancelled">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Completed" class="col-form-label">Completed
+                                </label>
+                                <input style="margin-left: 150px;" type="checkbox" id="Completed" name="Completed">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="btn" style="display: flex;">
+                        <button type="submit" class="btn btn-primary"
+                            style="margin-top: 10px;margin-left: 15%; width: 30%; margin-top: 20px;">Save</button>
+                        <button type="submit" class="btn btn-danger"
+                            style="margin-top: 10px;  width: 30%; margin-top: 20px; margin-left: 10px;"
+                            id="back">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            
+            // Get the form data
+            var formData = new FormData(event.target);
+    
+            // Make a POST request to the backend
+            fetch('/save_srf_no', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => handleResponse(data))
+            .catch(error => console.error('Error:', error));
+        }
+    
+        function handleResponse(data) {
+            if (data.status === 'success') {
+                // Display a success message
+                alert(data.message);
+                window.location.href = '/update_department';
+            } else {
+                // Display an error message (if needed)
+                alert('Form submission failed. Please try again.');
+            }
+        }
+    </script>
+    
+    
+    <script>
+        // Function to handle the click event on <p> elements
+        $(document).ready(function () {
+            // Add an event listener to the select element
+            $(".sa").on("click", function () {
+                var selectedValue = $(this).data('value');
+                // Log the selected value to the console
+                console.log("Selected Value: " + selectedValue);
+
+                // Send the selected value to the Flask backend using AJAX
+                $.ajax({
+                    type: "POST", // Use POST method to send data
+                    url: "/calibrationreport", // Replace with the actual Flask endpoint
+                    data: { selectedValue: selectedValue }, // Send the selected value
+                    success: function (response) {
+                        // Handle the response from the backend
+                        // Check if the response is not empty
+                        if (response.length > 0) {
+                            $("#CustomerCode").val(response[0][0]);// Assuming you have specific elements with IDs to display the values:
+                            $("#CustomerName").val(response[0][1]); // Update the LabPrefix input value
+                            $("#Address").val(response[0][2]); // Update the ULRYear input value
+                            $("#City").val(response[0][7]); // Update the item input value
+                            $("#State").val(response[0][8]); // Update the no input value
+
+                            $("#Pincode").val(response[0][9]);// Assuming you have specific elements with IDs to display the values:
+                            $("#GSTNo").val(response[0][11]); // Update the LabPrefix input value
+                            $("#MobileNo1").val(response[0][4]); // Update the ULRYear input value
+                            $("#MobileNo2").val(response[0][5]); // Update the item input value
+                            $("#MobileNo3").val(response[0][6]); // Update the no input value
+                            $("#EmailID").val(response[0][10]);// Assuming you have specific elements with IDs to display the values:
+                            $("#EmailID2").val(response[0][13]); // Update the LabPrefix input value
+                            $("#ContactPerson").val(response[0][3]); // Update the ULRYear input value
+                            $("#ShippingAddress").val(response[0][12]); // Update the item input value
+                            // Update the selectedValue input value
+
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            })
+
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Add a delegated event handler for the 'sa' class
+            $(document).on('click', '#saa', function () {
+                // Hide the first overlay
+                $('#first').hide();
+
+                // Show the second overlay
+                $('#second').show();
+            });
+
+            // Add a click event handler for the element with class 'back'
+            $('#back').on('click', function () {
+                // Show the first overlay
+                $('#first').show();
+
+                // Hide the second overlay
+                $('#second').hide();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Attach a click event handler to the "Save" button
+            $("#saa").on("click", function (e) {
+                // Prevent the default form submission behavior
+
+
+                // Get the value from the data attribute of the paragraph element
+                var dataValue = $("#CustomerCode").val();
+                console.log("Data Value:", dataValue);
+
+                // Make an Ajax request to send the data to the backend
+                $.ajax({
+                    type: "POST", // You can change this to "GET" or another HTTP method if needed
+                    url: "/report", // Replace with the actual backend endpoint
+                    data: { selectedValue: dataValue }, // Data to send to the backend
+                    success: function (response) {
+                        // Handle the successful response from the backend
+                        console.log("Data sent successfully:", response);
+                        $("#CustomerCode1").val(response.customer_users[0][0]);
+                        $("#CustomerName1").val(response.customer_users[0][1]);
+                        $("#Address1").val(response.customer_users[0][2]);
+                        $("#EmailID111").val(response.customer_users[0][10]);
+                        $("#MobileNo111").val(response.customer_users[0][4]);
+                        $("#Location1").val(response.customer_users[0][7]);
+                        $("#SRFNo").val(response.concat_value);
+                        $("#SRFPrefix").val(response.details[1]);
+                        // Assuming response.current_datetime is in the format "Tue, 21 Nov 2023 15:37:42 GMT"
+                        var dateObject = new Date(response.current_datetime);
+                        var formattedDate = dateObject.toISOString().split('T')[0];
+
+                        $("#SRFDate").val(formattedDate);
+
+
+                        console.log("New SRF Value:", response.concat_value, "Current Datetime:", response.current_datetime);
+
+
+
+                    },
+                    error: function (error) {
+                        // Handle errors during the Ajax request
+                        console.error("Error sending data:", error);
+                    }
+                });
+            });
+        });
+    </script>
+   <!-- <script>
+    // Function to display a centered alert message
+    
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const url = form.action;
+
+        // Log form data to the console
+        console.log('Form Data:', formData);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                alert(data.message, 'success');
+                // Redirect to the next page after a successful save
+                setTimeout(() => {
+                    window.location.href = '/'; // Replace with your desired URL
+                }, 1000); // Redirect after 1 second
+            } else {
+                alert(data.message, 'danger');
+            }
+        } catch (error) {
+            console.error('An error occurred while saving:', error);
+            alert('An error occurred while saving.', 'danger');
+        }
+    });
+</script> -->
+
+    
+   <!-- <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const url = form.action;
+
+        // Explicitly handle file input and include it in plainFormData
+        const plainFormData = {};
+        formData.forEach((value, key) => {
+            // If the key is 'file', handle it separately
+            if (key === 'file') {
+                plainFormData[key] = {
+                    name: value.name,
+                    size: value.size,
+                    type: value.type,
+                    lastModified: value.lastModified,
+                    lastModifiedDate: value.lastModifiedDate,
+                    webkitRelativePath: value.webkitRelativePath
+                };
+            } else {
+                plainFormData[key] = value;
+            }
+        });
+
+        console.log('plain Data:', plainFormData);
+
+        // Convert the plain object to JSON
+        const jsonData = JSON.stringify(plainFormData);
+        console.log('JSON Data:', jsonData);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,  // No need to stringify formData
+            });
+
+            console.log('Response:', response);
+
+            if (response.ok) {
+                const data = await response.json();
+
+                console.log('Data:', data);
+
+                if (data.status === 'success') {
+                    alert(data.message, 'success');
+                    // Redirect to the next page after a successful save
+                    setTimeout(() => {
+                        // Replace with your desired URL
+                    }, 1000); // Redirect after 1 second
+                } else {
+                    alert(data.message, 'danger');
+                }
+            } else {
+                alert('Failed to submit form data', 'danger');
+            }
+        } catch (error) {
+            console.error('An error occurred while saving:', error);
+            alert('An error occurred while saving.', 'danger');
+        }
+    });
+</script> -->
+
+
+    <!-- <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const url = form.action;
+    
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+            });
+    
+            console.log('Response:', response);
+    
+            if (response.ok) {
+                const data = await response.json();
+    
+                console.log('Data:', data);
+    
+                if (data.status === 'success') {
+                    alert(data.message, 'success');
+                    // Redirect to the next page after a successful save
+                    setTimeout(() => {
+                        window.location.href = '/show_parameters'; // Replace with your desired URL
+                    }, 1000); // Redirect after 1 second
+                } else {
+                    alert(data.message, 'danger');
+                }
+            } else {
+                alert('Failed to submit form data', 'danger');
+            }
+        } catch (error) {
+            console.error('An error occurred while saving:', error);
+            alert('An error occurred while saving.', 'danger');
+        }
+    });
+</script>     -->
+</body>
+
+</html>

@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SoftlabWeb Device Categories</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <style>
+        .k {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding-left: 30px;
+
+        }
+
+
+        .btn {
+            width: 63px;
+        }
+
+        body {
+            background-color: #F5F5F5;
+        }
+
+        form {
+            display: inline;
+            width: 50%;
+        }
+
+
+
+        .three {
+            background-color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+
+        .outer-wrapper {
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+            max-height: fit-content;
+
+
+        }
+
+        .table-wrapper {
+
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 66.4vh;
+            padding-bottom: 20px;
+
+        }
+
+
+        table {
+            table-layout: fixed;
+            width: 390%;
+            height: 100%;
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+
+        }
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+
+        }
+
+        .table-wrapper th.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+        .table-wrapper th.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+        .table-wrapper td.fixed-column {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+
+        }
+
+        .table-wrapper td.fixed-column:last-child {
+            position: sticky;
+            right: 0;
+            z-index: 1;
+            background-color: #f0f0f0;
+
+        }
+
+        table th,
+        table td {
+
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+
+        }
+
+        th.resize {
+            position: relative;
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+        input[type='checkbox'] {
+            accent-color: rgb(0, 132, 255) !important;
+            align-items: center !important;
+            margin-left: 45%;
+        }
+
+        #op {
+            text-align: center;
+            justify-content: center;
+        }
+
+
+        #lab {
+            text-align: right;
+        }
+
+
+        .duc {
+            display: flex;
+            align-items: center;
+        }
+
+        .border-box {
+            border: 1px solid #ccc;
+            width: 120%;
+            height: 50px;
+            border-radius: 7px / 7px;
+        }
+
+        .border-box1 {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 45px;
+            border-radius: 7px / 7px;
+
+        }
+
+        .corner {
+            z-index: 5;
+            position: absolute;
+            top: 160px;
+            left: 125px;
+            background-color: #F5F5F5;
+            width: auto;
+        }
+
+        .corner1 {
+            z-index: 5;
+            position: absolute;
+            top: 160px;
+            left: 695px;
+            background-color: #F5F5F5;
+            width: auto;
+        }
+
+        .corner2 {
+            z-index: 5;
+            position: absolute;
+            top: 236px;
+            left: 125px;
+            background-color: #F5F5F5;
+            width: auto;
+        }
+
+        .corner3 {
+            z-index: 5;
+            position: absolute;
+            top: 315px;
+            left: 125px;
+            background-color: #F5F5F5;
+            width: auto;
+        }
+
+
+        .inp {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .inp input {
+            padding: 4px;
+            margin: 8px;
+        }
+
+        #measureField {
+            margin-top: -19px;
+        }
+
+        #sourceField {
+            margin-top: -19px;
+        }
+
+        #measureFielde {
+            margin-top: -19px;
+        }
+
+        #sourceFielde {
+            margin-top: -19px;
+        }
+
+        #measureFieldboth {
+            margin-top: -19px;
+        }
+
+        #sourceFieldboth {
+            margin-top: -19px;
+
+        }
+
+        #measureFieldbothe {
+            margin-top: -19px;
+            width: 50%;
+        }
+
+        #sourceFieldbothe {
+            margin-top: -19px;
+            width: 49%;
+            margin-left: 4px;
+
+        }
+
+        #drv {
+            margin-top: 50px !important;
+        }
+
+        .bothms {
+            display: flex;
+            align-items: center;
+
+        }
+
+        #bothems {
+            display: flex;
+            align-items: center;
+
+        }
+
+        #downloadbtn button {
+            width: 10%;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        #backToAddViewButton {
+            margin-right: 70%;
+            margin-top: -60px;
+            width: 10%;
+        }
+
+        #backToEditViewButton {
+            margin-right: 70%;
+            margin-top: -60px;
+            width: 10%;
+        }
+
+        #openButton {
+            width: 8%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #openButtonr {
+            width: 8%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #fileName {
+            padding-top: 10px;
+            padding-left: 18%;
+
+            text-align: center;
+            overflow: hidden;
+
+        }
+
+        #fileNamer {
+            padding-top: 10px;
+            padding-left: 18%;
+
+            text-align: center;
+            overflow: hidden;
+
+        }
+
+        .border-box11 {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 38px;
+            border-radius: 7px / 7px;
+            display: flex;
+        }
+
+        #bts {
+            margin-left: 36%;
+            position: fixed;
+            height: 38px;
+            background-color: blue;
+            color: white;
+        }
+
+        #btsr {
+            margin-left: 36%;
+            position: fixed;
+            height: 38px;
+        }
+
+        #Deletebutton {
+            height: 20px;
+            font-size: x-small;
+            font-weight: bold;
+            text-align: center;
+            padding: 1px;
+            width: 30px;
+        }
+
+        #editButton {
+            height: 20px;
+            font-size: x-small;
+            font-weight: bold;
+            text-align: center;
+            padding: 1px;
+            width: 30px;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+
+        table th:first-child {
+            position: -webkit-sticky;
+            position: sticky;
+            left: 0;
+            background-color: #3C486B;
+            color: white;
+            z-index: 2;
+        }
+
+
+        table th:last-child {
+            position: -webkit-sticky;
+            position: sticky;
+            right: 0;
+            background-color: #3C486B;
+            color: white;
+            z-index: 2;
+        }
+
+        .sticky-header {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            left: 0;
+            background: #3C486B;
+            color: white;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <section id="viewContent">
+
+        <div class="k">
+
+            <input type="text" id="searchInput" class="form-check-input" placeholder="Search All Data"
+                style="width: auto;height:auto;">
+            <label class="col-form-label" style="padding: 5px; margin-left: 250px;">Department</label>
+            <select class="form-select" id="departmentSelect" name="Dev_Dept" style="width: auto;" required>
+
+                {% for department in departments %}
+                <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                    {{ department }}
+                </option>
+                {% endfor %}
+
+
+            </select>
+            <button type="submit" class="btn btn-primary" style="width: auto; margin-left: 350px;" id="addButton">ADD
+                NEW</button>
+
+        </div>
+
+        <div class="tabercol">
+            <div class="outer-wrapper">
+                <div class="table-wrapper">
+
+                    <table id="emp-table">
+                        <thead>
+                            <th col-index=1 style="display: none;">select</th>
+
+
+
+                            <th class="sticky-header" #="fixed-column" style=" background: #3C486B;color: white;"
+                                col-index=2>Equipment
+                                Category
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index=3 class="resize"> Department
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index=4 class="resize">Procedure
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index=5 class="resize"> Reference
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th style="  position: sticky;" col-index="6" class="resize">DUC
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index="7" class="resize">Master
+
+                            </th>
+                            <!-- Add more columns here -->
+                            <th style="  position: sticky;" col-index="8" class="resize">Source
+
+                            </th>
+                            <th style="  position: sticky;" col-index="9" class="resize">Measure
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index="10" class="resize">Digital
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index="11" class="resize">Analog
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index="12" class="resize">Lab Device
+
+                            </th>
+
+                            <th style="  position: sticky;" col-index="13" class="resize">Site Device
+
+                            </th>
+                            <th style="  position: sticky;" col-index="14" class="resize">Procedure.File
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index="15" class="resize">Reference.File
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index="16" class="resize">Rep.Format
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index="17" class="resize">Measure Format
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            <th style="  position: sticky;" col-index="18" class="resize">
+                                Source Format
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th style="  position: sticky;" col-index="19" class="resize">
+                                Report Default Path
+                                <select class="table-filter" onchange="filter_rows()" style="width:30%;">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+
+                            </th>
+                            <th col-index="20" id="fixed-column" style="width: 120px;  background: #3C486B;
+                            color: white; ">Action
+
+                            </th>
+
+
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td style="display: none;"><input type="checkbox" name="rowCheckbox" value="0"></td>
+                                <td class="fixed-column">{{ user[1] }}</td>
+                                <td>{{ user[2] }}</td>
+                                <td>{{ user[12] }}</td>
+                                <td>{{ user[13] }}</td>
+                                <td><input type="checkbox" {% if user[4] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[5] %}checked {% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[8] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[9] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[10] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[11] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[6] %}checked{% endif %} disabled></td>
+                                <td><input type="checkbox" {% if user[7] %}checked{% endif %} disabled></td>
+                                <td>{{ user[14] }}</td>
+                                <td>{{ user[15] }}</td>
+                                <td>{{ user[18] }}</td>
+                                <td>{{ user[16] }}</td>
+                                <td>{{ user[17] }}</td>
+                                <td> <a href="{{user.20 }}" style="text-decoration: none;">link open</a></td>
+                                <td class="fixed-column">
+
+                                    <button title="Delete" id="Deletebutton" type="submit"
+                                        data-manufacturer-idDevice_Types="{{ user[0] }}"
+                                        class="btn btn-danger">X</button>
+
+
+                                    <!-- <form action="{{ url_for('edit_user_cat', idDevice_Types=user[0]) }}" method="get"> -->
+                                    <button style="font-family: 'Times New Roman', Times, serif;" title="Edit"
+                                        type="submit" id="editButton" class="btn btn-primary">I</button>
+                                    <!-- </form> -->
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+
+                    <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#emp-table').on('click', '#Deletebutton', function () {
+                                var rowToDelete = $(this).closest('tr');
+                                var manufacturerId = $(this).data('manufacturer-id');
+
+                                console.log(master);
+
+                                if (confirm("Are you sure you want to delete this Device Details?")) {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/delete_category/" + manufacturerId,
+
+                                        success: function (response) {
+                                            if (response.status === "success") {
+                                                rowToDelete.remove();
+                                                alert("Deleted successfully");
+                                            } else if (response.status === "failure") {
+                                                alert("Not allowed to delete.");
+                                            } else {
+                                                alert("Failed to delete.");
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        });
+
+                    </script>
+
+
+
+                    <script>
+                        // Retrieve valueStoredInVariable from localStorage
+                        var storedValue = localStorage.getItem('valueStoredInVariable');
+                        console.log(storedValue);
+                        // Now you can use valueStoredInVariable in this script or any other script on this page.
+                        // Check if valueStoredInVariable is defined
+                        if (storedValue === "Customer Care") {
+                            fetch('/navbar')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "ETL-Electro Technical Lab") {
+                            fetch('/navbardepartmentcal')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "PRL-Pressure Lab") {
+                            fetch('/navbardepartmentcal')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "MCL-Linear") {
+                            fetch('/navbardepartmentcal')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "MCL-Mass") {
+                            fetch('/navbardepartmentcal')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "QA") {
+                            fetch('/navbardepartmentqa')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else if (storedValue === "System Administrator") {
+                            fetch('/navbardepartmentsa')
+                                .then(response => response.text())
+                                .then(data => {
+                                    document.getElementById('navbar-placeholder').innerHTML = data;
+                                });
+                        } else {
+                            console.log("No conditions matched.");
+                        }
+                    </script>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            getUniqueValuesFromColumn();
+                        });
+
+                        function searchTable() {
+                            selectedRows = [];
+                            const input = document.getElementById("searchInput");
+                            const filterValue = input.value.trim().toLowerCase();
+                            const rows = document.querySelectorAll("#emp-table tbody tr");
+                            rows.forEach((row) => {
+                                let rowMatch = false;
+
+                                // Check if any cell in the row contains the search term
+                                row.querySelectorAll("td").forEach((cell) => {
+                                    const cellValue = cell.textContent.trim().toLowerCase();
+                                    if (cellValue.includes(filterValue)) {
+                                        rowMatch = true;
+                                    }
+                                });
+
+
+
+                                // Check if the checkbox value matches the search term
+                                const checkbox = row.querySelector("input[name='rowCheckbox']");
+
+                                if (checkbox && checkbox.checked) {
+                                    rowMatch = true;
+                                    selectedRows.push(row); // Store the selected row for later use
+                                }
+                                if (rowMatch) {
+                                    row.style.display = "table-row";
+                                } else {
+                                    row.style.display = "none";
+                                }
+                            });
+                        }
+
+                        // Attach the searchTable function to the search input
+
+
+                    </script>
+
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            populateDropdowns();
+                            setupEventListeners();
+                        });
+
+                        function populateDropdowns() {
+                            const allFilters = document.querySelectorAll(".table-filter");
+
+                            allFilters.forEach((filter) => {
+                                const colIndex = filter.parentElement.getAttribute("col-index");
+                                const uniqueValues = getUniqueValues(colIndex);
+
+                                // Clear existing options before adding new ones
+                                filter.innerHTML = '<option value="all">All</option>';
+
+                                uniqueValues.forEach((value) => {
+                                    filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                                });
+                            });
+                        }
+
+                        function getUniqueValues(colIndex) {
+                            const rows = document.querySelectorAll("#emp-table tbody tr");
+                            const uniqueValuesSet = new Set();
+
+                            rows.forEach((row) => {
+                                const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                                if (cell) {
+                                    const cellValue = cell.textContent.trim();
+                                    if (cellValue !== "") {
+                                        uniqueValuesSet.add(cellValue);
+                                    }
+                                }
+                            });
+
+                            return Array.from(uniqueValuesSet);
+                        }
+
+                        function setupEventListeners() {
+                            const allFilters = document.querySelectorAll(".table-filter");
+
+                            allFilters.forEach((filter) => {
+                                filter.addEventListener("change", function () {
+                                    updateDropdowns(filter);
+                                    filter_rows();
+                                });
+                            });
+                        }
+
+                        function updateDropdowns(changedFilter) {
+                            const allFilters = document.querySelectorAll(".table-filter");
+                            const selectedValues = {};
+
+                            allFilters.forEach((filter) => {
+                                selectedValues[filter.parentElement.getAttribute("col-index")] = filter.value;
+                            });
+
+                            const filteredValues = filterValues(selectedValues);
+
+                            allFilters.forEach((filter) => {
+                                if (filter !== changedFilter) {
+                                    const colIndex = filter.parentElement.getAttribute("col-index");
+                                    const selectedValue = selectedValues[colIndex];
+
+                                    // Clear existing options before adding new ones
+                                    filter.innerHTML = '<option value="all">All</option>';
+
+                                    // Add specific values to the dropdown based on the selected value
+                                    filteredValues[colIndex].forEach((value) => {
+                                        filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                                    });
+                                }
+                            });
+                        }
+
+                        function filterValues(selectedValues) {
+                            const rows = document.querySelectorAll("#emp-table tbody tr");
+                            const filteredValues = {};
+
+                            for (const colIndex in selectedValues) {
+                                filteredValues[colIndex] = new Set();
+                            }
+
+                            rows.forEach((row) => {
+                                let isRowMatch = true;
+
+                                for (const colIndex in selectedValues) {
+                                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                                    const cellValue = cell ? cell.textContent.trim() : "";
+
+                                    if (selectedValues[colIndex] !== "all" && cellValue !== selectedValues[colIndex]) {
+                                        isRowMatch = false;
+                                    }
+
+                                    if (colIndex !== "1" && isRowMatch) {
+                                        filteredValues[colIndex].add(cellValue);
+                                    }
+                                }
+                            });
+
+                            return filteredValues;
+                        }
+
+                        function filter_rows() {
+                            const rows = document.querySelectorAll("#emp-table tbody tr");
+                            rows.forEach((row) => {
+                                const allFilters = document.querySelectorAll(".table-filter");
+
+                                let isRowVisible = true;
+
+                                allFilters.forEach((filter) => {
+                                    const colIndex = filter.parentElement.getAttribute("col-index");
+                                    const filterValue = filter.value;
+                                    const cellValue = row.querySelector(`td:nth-child(${colIndex})`).textContent.trim();
+
+                                    if (filterValue !== "all" && cellValue !== filterValue) {
+                                        isRowVisible = false;
+                                    }
+                                });
+
+                                row.style.display = isRowVisible ? "table-row" : "none";
+                            });
+                        }
+                    </script>
+
+
+
+
+                    <script>
+                        function initResizableColumns() {
+                            const headers = document.querySelectorAll('th.resize');
+
+                            headers.forEach(header => {
+                                let startX;
+                                let startWidth;
+
+                                header.addEventListener('mousedown', function (event) {
+                                    startX = event.clientX;
+                                    startWidth = header.offsetWidth;
+
+                                    document.addEventListener('mousemove', resizeColumn);
+                                    document.addEventListener('mouseup', stopResize);
+                                });
+
+                                function resizeColumn(event) {
+                                    const newWidth = startWidth + (event.clientX - startX);
+                                    header.style.width = newWidth + 'px';
+                                }
+
+                                function stopResize() {
+                                    document.removeEventListener('mousemove', resizeColumn);
+                                    document.removeEventListener('mouseup', stopResize);
+                                }
+                            });
+                        }
+
+                        window.addEventListener('DOMContentLoaded', initResizableColumns);
+                    </script>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            getUniqueValuesFromColumn();
+                        });
+
+                        function searchTable() {
+                            selectedRows = [];
+                            const input = document.getElementById("searchInput");
+                            const filterValue = input.value.trim().toLowerCase();
+                            const rows = document.querySelectorAll("#emp-table tbody tr");
+                            rows.forEach((row) => {
+                                let rowMatch = false;
+
+                                // Check if any cell in the row contains the search term
+                                row.querySelectorAll("td").forEach((cell) => {
+                                    const cellValue = cell.textContent.trim().toLowerCase();
+                                    if (cellValue.includes(filterValue)) {
+                                        rowMatch = true;
+                                    }
+                                });
+
+
+
+                                // Check if the checkbox value matches the search term
+                                const checkbox = row.querySelector("input[name='rowCheckbox']");
+
+                                if (checkbox && checkbox.checked) {
+                                    rowMatch = true;
+                                    selectedRows.push(row);
+                                }
+                                if (rowMatch) {
+                                    row.style.display = "table-row";
+                                } else {
+                                    row.style.display = "none";
+                                }
+                            });
+                        }
+
+
+                        document.getElementById("searchInput").addEventListener("input", searchTable);
+                    </script>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div id="downloadbtn">
+
+            <form action="{{ url_for('download_employees_excel') }}">
+                <button style="margin-left: 45%;" type="submit" class="btn btn-primary">Download </button>
+            </form>
+        </div>
+    </section>
+
+    <section id="addContent" style="display:none;">
+
+
+
+
+
+
+        <form action="/adduser" method="post">
+            <div class="container">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="col-form-label" id="lab">Department</label>
+                        <select class="form-select" id="departmentSelects" name="Dev_Dept" required>
+                            <option value="select">select</option>
+                            {% for department in departments %}
+                            <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                                {{ department }}
+                            </option>
+                            {% endfor %}
+
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="  equipmentname" class="col-form-label" id="lab">Equipment Category</label>
+                        <input type="text" class="form-control" id="equipmentname" name="Dev_Type" required>
+
+                    </div>
+                </div>
+
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="duc">
+                            <div class="border-box">
+                                <div class="corner">Device Type</div>
+                                <div class="inp">
+                                    <input type="radio" id="duc" name="duc" class="form-check-input" value="DUCInst"
+                                        required>
+                                    <label for="duc" class="col-form-label" id="lab">DUC</label>
+
+                                    <input type="radio" id="master" name="duc" class="form-check-input"
+                                        value="MasterInstrument" required>
+                                    <label for="master" class="col-form-label" id="lab">Master</label>
+
+                                    <input type="radio" id="bothdm" name="duc" class="form-check-input"
+                                        value="DUCInst-MasterInstrument" required>
+                                    <label class="col-form-label" for="bothdm" id="lab">Both</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="duc" id="weather-lab-site">
+                            <div class="border-box">
+                                <div class="corner1">Calibration At</div>
+                                <div class="inp">
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault1"
+                                        value="LabDUC" required>
+                                    <label class="form-check-label" for="flexRadioDefault1" id="lab">LAB</label>
+
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault2"
+                                        value="SiteDUC" required>
+                                    <label class="form-check-label" for="flexRadioDefault2" id="lab">SITE</label>
+
+                                    <input class="form-check-input" type="radio" name="labsite2" id="flexRadioDefault3"
+                                        value="LabDUC-SiteDUC" required>
+                                    <label class="form-check-label" for="flexRadioDefault3" id="lab">BOTH</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="border-box1">
+                            <div class="corner2">Measurement Type</div>
+                            <div class="inp">
+                                <input class="form-check-input" type="radio" name="labsite" id="measureRadio"
+                                    value="Measure" required>
+                                <label class="form-check-label" for="measureRadio" id="lab">
+                                    Measure
+                                </label>
+
+                                <input class="form-check-input" type="radio" name="labsite" id="sourceRadio"
+                                    value="Simulate" required>
+                                <label class="form-check-label" for="sourceRadio" id="lab">
+                                    Source
+                                </label>
+                                <input class="form-check-input" type="radio" name="labsite" id="Measure-Simulate"
+                                    value="Measure-Simulate" required>
+                                <label class="form-check-label" for="Measure-Simulate" id="lab">
+                                    Both
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6" id="masterdims">
+
+                        <div class="form-row" id="measureField">
+                            <label for="MeasRepFormat">Measure Format</label>
+                            <select class="form-select" id="MeasRepFormat" name="MeasRepFormat">
+
+                            </select>
+                        </div>
+
+                        <div class="form-row" id="sourceField" style="display:none;">
+                            <label for="SourceRepFormat"> Source Format</label>
+                            <select class="form-select" id="SourceRepFormat" name="SourceRepFormat">
+
+                            </select>
+                        </div>
+
+
+
+                        <div class="bothms">
+                            <div class="form-row" id="measureFieldboth" style="display:none; width: 50%;">
+                                <label for="MeasRepFormatb">Measure Format</label>
+                                <select class="form-select" id="MeasRepFormatb" name="MeasRepFormat">
+
+                                </select>
+
+                            </div>
+
+
+
+
+
+                            <div class="form-row" id="sourceFieldboth"
+                                style="display:none; width: 48%; margin-left: 5px;">
+                                <label for="SourceRepFormatb"> Source Format</label>
+                                <select class="form-select" id="SourceRepFormatb" name="SourceRepFormat">
+
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="row g-3">
+                    <div class="col-md-6" id="drv">
+                        <div class="border-box1">
+
+                            <div class="corner3">Device Type</div>
+                            <div class="inp">
+                                <input class="form-check-input" type="radio" name="labsite1" id="flexRadioDefault1"
+                                    value="AnalogInst" required>
+                                <label class="form-check-label" id="lab">
+                                    Analog
+                                </label>
+
+
+                                <input class="form-check-input" type="radio" name="labsite1" id="flexRadioDefault1"
+                                    value="DigitalInst" required>
+                                <label class="form-check-label" for="flexRadioDefault1" id="lab">
+                                    Digital
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cal.Proc.Ref." class="col-form-label" id="lab">Calibration Procedure
+                            Reference</label>
+                        <input type="text" class="form-control" id="cal.Proc.Ref." name="CalProcRef">
+                    </div>
+
+
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="Ref.Doc." class="col-form-label" id="lab">Reference.Document</label>
+                        <input type="text" id="Ref.Doc." name="RefDoc" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="Cal.Proc.File" class="col-form-label" id="lab">Calibration Procedure File</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="Cal.Proc.File" name="CalProcRef_File"
+                                accept="*/*" onchange="loadFile(event)">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button"
+                                    onclick="openExcel()">open</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+
+
+
+                <div class="row g-3">
+
+
+
+                    <div class="col-md-6">
+                        <label for="Ref.Doc.File" class="col-form-label" id="lab">Reference Document File</label>
+
+                        <div class="input-group">
+
+                            <input type="file" id="Ref.Doc.File" name="RefDoc_File" class="form-control" accept="*/*"
+                                onchange="loadFile(event)">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button"
+                                    onclick="openExcel()">open</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ReportDefaultPath" class="col-form-label" id="lab">Report Default Path</label>
+                        <input type="text" class="form-control" id="ReportDefaultPath" name="RepDefPath">
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+                <button type="submit" class="btn btn-primary"
+                    style="margin-top: 10px;margin-left: 35%; width: 30%;">Save</button>
+            </div>
+
+        </form>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            // Get the radio buttons and the other part that needs to be disabled/enabled
+            const masterRadio = document.getElementById('master');
+            const ducRadio = document.getElementById('duc');
+            const bothRadio = document.getElementById('bothdm');
+            const otherPart = document.getElementById('weather-lab-site');
+            const otherPartms = document.getElementById('masterdims');
+
+
+            // Function to disable the other part
+            function disableOtherPart() {
+                otherPart.style.pointerEvents = 'none';
+                otherPart.style.opacity = '0.5';
+                const inputs = otherPart.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.disabled = true;
+                });
+                otherPartms.style.pointerEvents = 'none';
+                otherPartms.style.opacity = '0.5';
+                const inputms = otherPart.querySelectorAll('input');
+                inputms.forEach(input => {
+                    input.disabled = true;
+                });
+
+            }
+
+            // Function to enable the other part
+            function enableOtherPart() {
+                otherPart.style.pointerEvents = 'auto';
+                otherPart.style.opacity = '1';
+                const inputs = otherPart.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.disabled = false;
+                });
+                otherPartms.style.pointerEvents = 'auto';
+                otherPartms.style.opacity = '1';
+                const inputms = otherPart.querySelectorAll('input');
+                inputms.forEach(input => {
+                    input.disabled = false;
+                });
+            }
+
+            // Add event listeners to the radio buttons
+            masterRadio.addEventListener('click', disableOtherPart);
+            ducRadio.addEventListener('click', enableOtherPart);
+            bothRadio.addEventListener('click', enableOtherPart);
+
+            // By default, disable the other part if "Master" is checked
+            if (masterRadio.checked) {
+                disableOtherPart();
+            }
+        </script>
+        <script>
+            const measureRadio = document.getElementById('measureRadio');
+            const sourceRadio = document.getElementById('sourceRadio');
+            const bothmesoRadio = document.getElementById('Measure-Simulate')
+            const measureField = document.getElementById('measureField');
+            const sourceField = document.getElementById('sourceField');
+            const measureFieldboth = document.getElementById('measureFieldboth');
+            const sourceFieldboth = document.getElementById('sourceFieldboth');
+
+
+
+
+
+            measureRadio.addEventListener('click', function () {
+                measureField.style.display = 'block';
+                sourceField.style.display = 'none';
+                measureFieldboth.style.display = 'none';
+                sourceFieldboth.style.display = 'none';
+
+            });
+
+            sourceRadio.addEventListener('click', function () {
+                measureField.style.display = 'none';
+                sourceField.style.display = 'block';
+                measureFieldboth.style.display = 'none';
+                sourceFieldboth.style.display = 'none';
+
+            });
+            bothmesoRadio.addEventListener('click', function () {
+                measureField.style.display = 'none';
+                sourceField.style.display = 'none';
+                measureFieldboth.style.display = 'block';
+                sourceFieldboth.style.display = 'block';
+
+            });
+        </script>
+        <script>
+            var selectedFile;
+
+            var loadFile = function (event) {
+                selectedFile = event.target.files[0];
+            };
+
+            var openExcel = function () {
+                if (selectedFile) {
+                    var url = URL.createObjectURL(selectedFile);
+                    var a = document.createElement('a');
+                    a.href = url;
+
+                    a.target = '_blank';
+
+                    // Use the original uploaded file name as the suggested download filename
+                    a.download = selectedFile.name;
+
+                    a.click();
+                    URL.revokeObjectURL(url); // Free memory
+                } else {
+                    alert("No file selected.");
+                }
+            };
+        </script>
+        <!-- The rest of your HTML code remains the same -->
+
+
+        <script>
+            $(document).ready(function () {
+                // Detect when the "Measure" radio button is clicked
+                $('#measureRadio').on('click', function () {
+                    var selected_dept = $('#departmentSelects').val(); // Get the selected department
+                    var selected_measure = $(this).val(); // Get the selected measure
+
+                    // Send the selected department and measure to the backend
+                    $.ajax({
+                        type: "POST",
+                        url: "/show_device_categories",
+                        data: { Dev_Dept: selected_dept, Measure: selected_measure },
+                        success: function (response) {
+                            $('#MeasRepFormat').html(response); // Update the "Measure Format" dropdown options
+                        }
+                    });
+                });
+            });
+
+
+
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                // Detect when the "Source" radio button is clicked
+                $('#sourceRadio').on('click', function () {
+                    var selected_dept = $('#departmentSelects').val(); // Get the selected department
+                    var selected_source = $(this).val(); // Get the selected source
+
+                    // Send the selected department and source to the backend
+                    $.ajax({
+                        type: "POST",
+                        url: "/show_device_categories",
+                        data: { Dev_Dept: selected_dept, Source: selected_source },
+                        success: function (response) {
+                            $('#SourceRepFormat').html(response); // Update the "Source Format" dropdown options
+                        }
+                    });
+                });
+            });
+
+
+
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Detect when the "Measure-Simulate" button is clicked
+                $('#Measure-Simulate').on('click', function () {
+                    var selected_dept = $('#departmentSelects').val(); // Get the selected department
+                    var selected_formatb = $(this).val();
+
+                    // Send the selected department and format to the backend
+                    $.ajax({
+                        type: "POST",
+                        url: "/show_device_categories",
+                        data: { Dev_Dept: selected_dept, measourboth: selected_formatb },
+                        success: function (response) {
+                            // Split the response using the '|' delimiter
+                            var [measure_options, source_options] = response.split('|');
+
+                            // Populate the dropdowns with the options
+                            $('#MeasRepFormatb').html(measure_options); // Update Measure Format dropdown
+                            $('#SourceRepFormatb').html(source_options); // Update Source Format dropdown
+                        }
+                    });
+                });
+            });
+
+
+        </script>
+
+
+
+
+
+        </script>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+        document.getElementById("addButton").addEventListener("click", function () {
+            showContent("add");
+        });
+
+        document.getElementById("editButton").addEventListener("click", function () {
+            showContent("edit");
+        });
+
+        document.getElementById("backToAddViewButton").addEventListener("click", function () {
+            showContent("view");
+        });
+        document.getElementById("backToEditViewButton").addEventListener("click", function () {
+            showContent("view");
+        });
+
+        function showContent(option) {
+            var viewContent = document.getElementById("viewContent");
+            var addContent = document.getElementById("addContent");
+            var editContent = document.getElementById("editContent");
+
+            if (option === "add") {
+                viewContent.style.display = "none";
+                addContent.style.display = "block";
+                editContent.style.display = "none";
+            } else if (option === "edit") {
+                viewContent.style.display = "none";
+                addContent.style.display = "none";
+                editContent.style.display = "block";
+            } else if (option === "view") {
+                viewContent.style.display = "block";
+                addContent.style.display = "none";
+                editContent.style.display = "none";
+            }
+        }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#departmentSelect").on("change", function () {
+                var department = $(this).val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/depart_filter_device_cat",
+                    data: { department: department },
+                    success: function (response) {
+                        var tableBody = $("#emp-table tbody");
+                        tableBody.empty();  // Clear existing table rows
+
+                        if (Array.isArray(response)) {
+                            // Loop through the response data and append rows to the table
+                            response.forEach(function (user) {
+                                var newRow = `
+                            <tr>
+                                <td style='display: none;'><input type='checkbox' name='rowCheckbox' value='0'></td>
+                                <td class='fixed-column'>${user[1]}</td>
+                                <td>${user[2]}</td>
+                                <td>${user[12]}</td>
+                                <td>${user[13]}</td>
+                                <td><input type='checkbox' ${user[4] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[5] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[8] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[9] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[10] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[11] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[6] ? 'checked' : ''} disabled></td>
+                                <td><input type='checkbox' ${user[7] ? 'checked' : ''} disabled></td>
+                                <td>${user[14]}</td>
+                                <td>${user[15]}</td>
+                                <td>${user[18]}</td>
+                                <td>${user[16]}</td>
+                                <td>${user[17]}</td>
+                                <td> <a href='${user[20]}' style='text-decoration: none;'>link open</a></td>
+                                <td class='fixed-column'>
+                                    <button title="Delete masters" class='btn btn-danger'  id="Deletebutton" data-manufacturer-id='${user[0]}'>X</button>
+                                    &nbsp;
+                                    <form action='/edit_user_cat/${user[0]}' method='get'>
+                                        <input type='hidden' name='ID' value='${user[0]}'>
+                                        <button title="Edit masters" type='submit' class='btn btn-primary' id="editButton" data-master='${user[1]}'>I</button>
+                                        &nbsp;&nbsp;
+                                    </form>
+                                </td>
+                            </tr>`;
+                                tableBody.append(newRow);
+                            });
+                        } else {
+                            // Handle non-array response
+                            console.error("Response is not an array.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                        // You can display an error message here.
+                    }
+                });
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB-Job-Selection</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: white;
+            background-color: #f5f5f5;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .header-text {
+            display: inline;
+            margin: 0px;
+            padding: 120px;
+            color: white;
+        }
+
+        .dash {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .dash:hover {
+            color: aqua !important;
+        }
+
+        .back {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer;
+        }
+
+        .back:hover {
+            color: aqua !important;
+            cursor: pointer;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            background-color: rgb(8, 8, 88);
+            height: 80px;
+        }
+
+        #popup-box {
+
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 45%;
+            height: 95%;
+            margin-top: 65px;
+        }
+
+        #overlay {
+
+            width: 100%;
+            height: 100%;
+            z-index: 98;
+        }
+
+        .col-form-label {
+
+            font-weight: bold;
+
+        }
+
+
+
+        .sa:hover {
+            background-color: blue;
+            color: white;
+
+        }
+
+
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .tablecol {
+
+            overflow: hidden;
+            max-height: 100vh;
+
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .outer-wrapper {
+            /* margin: 40px; */
+            border: 1px solid black;
+            border-radius: 4px;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+            max-width: fit-content;
+            max-width: 100%;
+
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            /* max-height: calc(80vh - 45px); */
+            padding-bottom: 20px;
+            height: 73vh;
+        }
+
+        thead {
+            position: sticky;
+            z-index: 2;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 500%;
+            /* height: 160%; */
+            border-collapse: separate;
+            border-spacing: 0px;
+            border-collapse: collapse;
+
+        }
+
+        #fixed-column:last-child {
+            left: auto;
+            right: 0;
+        }
+
+        .table-filter {
+            border-radius: 5px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #3C486B;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            /* outline: 0.7px solid black; */
+            /* border: 1.5px solid black; */
+        }
+
+
+        table th,
+        table td {
+            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+            padding-left: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        th.resize {
+            position: relative;
+
+        }
+
+        th.resize::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 10px;
+            cursor: col-resize;
+        }
+
+        .selected {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+        .custom-btn-padding {
+            padding: 2px 2px;
+            font-size: 15px; /* Adjust the values as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="logo"> <img src="/static/image/SoftLABWeb Logo.jpg" width="200px" ; height="80px">
+        </div>
+        <h2 style="margin-left: 140px;" class="header-text">Calibration Lab Management Software</h2>
+        <a href="/departmentcal_dashboard" class="dash">Dashboard</a>
+        <p style="color: white; font-size: 40px; margin-top: 10px;">/</p> <a class="back"
+        href="/show_calibration_dashbord_select_redirect">Back</a>
+
+    </div>
+    <div id="overlay">
+        <div id="popup-box">
+            <div class="tabercol">
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table id="emp-table">
+                            <thead>
+
+                                <th col-index=4 class="resize" id="str">Job No.
+
+                                </th>
+                                <th col-index=5 class="resize" id="str">Item Name
+
+                                </th>
+
+                                <th col-index="6" class="resize" id="str">Inst.ID
+
+
+                                </th>
+
+                                <th col-index="7" class="resize" id="str">Type
+
+                                </th>
+
+                                <th col-index="8" class="resize" id="str">Range
+
+
+                                </th>
+
+
+                                <th col-index="12" class="resize" id="str">Cal.Interval
+
+
+                                </th>
+
+                                <th col-index="13" class="resize" id="str">L.C.
+
+                                </th>
+
+                                <th col-index="14" class="resize" id="str">Accuracy
+
+                                </th>
+
+
+                            </thead>
+                            <tbody>
+                                {% for user in selected_users%}
+                                <tr>
+
+                                    <td>{{user[1]}}</td>
+                                    <td>{{user[7]}}</td>
+                                    <td>{{user[11]}}</td>
+                                    <td>{{user[6]}}</td>
+
+
+                                    <td>{{user[22]}}</td>
+                                    <td>{{user[13]}}</td>
+                                    <td>{{user[20]}}</td>
+                                    <td>{{user[19]}}</td>
+                                </tr>
+                                {% endfor %}
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="buttons" style="  margin-left: 39%; margin-top: 5%;">
+
+                <button class="btn btn-success custom-btn-padding" id="gotocaliberation" type="submit">Go to Calibration</button>            </div>
+
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Declare selectedValues as a global array
+        var selectedValues = [];
+
+        $("#emp-table tr").click(function () {
+            // Toggle the 'selected' class on the clicked row
+            $(this).toggleClass('selected').siblings().removeClass('selected');
+
+            var firstCellValue = $(this).find('td:first').text();
+            console.log(firstCellValue)
+
+            // Update selectedValues array with the current value
+            selectedValues = [firstCellValue];
+        });
+
+        $('#gotocaliberation').on('click', function () {
+            // Log the array of selected values
+            console.log(selectedValues);
+
+            // Check if selectedValues is empty before making the AJAX request
+            if (selectedValues.length === 0) {
+                alert("Please select at least one row before submitting.");
+            } else {
+                // Make an AJAX request to send the values to the backend
+                $.ajax({
+                    type: "POST",
+                    url: "/click_each_selectedsrf",
+                    data: { selectedValues: selectedValues },
+                    success: function (response) {
+                        selectedValues = [];
+                        window.location.href = '/click_each_selectedsrf_select';
+
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+
+                // Remove 'selected' class from all rows
+                $("#emp-table tr").removeClass('selected');
+            }
+        });
+        
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            document.querySelector('.btn-close').addEventListener('click', function () {
+                document.getElementById('overlay').style.display = 'none';
+                window.location.href = '/';
+
+            });
+        });
+    </script>
+
+   
+</body>
+
+</html>

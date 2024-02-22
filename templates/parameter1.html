@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calibrator parameters & ranges</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        .containersranges {
+            margin-left: 400px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        select {
+            width: 150px;
+        }
+
+
+
+        .table-wrapperranges {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 66.4vh;
+
+
+        }
+
+        .table-wrapperranges1 {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 66.4vh;
+
+
+        }
+        body table {
+    min-width: max-content;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border: none !important; 
+}
+
+
+        .table-filter {
+            border-radius: 5px;
+            width: 50px;
+        }
+
+        table th {
+            position: sticky;
+            top: 0px;
+            background: #133b5c;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            outline: 0.7px solid black;
+            border: 1.5px solid black;
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9fafa;
+        }
+
+        table td {
+            text-align: left;
+            font-size: 12px;
+            border: 1px solid rgb(177, 177, 177);
+
+        }
+
+        .containerranges {
+            display: flex !important;
+            padding: 20px;
+        }
+
+        .outer-wrapperranges {
+
+            border: 1px solid black;
+            border-radius: 4px;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        .outer-wrapperranges1 {
+
+            /* border: 1px solid black; */
+            border-radius: 4px;
+            /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9); */
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        #deleteButton {
+            border: 1px solid #ccc;
+        }
+
+        h5 {
+            display: inline-block;
+            margin-left: 350px;
+            margin-bottom: 23px;
+        }
+
+        .button1 {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 100px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 17px 48px;
+            color: #fff;
+            background-color: #ffa500;
+            height: 48px;
+        }
+
+        /*--------------------------------------------------------------------------------------------  */
+        /* ADD NEW BUTTON CSS */
+
+        .hidden {
+            display: none;
+        }
+
+        .custom-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 8px;
+            margin-top: 10px;
+        }
+
+        .lab1 {
+            margin-top: -10px;
+
+        }
+
+        .button-container {
+            text-indent: -1px;
+            font-size: 16px;
+            height: 8px;
+            margin-top: -30px;
+            margin-left: 10px;
+        }
+
+        .corner {
+            z-index: 5;
+            position: absolute;
+            top: 68px;
+            left: 120px;
+            background-color: white;
+            width: auto;
+        }
+
+        .border-box1 {
+            margin-top: 50px;
+            /* border: 1px solid black; */
+            width: 60%;
+            padding: 10px;
+            height: 100px;
+            border-radius: 7px / 7px;
+        }
+
+        .button {
+            border-radius: 10px;
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: 500px;
+            transition-duration: .3s;
+            border: 1px solid transparent;
+            letter-spacing: 2px;
+            min-width: 100px;
+            text-transform: uppercase;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+            background-color: #ffa500;
+            height: 35px;
+        }
+
+        #editButton {
+            height: 20px;
+            font-size: x-small;
+            font-weight: bold;
+            text-align: center;
+            padding: 1px;
+            width: 30px;
+        }
+
+        /*--------------------------------------------------------------------------------------- */
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script>
+        fetch('/navbar')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+
+
+    <div class="container ">
+        <label style="font-weight: bolder; margin-left: 340px; margin-top: 10px;" for="selectOption">Department</label>
+
+        <select class="form-select" id="Department" name="Department"
+            style="width: auto; margin-left: 39%; margin-top: -30px; height: 33px; width: 25%; font-weight: bold;"
+            required>
+            <option value="">select</option>
+            {% for department in departments %}
+            <option value="{{ department }}" {% if selected_dept==department %}selected{% endif %}>
+                {{ department }}
+            </option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <br>
+
+    <form>
+        <div class="containersranges" style="display: flex;">
+
+            <!-- Calibrator Dropdown -->
+            <label class="col-form-label" style="font-weight: bold; margin-left: -100px;">Calibrator</label>
+            <select class="form-select" id="Calibrator" name="Calibrator"
+                style="width: 35%; font-weight: bold; margin-bottom: 10px;" required>
+                <option value="">select</option>
+            </select>
+
+            <!-- Add Space -->
+            <div style="width: 20px;"></div> <!-- Adjust the width as needed -->
+
+            <!-- Parameter Dropdown -->
+            <label class="col-form-label" style="font-weight: bold; margin-left: 0px;">Parameter</label>
+            <select class="form-select" id="Parameter" name="Parameter"
+                style="width: 25%; font-weight: bold; margin-bottom: 10px;" required>
+                <option value="">select</option>
+            </select>
+        </div>
+    </form>
+
+
+    <!-- ---------------------------------------------------------------------------------------- -->
+    <div class="outer-wrapperranges1">
+        <div class="table-wrapperranges1">
+            <div class="containerranges">
+                <div class="section1ranges">
+                    <table id="emp-table">
+                        <thead>
+
+                            <th col-index="1" class="resize">Department
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index="2"class="resize">Calibrator ID
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="3"class="resize">Parameter
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all">All</option>
+                                </select>
+                            </th>
+
+                            <th col-index="4"class="resize">Measurement.Type
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="5"class="resize department-columns">Frequency.Required
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="6" class="resize department-columns">Low Frequency
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="7" class="resize department-columns">Unit
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="8" class="resize department-columns">High Frequency
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="9" class="resize department-columns">Unit
+                                <select class="table-filter" onchange="filter_rows()">
+                                    <option value="all" id="op">All</option>
+                                </select>
+                            </th>
+                            <th col-index="10" class="resize ">Action
+
+                            </th>
+                        </thead>
+                        <tbody id="userTableBody">
+
+                            {% for user in pairs %}
+                            <tr>
+
+
+                                <td>{{ user[4] }}</td>
+                                <td>{{ user[1] }}</td>
+                                <td>{{ user[2] }}</td>
+                                <td>{{ user[3] }}</td>
+                                <td class="department-columns"><input type="checkbox" {% if user[5] %}checked {% endif
+                                        %} disabled></td>
+
+                                <td class="department-columns">{{ user[6] }}</td>
+                                <td class="department-columns">{{ user[7] }}</td>
+                                <td class="department-columns">{{ user[8] }}</td>
+                                <td class="department-columns">{{ user[9] }}</td>
+
+                                <td class="fixed-column">
+                                    <form action="{{ url_for('edit_cal', id=user[0]) }}" method="get">
+                                        <button  title="Edit Parameter" type="submit" id="editButton" class="btn btn-primary" style="margin-left: 5px; width: 30px;  height: 25px;    font-family: 'Times New Roman', Times, serif; font-weight: bold;" >I</button>
+                                    </form>
+
+                                    <!-- <button type="submit" id="editButton" class="btn btn-primary editButton"
+                                        data-manufacturer-id="{{ user[0] }}"
+                                        style="margin-left: 5px; width: 80px;">View</button> -->
+
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div style="display: flex; padding-left: 360px; gap:30px; margin-top: 20px; margin-left: 15%;">
+        <button style="background-color: darkgreen;" class="btn btn-success" id="print">Download</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            populateDropdowns();
+            setupEventListeners();
+        });
+    
+        function populateDropdowns() {
+            const allFilters = document.querySelectorAll(".table-filter");
+    
+            allFilters.forEach((filter) => {
+                const colIndex = filter.parentElement.getAttribute("col-index");
+                const uniqueValues = getUniqueValues(colIndex);
+    
+                // Clear existing options before adding new ones
+                filter.innerHTML = '<option value="all">All</option>';
+    
+                uniqueValues.forEach((value) => {
+                    filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                });
+            });
+        }
+    
+        function getUniqueValues(colIndex) {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            const uniqueValuesSet = new Set();
+     
+            rows.forEach((row) => {
+                const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                if (cell) {
+                    const cellValue = cell.textContent.trim();
+                    if (cellValue !== "") {
+                        uniqueValuesSet.add(cellValue);
+                    }
+                }
+            });
+    
+            return Array.from(uniqueValuesSet);
+        }
+    
+        function setupEventListeners() {
+            const allFilters = document.querySelectorAll(".table-filter");
+    
+            allFilters.forEach((filter) => {
+                filter.addEventListener("change", function () {
+                    updateDropdowns(filter);
+                    filter_rows();
+                });
+            });
+        }
+    
+        function updateDropdowns(changedFilter) {
+            const allFilters = document.querySelectorAll(".table-filter");
+            const selectedValues = {};
+    
+            allFilters.forEach((filter) => {
+                selectedValues[filter.parentElement.getAttribute("col-index")] = filter.value;
+            });
+    
+            const filteredValues = filterValues(selectedValues);
+    
+            allFilters.forEach((filter) => {
+                if (filter !== changedFilter) {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const selectedValue = selectedValues[colIndex];
+    
+                    // Clear existing options before adding new ones
+                    filter.innerHTML = '<option value="all">All</option>';
+    
+                    // Add specific values to the dropdown based on the selected value
+                    filteredValues[colIndex].forEach((value) => {
+                        filter.innerHTML += `\n<option value="${value}">${value}</option>`;
+                    });
+                }
+            });
+        }
+    
+        function filterValues(selectedValues) {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            const filteredValues = {};
+    
+            for (const colIndex in selectedValues) {
+                filteredValues[colIndex] = new Set();
+            }
+    
+            rows.forEach((row) => {
+                let isRowMatch = true;
+    
+                for (const colIndex in selectedValues) {
+                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                    const cellValue = cell ? cell.textContent.trim() : "";
+    
+                    if (selectedValues[colIndex] !== "all" && cellValue !== selectedValues[colIndex]) {
+                        isRowMatch = false;
+                    }
+    
+                    if (colIndex !== "1" && isRowMatch) {
+                        filteredValues[colIndex].add(cellValue);
+                    }
+                }
+            });
+    
+            return filteredValues;
+        }
+    
+        function filter_rows() {
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            rows.forEach((row) => {
+                const allFilters = document.querySelectorAll(".table-filter");
+    
+                let isRowVisible = true;
+    
+                allFilters.forEach((filter) => {
+                    const colIndex = filter.parentElement.getAttribute("col-index");
+                    const filterValue = filter.value;
+                    const cellValue = row.querySelector(`td:nth-child(${colIndex})`).textContent.trim();
+    
+                    if (filterValue !== "all" && cellValue !== filterValue) {
+                        isRowVisible = false;
+                    }
+                });
+    
+                row.style.display = isRowVisible ? "table-row" : "none";
+            });
+        }
+    </script>
+    
+    
+
+
+
+    <script>
+        function initResizableColumns() {
+            const headers = document.querySelectorAll('th.resize');
+
+            headers.forEach(header => {
+                let startX;
+                let startWidth;
+
+                header.addEventListener('mousedown', function (event) {
+                    startX = event.clientX;
+                    startWidth = header.offsetWidth;
+
+                    document.addEventListener('mousemove', resizeColumn);
+                    document.addEventListener('mouseup', stopResize);
+                });
+
+                function resizeColumn(event) {
+                    const newWidth = startWidth + (event.clientX - startX);
+                    header.style.width = newWidth + 'px';
+                }
+
+                function stopResize() {
+                    document.removeEventListener('mousemove', resizeColumn);
+                    document.removeEventListener('mouseup', stopResize);
+                }
+            });
+        }
+        window.addEventListener('DOMContentLoaded', initResizableColumns);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Department").click(function () {
+                var selectedPrefix = $(this).val();
+
+                $.post("/select_dept_parameter", { sel_parameter: selectedPrefix }, function (data) {
+                    $("#Calibrator").empty();
+                    $("#Calibrator").append("<option value=''>Select</option>");
+                    $("#Parameter").empty();
+                    $("#Parameter").append("<option value=''>Select</option>");
+
+                    // Iterate over the models and append them to the #modelsList div
+                    data.forEach(function (model) {
+                        $("#Calibrator").append("<option value='" + model + "'>" + model + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // When a model is selected
+            $("#Calibrator").change(function () {
+                var selectedModel = $(this).val();
+                var selectedPrefix = $("#Department").val();
+
+                // Send selected model to the backend
+                $.post("/select_dept_Calibrator", { ModelNo: selectedModel, sel_pre: selectedPrefix }, function (data) {
+                    // Clear the previous options in the Description select element
+                    $("#Parameter").empty();
+                    $("#Parameter").append("<option value=''>Select</option>");
+
+                    // Iterate over the descriptions and add them as options to the Description select element
+                    data.forEach(function (description) {
+                        $("#Parameter").append("<option value='" + description + "'>" + description + "</option>");
+                    });
+                }, "json");
+            });
+        });
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#Parameter").on("change", function () {
+                var selectedModel = $(this).val();
+                var Calibrator = $("#Calibrator").val();
+                var selectedPrefix = $("#Department").val();
+
+                // Log the values to the console for debugging
+                console.log("Selected Model:", selectedModel);
+                console.log("Calibrator:", Calibrator);
+                console.log("selectedPrefix:", selectedPrefix);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/get_calibration",
+                    data: {
+                        ModelNo: selectedModel,
+                        sel_parameter: Calibrator,
+                        sel_pre: selectedPrefix
+                    },
+                    success: function (response) {
+                        try {
+                            // Initialize empty values and datas arrays
+                            var values = [];
+                            var datas = [];
+
+                            // Check the selected department and populate data accordingly
+                            if (selectedPrefix === "ETL-Electro Technical Lab") {
+                                values = response.values;
+                                datas = response.datas;
+
+                                var tableBody = $("#emp-tableranges").find("tbody");
+                                tableBody.empty();
+
+                                // Loop through 'values' to populate the first table
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+
+                                        "<td>" +
+                                        "<input type='checkbox' name='someCheckboxName' value='" + values[i][5] + "'" + (values[i][5] === "1" ? "checked" : "disabled") + ">" +
+                                        "</td>" +
+                                        "<td>" + values[i][6] + "</td>" +
+                                        "<td>" + values[i][7] + "</td>" +
+                                        "<td>" + values[i][8] + "</td>" +
+                                        "<td>" + values[i][9] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<form action='/edit_cal/" + values[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + values[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<button type='submit' id='editButton' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+
+
+
+                            } else if (selectedPrefix === "PRL-Pressure Lab") {
+                                values = response.PressureValues;
+                                var tableBody = $("#emp-tableranges").find("tbody");
+                                tableBody.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<form action='/edit_cal/" + values[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + values[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<button type='submit' id='editButton' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+
+                            } else if (selectedPrefix === "MCL-Mass") {
+                                values = response.MassValues;
+                                datas = response.MassDatas;
+                                var tableBody = $("#emp-tableranges").find("tbody");
+                                tableBody.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<form action='/edit_cal/" + values[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + values[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<button type='submit' id='editButton' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+
+                            } else if (selectedPrefix === "MCL-Linear") {
+                                values = response.LinearValues;
+                                datas = response.LinearDatas;
+                                var tableBody = $("#emp-tableranges").find("tbody");
+                                tableBody.empty();
+
+                                for (var i = 0; i < values.length; i++) {
+                                    var newRow = "<tr>" +
+                                        "<td>" + values[i][4] + "</td>" +
+                                        "<td>" + values[i][1] + "</td>" +
+                                        "<td>" + values[i][2] + "</td>" +
+                                        "<td>" + values[i][3] + "</td>" +
+                                        "<td class='fixed-column'>" +
+                                        "<div style='display: flex; align-items: center; '>" +
+                                        "<form action='/edit_cal/" + values[i][0] + "' method='get'>" +
+                                        "<input type='hidden' name='id' value='" + values[i][0] + "'>" +
+                                        " <input type='hidden' name='department' value='" + selectedPrefix + "'>" +
+                                        "<button type='submit' id='editButton' class='btn btn-primary'>I</button>" +
+                                        "</form>" +
+                                        "</div>" +
+                                        "</td>" +
+                                        "</tr>";
+
+                                    tableBody.append(newRow);
+                                }
+
+                            }
+
+                            // Output the received data to the console for debugging
+                            console.log("Received Values:", values);
+                            console.log("Received Datas:", datas);
+                        } catch (error) {
+                            console.error("Error:", error);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            // Function to toggle the visibility of department columns and add CSS styles
+            function toggleDepartmentColumns(department) {
+                if (department === "ETL-Electro Technical Lab") {
+                    $(".department-columns").show();
+                    $(".outer-wrapperranges1").css({
+                        "border": "1px solid black",
+                        "border-radius": "4px",
+                        "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",
+                        "max-width": "200%",
+                        "max-height": "fit-content",
+                        "margin-left": "0px"
+                    });
+
+
+
+                    // Optionally, you can remove the CSS styles from elements with the class .table-wrapperranges here
+                    $(".table-wrapperranges1").css({
+                        "overflow-y": "scroll",
+                        "overflow-x": "scroll",
+
+
+                        "height": "fit-content",
+                        "max-height": "66.4vh"
+                    });
+
+                    $("#emp-tableranges table th, #emp-tableranges table td").css({
+                        "padding": "15px",
+                        "padding-top": "10px",
+                        "padding-bottom": "10px",
+                        "width": "1000px",
+                        "height": "10px"
+
+                    });
+                    return;
+                }
+
+                // Check if the selected department should hide columns 3 to 7
+                if (department === "PRL-Pressure Lab" || department === "MCL-Linear" || department === "MCL-Mass") {
+                    // Hide department columns
+                    $(".department-columns").hide();
+
+                    // Set the width of columns 1 and 2 to auto
+                    $("[col-index=1], [col-index=2]").css("width", "auto");
+
+                    // Add CSS styles to elements with the class .outer-wrapperranges
+                    $(".outer-wrapperranges1").css({
+                        "border": "1px solid black",
+                        "border-radius": "4px",
+                        "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",
+                        "max-width": "100%",
+                        "max-height": "fit-content",
+                        "margin-left": "150px",
+                        "margin-right": "280px"
+                    });
+
+                    // Add CSS styles to elements with the class .table-wrapperranges
+                    $(".table-wrapperranges1").css({
+                        "overflow-y": "scroll",
+                        "overflow-x": "scroll",
+                        "height": "fit-content",
+                        "max-height": "60.4vh",
+                        "width": "100%"
+                    });
+
+                    $("#emp-tableranges table th, #emp-tableranges table td").css({
+                        "padding": "5px",
+                        "padding-top": "5px",
+                        "width": "500px",
+                        "height": "10px",
+                        "padding-bottom": "5px"
+                    });
+                } else {
+                    // Show department columns
+                    $(".department-columns").show();
+
+                    // Optionally, you can reset the width of columns 1 and 2 to their original values here
+                    $("[col-index=1], [col-index=2]").css("width", "");
+
+                    // Optionally, you can remove the CSS styles from elements with the class .outer-wrapperranges here
+                    $(".outer-wrapperranges1").css({
+                        "border": "1px solid black",
+                        "border-radius": "4px",
+                        "box-shadow": "0px 0px 3px rgba(0, 0, 0, 0.9)",   
+                        "max-width": "100%",
+                        "max-height": "fit-content",
+                        "margin-left": "0px"
+                    });
+
+
+
+                    // Optionally, you can remove the CSS styles from elements with the class .table-wrapperranges here
+                    $(".table-wrapperranges1").css({
+                        "overflow-y": "scroll",
+                        "overflow-x": "scroll",
+
+
+                        "height": "fit-content",
+                        "max-height": "66.4vh"
+                    });
+
+                    $("#emp-tableranges table th, #emp-tableranges table td").css({
+                        "padding": "15px",
+                        "padding-top": "10px",
+                        "padding-bottom": "10px"
+
+                    });
+                }
+            }
+
+            // Initially hide department columns and add CSS styles
+            toggleDepartmentColumns($("#Department").val());
+
+            $("#Department").on("change", function () {
+                var selectedDepartment = $(this).val();
+
+                // Toggle visibility of department columns and add/remove CSS styles based on selected department
+                toggleDepartmentColumns(selectedDepartment);
+
+                // Rest of your code...
+            });
+        });
+    </script>
+
+
+
+
+    <script>
+        // Function to handle edit button click 
+        function handleEditButtonClick() {
+            var selectedDepartment = $(this).data("department");
+
+            // Log the selected department for debugging
+            console.log("Selected Department for Edit Button Click:", selectedDepartment);
+
+            // Now, you can use the selectedDepartment value as needed for your edit action.
+            // Add your logic here to work with the selected department.
+        }
+
+        // Attach the function to the click event of the edit button
+        $(document).on("click", "#editButton1", handleEditButtonClick);
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const pairs = JSON.parse('{{ pairs | tojson | safe }}');
+
+        const departmentSelect = document.getElementById('Department');
+        const calibratorSelect = document.getElementById('Calibrator');
+        const userTableBody = document.getElementById('userTableBody');
+        const departmentColumns = document.querySelectorAll('.department-columns');
+
+        function populateTable() {
+            const selectedDepartment = departmentSelect.value;
+            const selectedCalibrator = calibratorSelect.value;
+            userTableBody.innerHTML = '';
+            // Check if the selected department should hide columns 3 to 7
+           // Check if the selected department should hide columns 3 to 7
+
+for (const column of departmentColumns) {
+    if (selectedDepartment === "PRL-Pressure Lab" || selectedDepartment === "MCL-Linear" || selectedDepartment === "MCL-Mass") {
+        // Hide department columns and clear content
+        column.style.display = 'none';
+        column.innerHTML = '';
+    } else {
+        // Show department columns and restore content
+        column.style.display = 'table-cell';
+
+        // Restore content based on user array
+        const index = Number(column.dataset.index);
+        if (!isNaN(index)) {
+            column.innerHTML = user[index];
+        }
+    }
+}
+
+
+            for (const user of pairs) {
+                if ((user[4] === selectedDepartment || selectedDepartment === '') &&
+                    (user[1] === selectedCalibrator || selectedCalibrator === '')) {
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user[4]}</td>
+                        <td>${user[1]}</td>
+                        <td>${user[2]}</td>
+                        <td>${user[3]}</td>
+                        <td class="department-columns"><input type="checkbox" ${user[5] ? 'checked' : ''}></td>
+                        <td class="department-columns">${user[6]}</td>
+                        <td class="department-columns">${user[7]}</td>
+                        <td class="department-columns">${user[8]}</td>
+                        <td class="department-columns">${user[9]}</td>
+                        <td class="fixed-column">
+                            <button type="submit" id="editButton" class="btn btn-primary editButton" data-manufacturer-id="${user[0]}"
+                                style="margin-left: 5px; width: 80px;">I</button>
+                        </td>`;
+                    userTableBody.appendChild(row);
+                }
+            }
+        }
+
+        departmentSelect.addEventListener('change', populateTable);
+        calibratorSelect.addEventListener('change', populateTable);
+
+        // Initially populate the table on page load
+        window.onload = populateTable;
+    </script> -->
+
+    <!-- <script>
+        const pairs = JSON.parse('{{ pairs | tojson | safe }}');
+
+        const departmentSelect = document.getElementById('Department');
+        const calibratorSelect = document.getElementById('Calibrator');
+        const userTableBody = document.getElementById('userTableBody');
+        const departmentColumns = document.querySelectorAll('.department-columns');
+
+        function toggleDepartmentColumnsVisibility(selectedDepartment) {
+            for (const column of departmentColumns) {
+                if (selectedDepartment === "PRL-Pressure Lab" || selectedDepartment === "MCL-Linear" || selectedDepartment === "MCL-Mass") {
+                    // Hide department columns and clear content
+                    column.style.display = 'none';
+                } else {
+                    // Show department columns
+                    column.style.display = 'table-cell';
+                }
+            }
+        }
+
+        function populateTable() {
+            const selectedDepartment = departmentSelect.value;
+            const selectedCalibrator = calibratorSelect.value;
+            userTableBody.innerHTML = '';
+
+            toggleDepartmentColumnsVisibility(selectedDepartment);
+
+            for (const user of pairs) {
+                if ((user[4] === selectedDepartment || selectedDepartment === '') &&
+                    (user[1] === selectedCalibrator || selectedCalibrator === '')) {
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${user[4]}</td>
+                <td>${user[1]}</td>
+                <td>${user[2]}</td>
+                <td>${user[3]}</td>
+                <td class="department-columns"><input type="checkbox" ${user[5] ? 'checked' : ''}></td>
+                <td class="department-columns">${user[6]}</td>
+                <td class="department-columns">${user[7]}</td>
+                <td class="department-columns">${user[8]}</td>
+                <td class="department-columns">${user[9]}</td>
+                <td class="fixed-column">
+                    <button type="submit" id="editButton" class="btn btn-primary editButton" data-manufacturer-id="${user[0]}"
+                        style="margin-left: 5px; width: 80px;">I</button>
+                </td>`;
+                    `<form action='/edit_cal/${user[0]}' method='get'>
+    <input type='hidden' name='id' value='${user[0]}'>
+    <button type='submit' id='editButton' class='btn btn-primary editButton' style='margin-left: 5px; width: 80px;'>I</button>
+</form>`;
+
+                    userTableBody.appendChild(row);
+                }
+            }
+        }
+
+        departmentSelect.addEventListener('change', () => {
+            const selectedDepartment = departmentSelect.value;
+            toggleDepartmentColumnsVisibility(selectedDepartment);
+            populateTable();
+        });
+
+        calibratorSelect.addEventListener('change', populateTable);
+
+        // Initially populate the table on page load
+        window.onload = () => {
+            toggleDepartmentColumnsVisibility(departmentSelect.value);
+            populateTable();
+        };
+
+    </script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftLABWEB LabPrefix</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/p2logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+         link[rel="icon"] {
+            width: 92px !important;
+            height: 32px;
+        }
+        body {
+            background-color: rgb(188, 224, 248);
+        }
+
+        .labprexboder {
+            border: 1px solid #131212;
+            width: 80%;
+            margin-left: 5%;
+            margin-top: 20px;
+            height: 280px;
+            border-radius: 7px / 7px;
+
+        }
+
+
+        .titlelabprex {
+
+            font-weight: bold;
+            z-index: 5;
+            position: absolute;
+            top: 120px;
+            left: 100px;
+            background-color: rgb(188, 224, 248);
+            width: auto;
+        }
+
+        .urltitlelabprex {
+
+            font-weight: bold;
+            z-index: 5;
+            position: absolute;
+            top: 420px;
+            left: 100px;
+            background-color: rgb(188, 224, 248);
+            width: auto;
+        }
+
+        .list {
+            width: 400px;
+            height: 200px;
+            background-color: white;
+            margin-left: 30px;
+        }
+
+        .sa:hover {
+            background-color: blue;
+            color: white;
+
+        }
+
+        .rightsrf {
+            margin-left: 450px;
+            margin-top: -210px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="navbar">
+        <div id="navbar-placeholder"></div>
+        <script src="{{ url_for('static', filename='js/departmentnav.js') }}" type="module"></script>
+        <script>
+            // Retrieve valueStoredInVariable from localStorage
+            var storedValue = localStorage.getItem('valueStoredInVariable');
+            console.log(storedValue);
+            // Now you can use valueStoredInVariable in this script or any other script on this page.
+            // Check if valueStoredInVariable is defined
+            if (storedValue === "Customer Care") {
+                fetch('/navbar')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            } else if (storedValue === "ETL-Electro Technical Lab") {
+                fetch('/navbardepartmentcal')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            } else if (storedValue === "PRL-Pressure Lab") {
+                fetch('/navbardepartmentcal')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            }else if (storedValue === "MCL-Linear") {
+                fetch('/navbardepartmentcal')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            }else if (storedValue === "MCL-Mass") {
+                fetch('/navbardepartmentcal')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            }else if (storedValue === "QA") {
+                fetch('/navbardepartmentqa')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            }else if (storedValue === "System Administrator") {
+                fetch('/navbardepartmentsa')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            } else {
+                console.log("No conditions matched.");
+            }
+        </script>
+        
+    </section>
+    <section class="srf">
+        <div class="labprexboder">
+            <div class="titlelabprex">
+                <p>SRF Job Card Prefix Settings</p>
+            </div>
+            <div class="srflist">
+                <br>
+                <p style=" margin-left: 30px;">SRF Prefix List</p>
+                <div class="list">
+
+                </div>
+            </div>
+            <div class="rightsrf">
+                <div class="duc">
+
+                    <label for="">SRF Prefix</label><br>
+                    <input class="form-check-input" type="text" name="" id="url" value="" readonly
+                        style="width: 280px; height: 40px;">
+                    <br>
+                    <br>
+
+
+                    <input type="checkbox" class="checkbox" value=""> <label>ACTIVE (Currently in Use)</label>
+                    <br>
+                    <br>
+
+                    <div class="btngrp">
+                        <button class="btn btn-primary">Add NEW Prefix</button>
+                        <button class="btn btn-success" style="margin-left: 20px;">Save SRF Prefix</button>
+                        <button class="btn btn-danger" style="margin-left: 20px;">Delete Prefix</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ulrprex">
+        <div class=" labprexboder  ">
+            <div class="urltitlelabprex">
+                <p>ULR Prefix Settings</p>
+            </div>
+            <div class="srflist">
+                <br>
+                <p style=" margin-left: 30px;">ULR Prefix List</p>
+                <div class="list" id="lists">
+                    {% for data in datas %}
+                    <p onclick="displayValue(this)" style="cursor: pointer; " class="sa">{{ data }}</p>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="rightsrf">
+                <div class="duc" id="myForm">
+
+                    <div class="srfed" style="display: flex;">
+                        {% for header in headers %}
+                        <div class="fi">
+                            <label for="ULRPrefix" style="margin-left: 10px;">Acc.Cerf.No</label><br>
+                            <input class="form-check-input" type="text" name="ULRPrefix" id="LabPrefix"
+                                value="{{header[1]}}"
+                                style="width:90px; height: 25px; text-align: center; margin-left: 10px;">
+                        </div>
+
+
+                        <div class="sec">
+                            <label for="ULRYear" style="margin-left: 10px;">Cur.Year</label><br>
+                            <input class="form-check-input" type="text" name="ULRYear" id="ULRYear"
+                                value="{{header[2]}}"
+                                style="width:90px; height: 25px; text-align: center; margin-left: 10px;">
+                        </div>
+                        <div class="third">
+                            <label for="LabBrNo" style="margin-left: 10px;">Loc.Code</label><br>
+                            <input class="form-check-input" type="text" name="LabBrNo" id="item" value="{{header[3]}}"
+                                style="width:90px; height: 25px; text-align: center; margin-left: 10px;">
+                        </div>
+                        <div class="four">
+                            <label for="" style="margin-left: 10px;">Running No. Format</label><br>
+                            <input class="form-check-input" type="text" name="ULR_RunNo_Format" id="no"
+                                value="{{header[4]}}"
+                                style="width:150px; height: 25px; text-align: center; margin-left: 10px;">
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                    <br>
+                    {% for valid in valids %}
+                    <label for="">ULR Prefix</label><br>
+                    <input class="form-check-input" type="text" name="ULRPrefix" value="{{valid[0]}}"
+                        style="width: 280px; height: 40px;" id="selectedValue">
+                    <input type="checkbox" class="checkbox" value="" {% if valid[5]==1 %}checked{% endif %}
+                        style="margin-top: 18px; margin-left: 15px;" id="active">
+                    <label>ACTIVE (Currently in Use)</label>
+                    {% endfor %}
+                    <br>
+
+
+                    <script>
+                        // JavaScript function to display the clicked value in the input field
+                        function displayValue(element) {
+                            var selectedValue = element.textContent;
+                            document.getElementById("selectedValue").value = selectedValue;
+                        }
+                    </script>
+
+
+
+                    <br>
+
+                    <div class="btngrp">
+                        <button id="addButton" class="btn btn-primary">Add NEW
+                            Prefix</button>
+
+                        <button class="btn btn-success" style="margin-left: 10px;">Save ULR Prefix</button>
+                        <button class="btn btn-danger" style="margin-left: 10px;">Delete Prefix</button>
+                    </div>
+
+
+
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                    <script>
+                        // Function to handle the click event on <p> elements
+                        function displayValue(element) {
+                            var selectedValue = $(element).text(); // Get the clicked value
+
+                            // Log the selected value to the console
+                            console.log("Selected Value: " + selectedValue);
+
+                            // Send the selected value to the Flask backend using AJAX
+                            $.ajax({
+                                type: "POST", // Use POST method to send data
+                                url: "/get_urls", // Replace with the actual Flask endpoint
+                                data: { selectedValue: selectedValue }, // Send the selected value
+                                success: function (response) {
+                                    // Handle the response from the backend
+                                    // Check if the response is not empty
+                                    if (response.length > 0) {
+                                        $("#selectedValue").val(response[0][0]);// Assuming you have specific elements with IDs to display the values:
+                                        $("#LabPrefix").val(response[0][1]); // Update the LabPrefix input value
+                                        $("#ULRYear").val(response[0][2]); // Update the ULRYear input value
+                                        $("#item").val(response[0][3]); // Update the item input value
+                                        $("#no").val(response[0][4]); // Update the no input value
+                                        // Update the selectedValue input value
+                                        if (response[0][5] == 1) {
+                                            $("#active").prop("checked", true); // Set the checkbox as checked
+                                        } else {
+                                            $("#active").prop("checked", false); // Set the checkbox as unchecked
+                                        } // Update the active input value
+                                    }
+                                },
+                                error: function (error) {
+                                    console.log("Error:", error);
+                                }
+                            });
+                        }
+
+
+                    </script>
+
+                    <script>
+                        // When the "Add" button is clicked
+                        $("#addButton").click(function () {
+                            var selectedULRYear = $('#ULRYear').val();
+                            var selectedselectedValue = $('#selectedValue').val();
+                            console.log("Selected ULR Year: " + selectedULRYear);
+                            console.log("Selected Value: " + selectedselectedValue);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/add_confirm",
+                                data: {
+                                    ulryear: selectedULRYear,
+                                    ulrprefix: selectedselectedValue,
+
+                                },// Assuming the response is in JSON format
+                                success: function (response) {
+                                    // Log the response for debugging
+                                    console.log(response);
+
+                                    // Handle the response from the backend
+                                    if (response.status === "success") {
+                                        // Display a success message in an alert box
+                                        alert("Success: " + response.message);
+
+                                        // Clear the input fields after displaying the success message
+                                        clearInputFields();
+                                    } else {
+                                        // Display an error message in an alert box
+                                        alert("Error: " + response.message);
+                                    }
+                                },
+                                error: function (error) {
+                                    console.log("Error:", error);
+                                }
+                            });
+                        });
+
+
+                    </script>
+                    <script>
+                        // Function to handle item deletion
+                        function displayValue(element) {
+                            var itemToDelete = $(element).text(); // Get the item text to delete
+
+                            // Send a request to the Flask backend to delete the selected item
+                            $.ajax({
+                                type: "POST",
+                                url: "/delete_item", // Replace with the actual Flask endpoint for item deletion
+                                data: { itemToDelete: itemToDelete },
+                                success: function (response) {
+                                    // Handle the response, e.g., remove the deleted item from the UI
+                                    $(element).remove();
+                                },
+                                error: function (error) {
+                                    console.log("Error:", error);
+                                }
+                            });
+                        }
+
+
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            // When a paragraph is clicked
+                            $(".sa").click(function () {
+                                // Get the clicked value
+                                var selectedValue = $(this).text();
+
+                                // Send the selected value to the backend using AJAX
+                                $.ajax({
+                                    type: "POST", // Use POST method to send data
+                                    url: "/process_selected_value", // Replace with the actual Flask endpoint
+                                    data: { selectedValue: selectedValue }, // Send the selected value
+                                    success: function (response) {
+                                        // Handle the response from the backend
+                                        if (response.status === "Success") {
+                                            // Display a success message
+                                            alert("Success: Value processed.");
+
+                                            // Remove the clicked element from the list
+                                            $(this).remove(); // 'this' refers to the clicked element
+                                        } else {
+                                            alert("Error: " + response.message);
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.log("Error:", error);
+                                    },
+                                    context: this // Set 'this' to the clicked element within the AJAX call
+                                });
+                            });
+                        });
+
+                    </script>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
